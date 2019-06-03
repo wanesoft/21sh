@@ -16,7 +16,6 @@ static void		ft_sort_and_print_arr(char **arr)
 {
 	int			i;
 	int			j;
-	char		*tmp;
 
 	if (!arr || !(*arr))
 		return ;

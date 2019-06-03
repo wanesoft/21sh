@@ -63,7 +63,7 @@ static void	ft_variab(char **str, t_vector **env, int i, char mod)
 		while (ft_check((*str)[i + j]))
 			++j;
 		tmp = ft_strndup(&(*str)[i + 1], j - 1);
-		len_var = ft_strlen(tmp) + 1;
+		len_var = (int)ft_strlen(tmp) + 1;
 		replace = ft_take_value_env(tmp, env);
 		ft_strdel(&tmp);
 	}

@@ -17,6 +17,7 @@ static char	*take_key(char *str)
 	int		len;
 	char	*ans;
 
+    len = 0; // vopros ????
 	while (str[len] && str[len] != ':')
 		++len;
 	if (!str[len] || !len)
@@ -27,7 +28,6 @@ static char	*take_key(char *str)
 
 static char	*take_value(char *str)
 {
-	int		len;
 	char	*value;
 
 	value = 0;
@@ -78,7 +78,6 @@ void		ft_addenv(char *str, t_vector **env)
 {
 	char	*key;
 	char	*value;
-	int		len;
 
 	while (*str && (*str == '\n' || *str == ' ' || *str == '\t'))
 		++str;

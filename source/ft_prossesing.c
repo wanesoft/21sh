@@ -12,6 +12,7 @@
 
 #include "../include/minishell.h"
 
+/*
 static char	*take_first_word(char *line)
 {
 	char			*tmp;
@@ -31,7 +32,7 @@ static char	*take_first_word(char *line)
 		++i;
 	}
 	return (tmp);
-}
+}*/
 
 static void	ft_help(void)
 {

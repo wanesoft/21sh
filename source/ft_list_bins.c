@@ -71,10 +71,11 @@ char			*ft_list_bins(const char *text, int state)
 	static int	len;
 	static int	list_index;
 
+	ans = NULL;
 	tmp = *g_env;
 	if (!state)
 	{
-		len = ft_strlen(text);
+		len = (int)ft_strlen(text);
 		list_index = 0;
 	}
 	while (tmp)

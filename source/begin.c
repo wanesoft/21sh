@@ -36,12 +36,21 @@ void			begin(t_vector **env)
 	char		**arr_str;
 	int			i;
 
+    static int j = 1000;
+    
 	signal(SIGINT, ft_restart);
 	g_env = env;
 	rl_attempted_completion_function = ft_complete;
 	rl_bind_key('\t', rl_complete);
-	if ((str = readline("\033[32mMishinshell:\033[0m ")))
-		add_history(str);
+	/*if ((str = readline("\033[32mMishinshell:\033[0m ")))
+		add_history(str);*/
+    if (j) {
+        str = ft_strdup("cd ~");
+		ft_printf("%d, ", j);
+        --j;
+    } else {
+        str = ft_strdup("exit");
+    }
 	arr_str = ft_strsplit(str, ';');
 	i = 0;
 	while (arr_str[i])
