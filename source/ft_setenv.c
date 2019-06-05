@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 17:25:16 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/02 16:59:09 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/05 15:16:15 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void		ft_setenv(char *param, t_vector **env)
 	while (tmp)
 	{
 		//ft_printf("%s %s\n", tmp->content, new->key); // EDIT!!! DELETE!!!
-		if (ft_strequ(((t_var_env *)tmp->content)->key, new->key))
+		if (tmp->content &&
+				ft_strequ(((t_var_env *)tmp->content)->key, new->key))
 		{
 			ft_del_content_var_env(tmp->content);
 			free(tmp->content);

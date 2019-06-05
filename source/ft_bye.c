@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 15:01:30 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/01 17:13:41 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/05 15:07:21 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@ void			ft_bye(t_vector **env)
 	tmp = *env;
 	while (tmp)
 	{
-		ft_del_content_var_env(((t_var_env *)tmp->content));
-		free(tmp->content);
-		tmp->content = 0;
+		if (tmp->content)
+		{
+			ft_del_content_var_env(((t_var_env *)tmp->content));
+			free(tmp->content);
+			tmp->content = 0;
+		}
 		tmp = tmp->next;
 	}
 	ft_delall_vector(env);
