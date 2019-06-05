@@ -26,7 +26,7 @@ void		ft_setenv(char *param, t_vector **env)
 	new = ft_take_info(param);
 	while (tmp)
 	{
-		//ft_printf("%s %s\n", tmp->content, new->key); // EDIT!!! DELETE!!!
+		ft_printf("%s %s\n", (char *)((t_var_env *)tmp->content)->key, (char *)new->key); // EDIT!!! DELETE!!!
 		if (tmp->content &&
 				ft_strequ(((t_var_env *)tmp->content)->key, new->key))
 		{
