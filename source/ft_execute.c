@@ -18,9 +18,10 @@ char		**ft_vector_to_arr(t_vector **env)
 	t_vector	*tmp;
 	int			i;
 
-	if (!(arr_env = (char **)malloc(sizeof(char *) *
-					(ft_count_vector(*env) + 1))))
-		return (0);
+//	if (!(arr_env = (char **)malloc(sizeof(char *) *
+//					(ft_count_vector(*env) + 1))))
+//		return (0);
+	arr_env = (char **)malloc(2048); // EDIT
 	tmp = *env;
 	i = 0;
 	while (tmp)
@@ -51,7 +52,13 @@ void		ft_execute(char *path, char **param, t_vector **env)
 	signal(SIGINT, ft_abort);
 	father = fork();
 	if (!father)
+	{
+		ft_printf("\n***** NOW WORK %s ***** \n", path);
+		for (int i = 0; arr_env[i]; ++i)
+			ft_printf("%s, \n", arr_env[i]);
+		ft_printf("\n***** OUT OF %s ***** \n", path);
 		execve(path, param, arr_env);
+	}
 	else
 		wait(0);
 	ft_del_arr(&arr_env);

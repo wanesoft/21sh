@@ -35,7 +35,7 @@ int					main(int argc, char **argv, char **env)
 	++argv;
 	write(1, "\033[31m___________________________\n", 34);
 	write(1, "Welcome to mishinshell!\n", 24);
-	write(1, "for help, print --help\n", 23);
+	write(1, "for help, enter --help\n", 23);
 	write(1, "\033[0m", 4);
 	env_copy = ft_arr_to_vector(env);
 	begin(&env_copy);
