@@ -31,6 +31,9 @@ int					main(int argc, char **argv, char **env)
 {
 	t_vector		*env_copy;
 
+    /*
+    COMMENT HERE!
+    */
 	++argc;
 	++argv;
 	write(1, "\033[31m___________________________\n", 34);

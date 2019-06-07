@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 14:01:32 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/05 15:16:17 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/07 15:54:42 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,22 +64,22 @@ void			begin(t_vector **env)
 	char		**arr_str;
 	int			i;
 	
-	static int j = 100;
+	static int j = 10000;
 	
 	while (1) {
 		signal(SIGINT, ft_restart);
 		g_env = env;
 		rl_attempted_completion_function = ft_complete;
 		rl_bind_key('\t', rl_complete);
-		/*if ((str = readline("\033[32mMishinshell:\033[0m ")))
-		 add_history(str);*/
-		if (j) {
-			str = ft_strdup("cd ~; ls");
-			ft_printf("\n---*** %d ***---\n, ", j);
+		if ((str = readline("\033[32mMishinshell:\033[0m ")))
+			add_history(str);
+		/*if (j) {
+            str = ft_strdup("cd ~;cd $HOME; cd -; cd");
+			ft_printf(">---*** %d ***---<\n", j);
 			--j;
 		} else {
 			str = ft_strdup("exit");
-		}
+		}*/
 		arr_str = ft_strsplit(str, ';');
 		i = 0;
 		while (arr_str[i])
@@ -91,7 +91,7 @@ void			begin(t_vector **env)
 			++i;
 		}
 		ft_strdel(&str);
-		//ft_del_arr(&arr_str);
+		ft_del_arr(&arr_str);
 	}
 	//begin(env);
 }

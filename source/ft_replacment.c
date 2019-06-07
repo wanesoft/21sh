@@ -33,13 +33,16 @@ static void	ft_replace(char **str, int i, char *replace, int len_var)
 		return ;
 	j = -1;
 	z = -1;
-	while (j < i)
+    ft_strncpy(tmp, *str, i);
+    ft_strcpy(&tmp[i], replace);
+    ft_strcpy(&tmp[i + ft_strlen(replace)], &(*str)[i + len_var]);
+    /*while (j < i)
 		tmp[++j] = (*str)[++z];
 	z += len_var;
 	while (*replace)
 		tmp[j++] = *(replace++);
 	while ((*str)[z])
-		tmp[j++] = (*str)[z++];
+		tmp[j++] = (*str)[z++];*/
 	ft_strdel(str);
 	*str = tmp;
 }

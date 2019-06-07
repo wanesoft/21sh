@@ -53,10 +53,10 @@ void		ft_execute(char *path, char **param, t_vector **env)
 	father = fork();
 	if (!father)
 	{
-		ft_printf("\n***** NOW WORK %s ***** \n", path);
-		for (int i = 0; arr_env[i]; ++i)
-			ft_printf("%s, \n", arr_env[i]);
-		ft_printf("\n***** OUT OF %s ***** \n", path);
+		//ft_printf("\n***** NOW WORK %s ***** \n", path);
+		//for (int i = 0; arr_env[i]; ++i)
+		//	ft_printf("%s, \n", arr_env[i]);
+		//ft_printf("\n***** OUT OF %s ***** \n", path);
 		execve(path, param, arr_env);
 	}
 	else

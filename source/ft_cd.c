@@ -24,22 +24,44 @@ static void	ft_change_var_env(t_vector **env, char *key, char *value)
 	ft_strdel(&line);
 }
 
+/*static char *ft_future_pwd(const char *pwd, char *path)
+{
+    char    *future_pwd;
+    char    **arr_pwd;
+    char    **arr_future_pwd;
+    int     i;
+    
+    i = 0;
+    arr_pwd = ft_strsplit(pwd, '/');
+    arr_future_pwd = ft_strsplit(path, '/');
+}*/
+
 static void	ft_change_dir(char *path, t_vector **env)
 {
 	char	*pwd;
+    char    *new_pwd;
+    //char    *future_pwd;
 
 	if (*path)
 	{
 		pwd = ft_memalloc(STDMES);
 		if (!(pwd = getcwd(pwd, STDMES)))
 			return ;
-		if (file_check(path, FOLD, 1, path))
+        //future_pwd = ft_future_pwd(pwd, path);
+        if (file_check(path, FOLD, 1, path))
 		{
-			ft_change_var_env(env, "PWD", path);
+            //ft_change_var_env(env, "PWD", future_pwd);
 			ft_change_var_env(env, "OLDPWD", pwd);
-			if (!ft_strequ(path, pwd))
+			//if (!ft_strequ(future_pwd, pwd))
 				chdir(path);
-		}
+            new_pwd = ft_memalloc(STDMES);
+            if (!(new_pwd = getcwd(pwd, STDMES)))
+            {
+                ft_strdel(&pwd);
+                return ;
+            }
+            ft_change_var_env(env, "PWD", new_pwd);
+        }
 		ft_strdel(&pwd);
 	}
 }
