@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 14:01:32 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/07 15:54:42 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/08 19:58:32 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void			begin(t_vector **env)
 	int			i;
 	
 	static int j = 100;
-	
+	//NEW COMMENT
 	while (1) {
 		signal(SIGINT, ft_restart);
 		g_env = env;
