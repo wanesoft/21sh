@@ -64,22 +64,22 @@ void			begin(t_vector **env)
 	char		**arr_str;
 	int			i;
 	
-	static int j = 10000;
+	static int j = 100;
 	
 	while (1) {
 		signal(SIGINT, ft_restart);
 		g_env = env;
 		rl_attempted_completion_function = ft_complete;
 		rl_bind_key('\t', rl_complete);
-		if ((str = readline("\033[32mMishinshell:\033[0m ")))
-			add_history(str);
-		/*if (j) {
-            str = ft_strdup("cd ~;cd $HOME; cd -; cd");
-			ft_printf(">---*** %d ***---<\n", j);
-			--j;
-		} else {
-			str = ft_strdup("exit");
-		}*/
+//        if ((str = readline("\033[32mMishinshell:\033[0m ")))
+//            add_history(str);
+        if (j) {
+			str = ft_strdup("echo $HOME; cd /; pwd; echo $HOME; cd -; pwd; echo $HOME; cd /Users; pwd; echo $HOME; cd ~; pwd; echo $HOME; echo $PATH;");
+            ft_printf(">---*** %d ***---<\n", j);
+            --j;
+        } else {
+            str = ft_strdup("exit");
+        }
 		arr_str = ft_strsplit(str, ';');
 		i = 0;
 		while (arr_str[i])

@@ -18,10 +18,10 @@ char		**ft_vector_to_arr(t_vector **env)
 	t_vector	*tmp;
 	int			i;
 
-//	if (!(arr_env = (char **)malloc(sizeof(char *) *
-//					(ft_count_vector(*env) + 1))))
-//		return (0);
-	arr_env = (char **)malloc(2048); // EDIT
+	if (!(arr_env = (char **)malloc(sizeof(char *) *
+					(ft_count_vector(*env) + 1))))
+		return (0);
+	//arr_env = (char **)malloc(2048); // EDIT
 	tmp = *env;
 	i = 0;
 	while (tmp)

@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_replacment.c                                    :+:      :+:    :+:   */
@@ -29,8 +29,10 @@ static void	ft_replace(char **str, int i, char *replace, int len_var)
 	int		z;
 
 	if (!(tmp = ft_memalloc(ft_strlen(*str) - len_var +
-					ft_strlen(replace) + 1)))
+					ft_strlen(replace) + 2)))
 		return ;
+//	tmp = (char *)malloc(2048); //allo
+//	bzero(tmp, 2048);
 	j = -1;
 	z = -1;
     ft_strncpy(tmp, *str, i);
@@ -63,8 +65,12 @@ static void	ft_variab(char **str, t_vector **env, int i, char mod)
 	else
 	{
 		j = 1;
+		//ft_printf("\n{______%s________}\n", &(*str)[i]);
 		while (ft_check((*str)[i + j]))
+		{
+			//ft_printf("\n{________%s________}\n", &(*str)[i + j]);
 			++j;
+		}
 		tmp = ft_strndup(&(*str)[i + 1], j - 1);
 		len_var = (int)ft_strlen(tmp) + 1;
 		replace = ft_take_value_env(tmp, env);
@@ -77,17 +83,31 @@ static void	ft_variab(char **str, t_vector **env, int i, char mod)
 void		ft_replacment(char **str, t_vector **env)
 {
 	int		i;
-
+	char *tmp;
+	
 	i = 0;
-	while ((*str)[i])
+	tmp = ft_strdup(*str);
+//	while (tmp[i])
+//	{
+//		if ((*str)[i] == '~'
+//			|| ((*str)[i] == '$' && (*str)[i + 1]
+//				&& (ft_check((*str)[i + 1]))))
+//		{
+//			ft_variab(str, env, i, (*str)[i]);
+//			--i;
+//		}
+//		++i;
+//	}
+	while (tmp[i])
 	{
-		if ((*str)[i] == '~'
-			|| ((*str)[i] == '$' && (*str)[i + 1]
-				&& (ft_check((*str)[i + 1]))))
+		if ((tmp)[i] == '~'
+			|| ((tmp)[i] == '$' && (tmp)[i + 1]
+				&& (ft_check((tmp)[i + 1]))))
 		{
-			ft_variab(str, env, i, (*str)[i]);
-			--i;
+			ft_variab(str, env, i, (tmp)[i]);
+			//--i;
 		}
 		++i;
 	}
+	free(tmp);
 }

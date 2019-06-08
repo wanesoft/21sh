@@ -74,4 +74,6 @@ char				**ft_complete(const char *text, int start, int end);
 
 void				ft_bye(t_vector **env);
 
+int        ft_strequ(char const *s1, char const *s2);
+
 #endif

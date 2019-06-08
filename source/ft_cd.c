@@ -61,7 +61,9 @@ static void	ft_change_dir(char *path, t_vector **env)
                 return ;
             }
             ft_change_var_env(env, "PWD", new_pwd);
-        }
+        }// else {
+//            sleep(10);
+//        }
 		ft_strdel(&pwd);
 	}
 }

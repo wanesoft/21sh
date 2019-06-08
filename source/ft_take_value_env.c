@@ -22,7 +22,10 @@ char			*ft_take_value_env(char *key, t_vector **env)
 	while (tmp)
 	{
 		if (ft_strequ(key, ((t_var_env *)tmp->content)->key))
+		{
 			value = ft_strdup(((t_var_env *)tmp->content)->value);
+			break ;
+		}
 		tmp = tmp->next;
 	}
 	if (!value)
