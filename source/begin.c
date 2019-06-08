@@ -14,6 +14,8 @@
 
 t_vector		**g_env;
 
+//allo
+
 void			ft_hello(void)
 {
 	write(1, "\033[32mMishinshell:\033[0m ", 22);
@@ -74,7 +76,7 @@ void			begin(t_vector **env)
 //        if ((str = readline("\033[32mMishinshell:\033[0m ")))
 //            add_history(str);
         if (j) {
-			str = ft_strdup("echo $HOME; cd /; pwd; echo $HOME; cd -; pwd; echo $HOME; cd /Users; pwd; echo $HOME; cd ~; pwd; echo $HOME; echo $PATH;");
+			str = ft_strdup("echo $HOME; cd /; cd .; cd ..; pwd; echo $HOME; cd -; pwd; echo $HOME; cd /Users; pwd; echo $HOME; cd ~; pwd; echo $HOME; echo $PATH;");
             ft_printf(">---*** %d ***---<\n", j);
             --j;
         } else {
