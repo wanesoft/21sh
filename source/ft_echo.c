@@ -14,10 +14,8 @@
 
 void		ft_echo(char *params)
 {
-//	if (ft_strlen(params) > 4)
-//		write(1, params + 5, ft_strlen(params + 5));
-//	write(1, "\n", 1);
-	ft_printf("%s\n", params);
-	ft_printf("\n ---------------------------- EHO \n");
+	if (ft_strlen(params) > 4)
+		write(1, params + 5, ft_strlen(params + 5));
+	write(1, "\n", 1);
 	return ;
 }
