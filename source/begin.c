@@ -14,7 +14,7 @@
 
 t_vector		**g_env;
 
-//allo
+//allo11
 
 void			ft_hello(void)
 {
