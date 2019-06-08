@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 14:01:32 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/08 19:58:32 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/08 20:08:04 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_vector		**g_env;
 
-//allo
+//allo sadas dasdasd asd 
 
 void			ft_hello(void)
 {
