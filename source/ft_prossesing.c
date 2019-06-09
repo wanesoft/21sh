@@ -6,33 +6,11 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:09:32 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/02 17:44:44 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/09 12:47:03 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-/*
-static char	*take_first_word(char *line)
-{
-	char			*tmp;
-	unsigned int	len;
-	unsigned int	i;
-
-	len = 0;
-	while (line[len])
-		len++;
-	if (!(tmp = malloc(len + 1)))
-		exit(1);
-	tmp[len] = 0;
-	i = 0;
-	while (i < len)
-	{
-		tmp[i] = line[i];
-		++i;
-	}
-	return (tmp);
-}*/
 
 static void	ft_help(void)
 {

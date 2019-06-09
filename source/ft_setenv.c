@@ -28,9 +28,6 @@ void		ft_setenv(char *param, t_vector **env)
 	new = ft_take_info(param);
 	while (tmp)
 	{
-		//ft_strlen(((t_var_env *)tmp->content)->key);
-		//ft_printf("%s %s\n", (char *)((t_var_env *)tmp->content)->key, (char *)new->key); // EDIT!!! DELETE!!!
-		//ft_printf("\n+++++++ %s %s %d ++++++++\n", (char *)((t_var_env *)tmp->content)->key, (char *)new->key , ft_strequ((char *)((t_var_env *)tmp->content)->key, (char *)new->key));
 		if (tmp->content && ft_strequ(((t_var_env *)tmp->content)->key, new->key))
 		{
 			fl = 1;
@@ -42,8 +39,5 @@ void		ft_setenv(char *param, t_vector **env)
 		tmp = tmp->next;
 	}
 	if (!fl)
-    {
-		//ft_printf("\n*** %s ***\n", new->key);
 		ft_add_vector(*env, new);
-    }
 }

@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 11:25:07 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/02 17:41:23 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/09 12:47:27 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ char				**ft_complete(const char *text, int start, int end);
 
 void				ft_bye(t_vector **env);
 
-int        ft_strequ(char const *s1, char const *s2);
+int					ft_strequ(char const *s1, char const *s2);
 
 #endif

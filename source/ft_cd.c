@@ -24,47 +24,35 @@ static void	ft_change_var_env(t_vector **env, char *key, char *value)
 	ft_strdel(&line);
 }
 
-/*static char *ft_future_pwd(const char *pwd, char *path)
-{
-    char    *future_pwd;
-    char    **arr_pwd;
-    char    **arr_future_pwd;
-    int     i;
-    
-    i = 0;
-    arr_pwd = ft_strsplit(pwd, '/');
-    arr_future_pwd = ft_strsplit(path, '/');
-}*/
-
 static void	ft_change_dir(char *path, t_vector **env)
 {
 	char	*pwd;
     char    *new_pwd;
-    //char    *future_pwd;
 
 	if (*path)
 	{
-		pwd = ft_memalloc(STDMES);
-		if (!(pwd = getcwd(pwd, STDMES)))
+		if (!(pwd = ft_memalloc(STDMES)) ||
+			(!(new_pwd = ft_memalloc(STDMES))))
+		{
+			ft_strdel(&pwd);
+			ft_strdel(&new_pwd);
 			return ;
-        //future_pwd = ft_future_pwd(pwd, path);
+		}
         if (file_check(path, FOLD, 1, path))
 		{
-            //ft_change_var_env(env, "PWD", future_pwd);
+			if (!(pwd = getcwd(pwd, STDMES)))
+				return ;
 			ft_change_var_env(env, "OLDPWD", pwd);
-			//if (!ft_strequ(future_pwd, pwd))
-				chdir(path);
-            new_pwd = ft_memalloc(STDMES);
-            if (!(new_pwd = getcwd(pwd, STDMES)))
+			chdir(path);
+            if (!(new_pwd = getcwd(new_pwd, STDMES)))
             {
                 ft_strdel(&pwd);
                 return ;
             }
             ft_change_var_env(env, "PWD", new_pwd);
-        }// else {
-//            sleep(10);
-//        }
+        }
 		ft_strdel(&pwd);
+		ft_strdel(&new_pwd);
 	}
 }
 
