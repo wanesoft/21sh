@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/02 17:19:42 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/02 18:02:04 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/09 13:20:23 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char	*take_key(char *str)
 	int		len;
 	char	*ans;
 
-    len = 0; // vopros ????
+	len = 0;
 	while (str[len] && str[len] != ':')
 		++len;
 	if (!str[len] || !len)

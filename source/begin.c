@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 14:01:32 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/09 13:04:15 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/09 13:15:04 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,26 @@ void			begin(t_vector **env)
 	char		*tmp;
 	char		**arr_str;
 	int			i;
-	
-	static int j = 100;
-	while (1) {
+
+	static int	j = 100;
+	while (1)
+	{
 		signal(SIGINT, ft_restart);
 		g_env = env;
 		rl_attempted_completion_function = ft_complete;
 		rl_bind_key('\t', rl_complete);
 //        if ((str = readline("\033[32mMishinshell:\033[0m ")))
 //            add_history(str);
-        if (j) {
+		if (j)
+		{
 			str = ft_strdup("echo $HOME; cd /; cd .; cd ..; pwd; echo $HOME; cd -; pwd; echo $HOME; cd /Users; pwd; echo $HOME; cd ~; pwd; echo $HOME; echo $PATH;");
-        	ft_printf(">---*** %d ***---<\n", j);
-        	--j;
-        } else {
-            str = ft_strdup("exit");
-        }
+			ft_printf(">---*** %d ***---<\n", j);
+			--j;
+		}
+		else
+		{
+			str = ft_strdup("exit");
+		}
 		arr_str = ft_strsplit(str, ';');
 		i = 0;
 		while (arr_str[i])

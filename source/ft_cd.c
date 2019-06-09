@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 19:14:59 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/02 15:19:47 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/09 13:19:18 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	ft_change_var_env(t_vector **env, char *key, char *value)
 static void	ft_change_dir(char *path, t_vector **env)
 {
 	char	*pwd;
-    char    *new_pwd;
+	char	*new_pwd;
 
 	if (*path)
 	{
@@ -38,19 +38,19 @@ static void	ft_change_dir(char *path, t_vector **env)
 			ft_strdel(&new_pwd);
 			return ;
 		}
-        if (file_check(path, FOLD, 1, path))
+		if (file_check(path, FOLD, 1, path))
 		{
 			if (!(pwd = getcwd(pwd, STDMES)))
 				return ;
 			ft_change_var_env(env, "OLDPWD", pwd);
 			chdir(path);
-            if (!(new_pwd = getcwd(new_pwd, STDMES)))
-            {
-                ft_strdel(&pwd);
-                return ;
-            }
-            ft_change_var_env(env, "PWD", new_pwd);
-        }
+			if (!(new_pwd = getcwd(new_pwd, STDMES)))
+			{
+				ft_strdel(&pwd);
+				return ;
+			}
+			ft_change_var_env(env, "PWD", new_pwd);
+		}
 		ft_strdel(&pwd);
 		ft_strdel(&new_pwd);
 	}

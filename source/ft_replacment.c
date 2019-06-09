@@ -1,4 +1,4 @@
- /* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_replacment.c                                    :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 16:08:49 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/02 15:28:42 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/09 13:24:02 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static void	ft_replace(char **str, int i, char *replace, int len_var)
 	if (!(tmp = ft_memalloc(ft_strlen(*str) +
 					ft_strlen(replace) + 1)))
 		return ;
-    ft_strncpy(tmp, *str, i);
-    ft_strcpy(&tmp[i], replace);
-    ft_strcpy(&tmp[i + ft_strlen(replace)], &(*str)[i + len_var]);
+	ft_strncpy(tmp, *str, i);
+	ft_strcpy(&tmp[i], replace);
+	ft_strcpy(&tmp[i + ft_strlen(replace)], &(*str)[i + len_var]);
 	ft_strdel(str);
 	*str = tmp;
 }
@@ -66,8 +66,8 @@ static void	ft_variab(char **str, t_vector **env, int i, char mod)
 void		ft_replacment(char **str, t_vector **env)
 {
 	int		i;
-	char *tmp;
-	
+	char	*tmp;
+
 	i = 0;
 	tmp = ft_strdup(*str);
 	while (tmp[i])
@@ -77,9 +77,8 @@ void		ft_replacment(char **str, t_vector **env)
 				&& (ft_check((tmp)[i + 1]))))
 		{
 			ft_variab(str, env, i, (tmp)[i]);
-			//--i;
 		}
 		++i;
 	}
-	free(tmp);
+	ft_strdel(&tmp);
 }

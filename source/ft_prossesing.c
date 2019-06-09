@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:09:32 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/09 12:47:03 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/09 13:26:08 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,22 @@ static void	ft_help(void)
 
 static int	ft_forward(char *str, t_vector **env, char *command)
 {
-	if (ft_strequ(command, "echo"))
-		ft_echo(str);
-	else if (ft_strequ(command, "cd"))
+	if (ft_strequ(command, "cd"))
 		ft_cd(str, env);
 	else if (ft_strequ(command, "setenv"))
 		ft_setenv(str + 6, env);
 	else if (ft_strequ(command, "unsetenv"))
 		ft_unsetenv(str + 8, env);
-	else if (ft_strequ(command, "env"))
-		ft_env(env, str + 3);
 	else if (ft_strequ(command, "exit"))
 		ft_bye(env);
 	else if (ft_strequ(command, "--help"))
 		ft_help();
 	else if (ft_strequ(command, "addenv"))
 		ft_addenv(str + 6, env);
+	else if (ft_strequ(command, "echo"))
+		ft_echo(str);
+	else if (ft_strequ(command, "env"))
+		ft_env(env, str + 3);
 	else
 		return (0);
 	return (1);
