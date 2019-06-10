@@ -36,36 +36,24 @@ void			begin(t_vector **env)
 	char		**arr_str;
 	int			i;
 
-	static int	j = 100;
-	while (1)
+	signal(SIGINT, ft_restart);
+	g_env = env;
+	str = ft_input(env);
+//	rl_attempted_completion_function = ft_complete;
+//	rl_bind_key('\t', rl_complete);
+//	if ((str = readline("\033[32mMishinshell:\033[0m ")))
+//		add_history(str);
+	arr_str = ft_strsplit(str, ';');
+	i = 0;
+	while (arr_str[i])
 	{
-		signal(SIGINT, ft_restart);
-		g_env = env;
-		rl_attempted_completion_function = ft_complete;
-		rl_bind_key('\t', rl_complete);
-//        if ((str = readline("\033[32mMishinshell:\033[0m ")))
-//            add_history(str);
-		if (j)
-		{
-			str = ft_strdup("echo $HOME; cd /; cd .; cd ..; pwd; echo $HOME; cd -; pwd; echo $HOME; cd /Users; pwd; echo $HOME; cd ~; pwd; echo $HOME; echo $PATH;");
-			ft_printf(">---*** %d ***---<\n", j);
-			--j;
-		}
-		else
-		{
-			str = ft_strdup("exit");
-		}
-		arr_str = ft_strsplit(str, ';');
-		i = 0;
-		while (arr_str[i])
-		{
-			tmp = ft_strjoin("_=", arr_str[i]);
-			ft_setenv(tmp, env);
-			ft_strdel(&tmp);
-			ft_prossesing(arr_str[i], env);
-			++i;
-		}
-		ft_strdel(&str);
-		ft_del_arr(&arr_str);
+		tmp = ft_strjoin("_=", arr_str[i]);
+		ft_setenv(tmp, env);
+		ft_strdel(&tmp);
+		ft_prossesing(arr_str[i], env);
+		++i;
 	}
+	ft_strdel(&str);
+	ft_clear_mygv(ft_get_mygv(NULL));
+	ft_del_arr(&arr_str);
 }

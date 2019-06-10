@@ -30,6 +30,7 @@ static t_vector		*ft_arr_to_vector(char **env)
 int					main(int argc, char **argv, char **env)
 {
 	t_vector		*env_copy;
+	t_mygv			*mygv;
 
 	++argc;
 	++argv;
@@ -38,6 +39,13 @@ int					main(int argc, char **argv, char **env)
 	write(1, "for help, enter --help\n", 23);
 	write(1, "\033[0m", 4);
 	env_copy = ft_arr_to_vector(env);
-	begin(&env_copy);
+	if (!(mygv = (t_mygv *)malloc(sizeof(t_mygv))))
+		exit(EXIT_FAILURE);
+	tcgetattr(STDIN_FILENO, &(mygv->old));
+	ft_clear_mygv(mygv);
+	ft_get_mygv(mygv);
+	ft_init_screen();
+	while (1)
+		begin(&env_copy);
 	return (0);
 }

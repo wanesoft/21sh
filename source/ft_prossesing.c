@@ -40,8 +40,8 @@ static int	ft_forward(char *str, t_vector **env, char *command)
 		ft_addenv(str + 6, env);
 	else if (ft_strequ(command, "echo"))
 		ft_echo(str);
-	else if (ft_strequ(command, "env"))
-		ft_env(env, str + 3);
+//	else if (ft_strequ(command, "env"))
+//		ft_env(env, str + 3);
 	else
 		return (0);
 	return (1);

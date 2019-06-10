@@ -27,6 +27,11 @@ SRC :=	begin.c\
 		fts_var_env.c\
 		main.c\
 		ft_addenv.c\
+		ft_input.c\
+		ft_init_screen.c\
+		ft_get_mygv.c\
+		ft_clear_mygv.c\
+		ft_put_letter.c
 
 SRC := $(addprefix ./source/, $(SRC))
 
@@ -37,7 +42,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@/bin/rm -f ./libftprintf/libftprintf.a
 	@make -C ./libftprintf
-	gcc $(FLAGS) -I $(INC) -L$(LIB) -lftprintf  -lreadline $(OBJ) -o $(NAME)
+	gcc $(FLAGS) -I $(INC) -L$(LIB) -lftprintf  -lreadline -ltermcap $(OBJ) -o $(NAME)
 
 %.o: %.c
 	gcc -c $< -o $@
