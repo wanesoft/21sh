@@ -32,6 +32,8 @@ SRC :=	begin.c\
 		ft_get_mygv.c\
 		ft_clear_mygv.c\
 		ft_put_letter.c\
+		ft_del_letter.c\
+		ft_i_enter.c\
 
 SRC := $(addprefix ./source/, $(SRC))
 
