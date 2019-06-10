@@ -6,11 +6,11 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/01 12:41:08 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/01 17:29:33 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/10 14:01:50 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../include/21sh.h"
 
 extern t_vector	**g_env;
 

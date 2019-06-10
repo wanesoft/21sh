@@ -6,11 +6,11 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:51:01 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/05/27 11:04:08 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/10 13:58:09 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../include/21sh.h"
 
 void	ft_error(int error, char *str)
 {

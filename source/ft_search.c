@@ -6,11 +6,11 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 19:11:21 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/02 14:10:26 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/10 14:05:13 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../include/21sh.h"
 
 static int	look_in_dir(char *dir, char *file, char **path)
 {

@@ -6,11 +6,11 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 19:05:26 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/01 19:39:21 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/10 13:54:52 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../include/21sh.h"
 
 int					file_check(char *path, int type, int mod, char *command)
 {

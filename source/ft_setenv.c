@@ -6,11 +6,11 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 17:25:16 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/05 15:16:15 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/10 14:06:25 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../include/21sh.h"
 
 void		ft_setenv(char *param, t_vector **env)
 {

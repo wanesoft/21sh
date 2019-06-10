@@ -1,4 +1,4 @@
-NAME := minishell
+NAME := 21sh
 
 INC := ./include
 
@@ -31,7 +31,7 @@ SRC :=	begin.c\
 		ft_init_screen.c\
 		ft_get_mygv.c\
 		ft_clear_mygv.c\
-		ft_put_letter.c
+		ft_put_letter.c\
 
 SRC := $(addprefix ./source/, $(SRC))
 

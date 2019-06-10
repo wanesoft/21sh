@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   21sh.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/21 11:25:07 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/09 12:47:27 by udraugr-         ###   ########.fr       */
+/*   Created: 2019/06/10 13:52:19 by udraugr-          #+#    #+#             */
+/*   Updated: 2019/06/10 14:13:07 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef HEADER_H
+# define HEADER_H
 
 # include "../libftprintf/ft_printf/printf.h"
 # include <dirent.h>

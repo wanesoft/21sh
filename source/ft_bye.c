@@ -6,11 +6,11 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 15:01:30 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/09 13:16:40 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/10 13:55:16 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../include/21sh.h"
 
 static void		ft_bye_mes(void)
 {
