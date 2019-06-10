@@ -6,11 +6,11 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 11:23:54 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/10 14:07:33 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/10 14:40:32 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/21sh.h"
+#include "../include/twenty_one_sh.h"
 
 static t_vector		*ft_arr_to_vector(char **env)
 {

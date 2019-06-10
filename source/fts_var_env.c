@@ -6,11 +6,11 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 13:27:43 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/10 14:07:25 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/10 14:40:24 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/21sh.h"
+#include "../include/twenty_one_sh.h"
 
 t_var_env		*ft_take_info(char *str)
 {

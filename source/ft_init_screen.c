@@ -6,11 +6,11 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 13:59:46 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/10 13:59:51 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/10 14:37:43 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/21sh.h"
+#include "../include/twenty_one_sh.h"
 
 void				ft_init_screen(void)
 {

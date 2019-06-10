@@ -6,11 +6,11 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 17:25:16 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/10 14:06:25 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/10 14:39:59 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/21sh.h"
+#include "../include/twenty_one_sh.h"
 
 void		ft_setenv(char *param, t_vector **env)
 {

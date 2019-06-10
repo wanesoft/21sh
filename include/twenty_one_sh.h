@@ -6,12 +6,12 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 13:52:19 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/10 14:13:07 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/10 14:19:36 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_H
-# define HEADER_H
+#ifndef _21SH_H
+# define _21SH_H
 
 # include "../libftprintf/ft_printf/printf.h"
 # include <dirent.h>

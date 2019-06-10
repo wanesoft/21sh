@@ -6,11 +6,11 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 13:57:17 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/10 13:57:21 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/10 14:36:17 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/21sh.h"
+#include "../include/twenty_one_sh.h"
 
 static int	ft_check(char c, char *sep)
 {

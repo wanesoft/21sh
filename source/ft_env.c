@@ -6,11 +6,11 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 11:55:35 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/10 13:57:59 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/10 14:36:37 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/21sh.h"
+#include "../include/twenty_one_sh.h"
 
 static void		ft_sort_and_print_arr(char **arr)
 {
