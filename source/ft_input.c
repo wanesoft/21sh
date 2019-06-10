@@ -15,13 +15,16 @@
 /*
  
  ** dl - delete line
+ ** cr - cursor <-- left side
 
 */
  
 static int		ft_input_proc(unsigned i, t_mygv *mygv)
 {
 	if (i == K_ENTER)
-		return (1);
+		return (ft_i_enter(mygv));
+	else if (i == K_DEL || i == K_BACKSP)
+		ft_del_letter(i, mygv);
 	else if (i == K_ESC)
 		exit(1); //ft_clear_mygv(&mygv);
 	else if (ft_isprint(i))
@@ -48,11 +51,9 @@ char			*ft_input(t_vector **env)
 		input = 0;
 		ft_prompt_line(mygv);
 		read(STDIN_FILENO, &input, 8);
+		//ft_printf("\n\n %u\n", input);
 		if (ft_input_proc(input, mygv))
-		{
-			write(STDOUT_FILENO, "\n", 1);
 			break;
-		}
 	}
 	return (ft_strdup(mygv->g_str)); // a nado li malloc???
 }

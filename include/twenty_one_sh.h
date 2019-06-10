@@ -106,5 +106,7 @@ void				ft_clear_mygv(t_mygv *mygv);
 void				ft_init_screen(void);
 char				*ft_input(t_vector **env);
 void				ft_put_letter(unsigned i, t_mygv *mygv);
+int					ft_i_enter(t_mygv *mygv);
+void				ft_del_letter(unsigned i, t_mygv *mygv);
 
 #endif
