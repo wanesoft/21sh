@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   21sh.h                                             :+:      :+:    :+:   */
+/*   twenty_one_sh.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/10 13:52:19 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/10 14:19:36 by udraugr-         ###   ########.fr       */
+/*   Created: 2019/06/10 14:43:18 by udraugr-          #+#    #+#             */
+/*   Updated: 2019/06/10 14:43:36 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _21SH_H
-# define _21SH_H
+#ifndef TWENTY_ONE_SH_H
+# define TWENTY_ONE_SH_H
 
 # include "../libftprintf/ft_printf/printf.h"
 # include <dirent.h>
