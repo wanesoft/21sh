@@ -35,6 +35,8 @@ int			ft_i_enter(t_mygv *mygv)
 	if (ft_check_quotes(mygv->g_str))
 	{
 		ft_put_letter('\n', mygv);
+		++mygv->g_stage;
+		write(STDOUT_FILENO, "\n", 1);
 		ft_input();
 	}
 	else

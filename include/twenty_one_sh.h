@@ -63,6 +63,7 @@ typedef struct      s_mygv
     t_vector        *env;
     char            g_str[BUF_G_STR];
     int             g_j;
+    int             g_stage;
     int             g_y_pos;
     int             g_x_pos;
 }                   t_mygv;
@@ -109,5 +110,6 @@ char				*ft_input(void);
 void				ft_put_letter(unsigned i, t_mygv *mygv);
 int					ft_i_enter(t_mygv *mygv);
 void				ft_del_letter(unsigned i, t_mygv *mygv);
+void                ft_i_arrow_l_r(unsigned i, t_mygv *mygv);
 
 #endif

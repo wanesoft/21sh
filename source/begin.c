@@ -43,7 +43,7 @@ void			begin(t_vector **env)
 //	rl_bind_key('\t', rl_complete);
 //	if ((str = readline("\033[32mMishinshell:\033[0m ")))
 //		add_history(str);
-	ft_printf("\n\n *** YA VERNUL ***:\n%s\n", str);
+	ft_printf("\n *** YA VERNUL ***:\n%s\n *** * ***\n", str);
 	arr_str = ft_strsplit(str, ';');
 	i = 0;
 	while (arr_str[i])

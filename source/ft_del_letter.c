@@ -21,6 +21,14 @@ void			ft_del_letter(unsigned i, t_mygv *mygv)
 	else if (i == K_BACKSP && mygv->g_j > 0)
 	{
 		--mygv->g_j;
+		if (mygv->g_str[mygv->g_j] == '\n')
+		{
+			ft_putstr_fd(tgetstr("up", NULL), STDOUT_FILENO);
+			ft_putstr_fd(tgetstr("dl", NULL), STDOUT_FILENO);
+			ft_putstr_fd(tgetstr("cr", NULL), STDOUT_FILENO);
+			--mygv->g_stage;
+			//problema navigacii
+		}
 		mygv->g_str[mygv->g_j] = '\0';
 	}
 }

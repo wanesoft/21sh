@@ -15,12 +15,19 @@
 void				ft_init_screen(void)
 {
 	struct termios	new;
+	t_mygv			*mygv;
 	
+	mygv = ft_get_mygv(NULL);
 	tcgetattr(STDIN_FILENO, &new);
 	new.c_lflag &= ~(ICANON);
 	new.c_lflag &= ~(ECHO);
 	new.c_cc[VMIN] = 1;
 	new.c_cc[VTIME] = 0;
 	tcsetattr(STDIN_FILENO, TCSADRAIN, &new);
-	tgetent(getenv("TERM"), NULL);  //napisat proverku peremennoj
+	if (tgetent(NULL, getenv("TERM")) <= 0)
+	{
+		ft_printf("Error load TERMCAP\n");
+		ft_bye(&(mygv->env));
+		exit(0);
+	}
 }
