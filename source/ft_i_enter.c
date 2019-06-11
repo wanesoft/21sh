@@ -12,8 +12,32 @@
 
 #include "../include/twenty_one_sh.h"
 
+static int	ft_check_quotes(char *str)
+{
+	int		i;
+	int		count;
+	
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (str[i] == '"')
+			++count;
+		++i;
+	}
+	if (count % 2 != 0)
+		return (1);
+	return (0);
+}
+
 int			ft_i_enter(t_mygv *mygv)
 {
-	write(STDOUT_FILENO, "\n", 1);
+	if (ft_check_quotes(mygv->g_str))
+	{
+		ft_put_letter('\n', mygv);
+		ft_input();
+	}
+	else
+		write(STDOUT_FILENO, "\n", 1);
 	return (1);
 }

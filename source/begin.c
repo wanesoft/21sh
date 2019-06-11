@@ -38,11 +38,12 @@ void			begin(t_vector **env)
 
 	signal(SIGINT, ft_restart);
 	g_env = env;
-	str = ft_input(env);
+	str = ft_input();
 //	rl_attempted_completion_function = ft_complete;
 //	rl_bind_key('\t', rl_complete);
 //	if ((str = readline("\033[32mMishinshell:\033[0m ")))
 //		add_history(str);
+	ft_printf("\n\n *** YA VERNUL ***:\n%s\n", str);
 	arr_str = ft_strsplit(str, ';');
 	i = 0;
 	while (arr_str[i])

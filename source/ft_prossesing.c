@@ -67,7 +67,7 @@ void		ft_prossesing(char *str, t_vector **env)
 		else if (!ft_strchr(command, '/') &&
 				ft_search(env, command, &path))
 		{
-			ft_execute(path, command, env);
+			ft_execute(path, param, env);
 			ft_strdel(&path);
 		}
 	}

@@ -46,6 +46,9 @@ int					main(int argc, char **argv, char **env)
 	ft_get_mygv(mygv);
 	ft_init_screen();
 	while (1)
+	{
+		mygv->env = env_copy;
 		begin(&env_copy);
+	}
 	return (0);
 }

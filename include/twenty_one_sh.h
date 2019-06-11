@@ -60,6 +60,7 @@ typedef struct		s_var_env
 typedef struct      s_mygv
 {
     struct termios  old;
+    t_vector        *env;
     char            g_str[BUF_G_STR];
     int             g_j;
     int             g_y_pos;
@@ -104,7 +105,7 @@ void				ft_bye(t_vector **env);
 t_mygv				*ft_get_mygv(t_mygv *mygv);
 void				ft_clear_mygv(t_mygv *mygv);
 void				ft_init_screen(void);
-char				*ft_input(t_vector **env);
+char				*ft_input(void);
 void				ft_put_letter(unsigned i, t_mygv *mygv);
 int					ft_i_enter(t_mygv *mygv);
 void				ft_del_letter(unsigned i, t_mygv *mygv);

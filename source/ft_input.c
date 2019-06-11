@@ -40,7 +40,7 @@ static void		ft_prompt_line(t_mygv *mygv)
 	ft_putstr_fd(mygv->g_str, STDOUT_FILENO);
 }
 
-char			*ft_input(t_vector **env)
+char			*ft_input(void)
 {
 	unsigned	input;
 	t_mygv		*mygv;
