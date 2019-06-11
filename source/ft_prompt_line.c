@@ -38,9 +38,6 @@ static void		ft_prompt_line_2(t_mygv *mygv)
 		if (mygv->g_str[i] == '\n')
 		{
 			ft_printf("\033[33mquotes_%d> \033[0m", stage);
-//			ft_putstr_fd("\033[33mquotes_", STDOUT_FILENO);
-//			ft_putnbr(stage);
-//			ft_putstr_fd("> \033[0m", STDOUT_FILENO);
 			++stage;
 		}
 		++i;

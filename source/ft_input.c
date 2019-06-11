@@ -15,8 +15,10 @@
 /*
  
  ** dl - delete line
- ** cr - cursor <-- left side
- ** up - cursos up 1 line
+ ** cr - cursor <-- move to left side
+ ** up - cursor up 1 line
+ ** le - cursor left 1 char
+ ** nd - cursor right 1 char
 
 */
  
@@ -30,16 +32,8 @@ static int		ft_input_proc(unsigned i, t_mygv *mygv)
 		exit(1); //ft_clear_mygv(&mygv);
 	else if (i == K_LEFT || i == K_RIGHT)
 		ft_i_arrow_l_r(i, mygv);
-	else if (i == K_UP || i == K)
-	{
-		mygv->g_y_pos = 1;
-		//ft_putstr_fd(tgetstr("up", 0), STDOUT_FILENO);
-	}
-	else if (i == K_DOWN)
-	{
-		//ft_putstr_fd(tgetstr("do", 0), STDOUT_FILENO);
-		mygv->g_y_pos = 0;
-	}
+	else if (i == K_UP || i == K_DOWN)
+		ft_i_arrow_u_d(i, mygv);
 	else if (ft_isprint(i))
 		ft_put_letter(i, mygv);
 	return (0);
