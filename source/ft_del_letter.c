@@ -21,6 +21,7 @@ void			ft_del_letter(unsigned i, t_mygv *mygv)
 	else if (i == K_BACKSP && mygv->g_j > 0)
 	{
 		--mygv->g_j;
+		--mygv->g_x_pos;
 		if (mygv->g_str[mygv->g_j] == '\n')
 		{
 			ft_putstr_fd(tgetstr("up", NULL), STDOUT_FILENO);
@@ -29,6 +30,6 @@ void			ft_del_letter(unsigned i, t_mygv *mygv)
 			--mygv->g_stage;
 			//problema navigacii
 		}
-		mygv->g_str[mygv->g_j] = '\0';
+		ft_memmove(&mygv->g_str[mygv->g_j], &mygv->g_str[mygv->g_j + 1], ft_strlen(&mygv->g_str[mygv->g_j]));
 	}
 }

@@ -30,4 +30,5 @@ void				ft_init_screen(void)
 		ft_bye(&(mygv->env));
 		exit(0);
 	}
+	ft_putstr_fd(tgetstr("vi", NULL), STDIN_FILENO);
 }

@@ -111,5 +111,7 @@ void				ft_put_letter(unsigned i, t_mygv *mygv);
 int					ft_i_enter(t_mygv *mygv);
 void				ft_del_letter(unsigned i, t_mygv *mygv);
 void                ft_i_arrow_l_r(unsigned i, t_mygv *mygv);
+void                ft_prompt_line(t_mygv *mygv);
+void                ft_back_screen(void);
 
 #endif

@@ -3,13 +3,20 @@
 
 void			ft_i_arrow_l_r(unsigned i, t_mygv *mygv)
 {
-	if (i == K_RIGHT)
+	if (i == K_RIGHT && mygv->g_j < ft_strlen(mygv->g_str))
 	{
-		ft_printf("\n\nRIGNT\n");
-		//ft_putstr_fd(tgetstr("kl", NULL), STDOUT_FILENO);
+		++mygv->g_x_pos;
+		++mygv->g_j;
+		//ft_putstr_fd(tgoto(tgetstr("cm", NULL), 10, r), STDOUT_FILENO);
+		//tgoto(gotostr, 20, 10)
+		//ft_printf("\n\nRIGNT\n");
+		//ft_putstr_fd(tgetstr("nd", NULL), STDOUT_FILENO);
 	}
-	else if (i == K_LEFT)
+	else if (i == K_LEFT && mygv->g_j > 0)
 	{
-		ft_printf("\n\nLEFT\n");
+		--mygv->g_x_pos;
+		--mygv->g_j;
+		//ft_putstr_fd(tgetstr("le", NULL), STDOUT_FILENO);
+		//ft_printf("\n\nLEFT\n");
 	}
 }

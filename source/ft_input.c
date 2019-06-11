@@ -30,54 +30,26 @@ static int		ft_input_proc(unsigned i, t_mygv *mygv)
 		exit(1); //ft_clear_mygv(&mygv);
 	else if (i == K_LEFT || i == K_RIGHT)
 		ft_i_arrow_l_r(i, mygv);
+	else if (i == K_UP || i == K)
+	{
+		mygv->g_y_pos = 1;
+		//ft_putstr_fd(tgetstr("up", 0), STDOUT_FILENO);
+	}
+	else if (i == K_DOWN)
+	{
+		//ft_putstr_fd(tgetstr("do", 0), STDOUT_FILENO);
+		mygv->g_y_pos = 0;
+	}
 	else if (ft_isprint(i))
 		ft_put_letter(i, mygv);
 	return (0);
-}
-
-static void		ft_prompt_line_2(t_mygv *mygv)
-{
-	int			stage;
-	int			i;
-	
-	i = 0;
-	stage = 0;
-	ft_putstr_fd("\033[36mWelcome> \033[0m", STDOUT_FILENO);
-	while (mygv->g_str[i])
-	{
-		write(STDOUT_FILENO, &mygv->g_str[i], 1);
-		if (mygv->g_str[i] == '\n')
-		{
-			ft_putstr_fd("\033[33mquotes_", STDOUT_FILENO);
-			ft_putnbr(stage);
-			ft_putstr_fd("> \033[0m", STDOUT_FILENO);
-			++stage;
-		}
-		++i;
-	}
-}
-
-static void		ft_prompt_line(t_mygv *mygv)
-{
-	int			y;
-	
-	y = mygv->g_stage;
-	while (y >= 0)
-	{
-		if (y)
-			ft_putstr_fd(tgetstr("up", NULL), STDOUT_FILENO);
-		ft_putstr_fd(tgetstr("dl", NULL), STDOUT_FILENO);
-		ft_putstr_fd(tgetstr("cr", NULL), STDOUT_FILENO);
-		--y;
-	}
-	ft_prompt_line_2(mygv);
 }
 
 char			*ft_input(void)
 {
 	unsigned	input;
 	t_mygv		*mygv;
-	
+
 	mygv = ft_get_mygv(NULL);
 	while (1)
 	{
