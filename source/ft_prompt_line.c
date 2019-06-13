@@ -27,9 +27,10 @@ static void		ft_prompt_line_2(t_mygv *mygv)
 	{
 		if (i == mygv->g_j && mygv->g_str[i] != '\n' && !mygv->g_y_pos)
 		{
-			ft_putstr_fd("\033[7m", STDIN_FILENO);
-			write(STDIN_FILENO, &mygv->g_str[i], 1);
-			ft_putstr_fd("\033[0m", STDOUT_FILENO);
+//			ft_putstr_fd("\033[7m", STDIN_FILENO);
+//			write(STDIN_FILENO, &mygv->g_str[i], 1);
+//			ft_putstr_fd("\033[0m", STDOUT_FILENO);
+			ft_printf("\033[7m%c\033[0m", mygv->g_str[i]);
 			++i;
 		}
 		if (i == mygv->g_j && mygv->g_str[i] == '\n' && !mygv->g_y_pos)
@@ -37,7 +38,9 @@ static void		ft_prompt_line_2(t_mygv *mygv)
 		write(STDOUT_FILENO, &mygv->g_str[i], 1);
 		if (mygv->g_str[i] == '\n')
 		{
-			ft_printf("\033[33mquotes_%d> \033[0m", stage);
+			ft_printf("\033[33mquotes_");
+			(stage > 9) ? 0 : write(1, "0", 1);
+			ft_printf("%d> \033[0m", stage);
 			++stage;
 		}
 		++i;
@@ -57,7 +60,7 @@ void			ft_prompt_line(t_mygv *mygv)
 		ft_putstr_fd(tgetstr("cr", NULL), STDOUT_FILENO);
 		--y;
 	}
-	ft_putstr_fd("\033[36mWelcome!> \033[0m", STDOUT_FILENO);
+	ft_putstr_fd("\033[36m[Welcome]> \033[0m", STDOUT_FILENO);
 	ft_prompt_line_2(mygv);
 	ft_prompt_line_3(mygv);
 }

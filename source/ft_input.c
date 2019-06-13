@@ -24,6 +24,8 @@
  
 static int		ft_input_proc(unsigned i, t_mygv *mygv)
 {
+	if (i == 8428783)
+		i = 4283163;
 	if (i == K_ENTER)
 		return (ft_i_enter(mygv));
 	else if (i == K_DEL || i == K_BACKSP)
