@@ -128,6 +128,16 @@ void			ft_i_arrow_u_d(unsigned i, t_mygv *mygv)
 		ft_up(i, mygv);
 	else if (i == K_DOWN)
 		ft_down(i, mygv);
+	else if (i == K_HOME)
+	{
+		while (mygv->g_j > 0 && mygv->g_str[mygv->g_j - 1] != '\n')
+			--mygv->g_j;
+	}
+	else if (i == K_END)
+	{
+		while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] != '\n')
+			++mygv->g_j;
+	}
 	if (mygv->g_j < 0)
 		mygv->g_j = 0;
 	if (mygv->g_j > ft_strlen(mygv->g_str))

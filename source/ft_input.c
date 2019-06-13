@@ -24,8 +24,6 @@
  
 static int		ft_input_proc(unsigned i, t_mygv *mygv)
 {
-	if (i == 8428783)
-		i = 4283163;
 	if (i == K_ENTER)
 		return (ft_i_enter(mygv));
 	else if (i == K_DEL || i == K_BACKSP)
@@ -34,7 +32,7 @@ static int		ft_input_proc(unsigned i, t_mygv *mygv)
 		exit(1); //ft_clear_mygv(&mygv);
 	else if (i == K_LEFT || i == K_RIGHT)
 		ft_i_arrow_l_r(i, mygv);
-	else if (i == K_UP || i == K_DOWN)
+	else if (i == K_UP || i == K_DOWN || i == K_HOME || i == K_END)
 		ft_i_arrow_u_d(i, mygv);
 	else if (ft_isprint(i))
 		ft_put_letter(i, mygv);
