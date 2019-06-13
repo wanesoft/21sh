@@ -25,6 +25,7 @@
 # include <sys/termios.h>
 # include <curses.h>
 # include <term.h>
+# include <sys/ioctl.h>
 
 # define STDMES 2048
 # define FOLD 1
@@ -61,6 +62,8 @@ typedef struct      s_mygv
 {
     struct termios  old;
     t_vector        *env;
+    int             col;
+    int             row;
     char            g_str[BUF_G_STR];
     int             g_j;
     int             g_stage;
@@ -114,5 +117,6 @@ void                ft_i_arrow_l_r(unsigned i, t_mygv *mygv);
 void                ft_i_arrow_u_d(unsigned i, t_mygv *mygv);
 void                ft_prompt_line(t_mygv *mygv);
 void                ft_back_screen(void);
+void                ft_get_tty_col_ros(void);
 
 #endif

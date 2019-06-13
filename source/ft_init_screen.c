@@ -12,10 +12,29 @@
 
 #include "../include/twenty_one_sh.h"
 
-void				ft_init_screen(void)
+void					ft_get_tty_col_ros(void)
 {
-	struct termios	new;
-	t_mygv			*mygv;
+	struct winsize		w;
+	t_mygv				*mygv;
+	
+	mygv = ft_get_mygv(NULL);
+	ioctl(STDERR_FILENO, TIOCGWINSZ, &w);
+	if (w.ws_col == 0 || w.ws_row == 0)
+	{
+		mygv->col = 64;
+		mygv->row = 64;
+	}
+	else
+	{
+		mygv->col = w.ws_col;
+		mygv->row = w.ws_row;
+	}
+}
+
+void					ft_init_screen(void)
+{
+	struct termios		new;
+	t_mygv				*mygv;
 	
 	mygv = ft_get_mygv(NULL);
 	tcgetattr(STDIN_FILENO, &new);
