@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 14:43:18 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/10 16:53:52 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/14 13:33:21 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@
 # define STDMES 2048
 # define FOLD 1
 # define BIN 2
+
+# define EXEC_FAIL 1
+# define EXEC_SUCC 0
 
 # define NOTFOUND 1
 # define NOTREG 2
@@ -77,6 +80,7 @@ void				ft_del_content_var_env(t_var_env *cur);
 void				begin(t_vector **env);
 void				ft_prossesing(char *str, t_vector **env);
 void				ft_replacment(char **str, t_vector **env);
+int					ft_prep_for_pipes(char *str, char **prep_pipes, t_vector **env);
 
 char				*ft_take_value_env(char *key, t_vector **env);
 

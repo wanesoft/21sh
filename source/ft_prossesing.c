@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:09:32 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/10 15:36:35 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/14 13:30:24 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,19 @@ static int	ft_forward(char *str, t_vector **env, char *command)
 
 void		ft_prossesing(char *str, t_vector **env)
 {
+	char 	*prep_pipes;
 	char	**param;
 	char	*path;
 	char	*command;
 
 	str = ft_divide(str, " \t\n");
 	ft_replacment(&str, env);
-	param = ft_strsplit(str, ' ');
-	ft_strtolower((command = ft_strdup(param[0])));
+	prep_pipes = 0;
+	if (ft_prep_for_pipes(str, &prep_pipes, env))
+		return ;
+	ft_printf("%s\n", prep_pipes);
+	//param = ft_strsplit(str, ' ');
+	/*ft_strtolower((command = ft_strdup(param[0])));
 	if (command && !ft_forward(str, env, command))
 	{
 		if (ft_strlen(str) == 1 && str[0] == '.')
@@ -71,7 +76,7 @@ void		ft_prossesing(char *str, t_vector **env)
 			ft_strdel(&path);
 		}
 	}
-	ft_strdel(&str);
-	ft_strdel(&command);
 	ft_del_arr(&param);
+	ft_strdel(&command);*/
+	ft_strdel(&str);
 }

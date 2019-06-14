@@ -20,6 +20,7 @@ SRC :=	begin.c\
 		ft_list_bins.c\
 		ft_prossesing.c\
 		ft_replacment.c\
+		ft_prep_for_pipes.c\
 		ft_take_value_env.c\
 		ft_search.c\
 		ft_setenv.c\
@@ -37,7 +38,7 @@ SRC :=	begin.c\
 		ft_i_arrow_l_r.c\
 		ft_prompt_line.c\
 		ft_back_screen.c\
-		ft_i_arrow_u_d.c
+		ft_i_arrow_u_d.c\
 
 SRC := $(addprefix ./source/, $(SRC))
 
