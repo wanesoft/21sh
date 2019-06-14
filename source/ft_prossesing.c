@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:09:32 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/14 13:30:24 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/14 17:18:20 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 static void	ft_help(void)
 {
-	ft_printf("env      - показать переменные окружения\n");
-	ft_printf("env -s   - показать переменные окружения по алфавиту\n");
+//	ft_printf("env      - показать переменные окружения\n");
+//	ft_printf("env -s   - показать переменные окружения по алфавиту\n");
+//	ft_printf("echo     - вывести текст\n");
 	ft_printf("setenv   - установить переменную окружения\n");
 	ft_printf("unsetenv - удалить переменную окружения\n");
 	ft_printf("сd       - поменять рабочую директорию\n");
-	ft_printf("echo     - вывести текст\n");
 	ft_printf("addenv   - добавить к переменной окружения одно значение\n");
 	ft_printf("exit     - выйти из программы\n");
 }
@@ -38,8 +38,8 @@ static int	ft_forward(char *str, t_vector **env, char *command)
 		ft_help();
 	else if (ft_strequ(command, "addenv"))
 		ft_addenv(str + 6, env);
-	else if (ft_strequ(command, "echo"))
-		ft_echo(str);
+//	else if (ft_strequ(command, "echo"))
+//		ft_echo(str);
 //	else if (ft_strequ(command, "env"))
 //		ft_env(env, str + 3);
 	else
@@ -57,11 +57,13 @@ void		ft_prossesing(char *str, t_vector **env)
 	str = ft_divide(str, " \t\n");
 	ft_replacment(&str, env);
 	prep_pipes = 0;
-	if (ft_prep_for_pipes(str, &prep_pipes, env))
-		return ;
-	ft_printf("%s\n", prep_pipes);
-	//param = ft_strsplit(str, ' ');
-	/*ft_strtolower((command = ft_strdup(param[0])));
+	if (!ft_prep_for_pipes(str, &prep_pipes, env))
+	{
+		ft_printf("%s\n", prep_pipes);
+		//ft_execute(prep_pipes, env);
+	}
+	/*param = ft_strsplit(str, ' ');
+	ft_strtolower((command = ft_strdup(param[0])));
 	if (command && !ft_forward(str, env, command))
 	{
 		if (ft_strlen(str) == 1 && str[0] == '.')
@@ -79,4 +81,5 @@ void		ft_prossesing(char *str, t_vector **env)
 	ft_del_arr(&param);
 	ft_strdel(&command);*/
 	ft_strdel(&str);
+	ft_strdel(&prep_pipes);
 }

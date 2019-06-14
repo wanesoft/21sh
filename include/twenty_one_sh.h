@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 14:43:18 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/14 13:33:21 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/14 14:06:30 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int					file_check(char *path, int type, int mod, char *command);
 
 void				ft_error(int error, char *str);
 
-void				ft_execute(char *path, char **param, t_vector **env);
+void				ft_execute(char *str, t_vector **env);
 char				**ft_vector_to_arr(t_vector **env);
 
 void				ft_restart(int sign);

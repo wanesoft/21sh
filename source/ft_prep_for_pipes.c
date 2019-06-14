@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 12:53:36 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/14 13:33:43 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/14 15:48:25 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,13 @@ static int	path_bins(char **str, t_vector **env)
 	char	*command;
 	char	*path;
 	char	*tmp;
+	char	*back;
 
 	i = 0;
+	path = 0;
+	back = *str;
+	while ((*str)[i] &&  (*str)[i] == ' ')
+		++(*str);
 	while ((*str)[i] && (*str)[i] != ' ')
 		++i;
 	command = ft_strndup(*str, i);
@@ -42,7 +47,7 @@ static int	path_bins(char **str, t_vector **env)
 		else
 			tmp = ft_strdup(path);
 		ft_strdel(&path);
-		ft_strdel(str);
+		ft_strdel(&back);
 		*str = tmp;
 	}
 	ft_strdel(&command);

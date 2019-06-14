@@ -17,6 +17,7 @@ SRC :=	begin.c\
 		ft_env.c\
 		ft_error.c\
 		ft_execute.c\
+		ft_vector_to_arr.c\
 		ft_list_bins.c\
 		ft_prossesing.c\
 		ft_replacment.c\
