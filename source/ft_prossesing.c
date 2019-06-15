@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:09:32 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/14 17:18:20 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/14 18:34:14 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void		ft_prossesing(char *str, t_vector **env)
 	if (!ft_prep_for_pipes(str, &prep_pipes, env))
 	{
 		ft_printf("%s\n", prep_pipes);
-		//ft_execute(prep_pipes, env);
+		ft_execute(prep_pipes, env);
 	}
 	/*param = ft_strsplit(str, ' ');
 	ft_strtolower((command = ft_strdup(param[0])));
