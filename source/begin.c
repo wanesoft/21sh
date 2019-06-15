@@ -22,9 +22,14 @@ void			ft_hello(void)
 void			ft_restart(int sign)
 {
 	write(1, "\n", 1);
-	ft_hello();
+	//ft_hello();
+	ft_init_screen();
+	//ft_clear_mygv(ft_get_mygv(NULL));
 	if (sign == SIGINT)
 	{
+		ft_init_screen();
+		//ft_clear_mygv(ft_get_mygv(NULL));
+		ft_prompt_line(ft_get_mygv(NULL));
 		signal(SIGINT, ft_restart);
 	}
 }
@@ -39,10 +44,6 @@ void			begin(t_vector **env)
 	signal(SIGINT, ft_restart);
 	g_env = env;
 	str = ft_input();
-//	rl_attempted_completion_function = ft_complete;
-//	rl_bind_key('\t', rl_complete);
-//	if ((str = readline("\033[32mMishinshell:\033[0m ")))
-//		add_history(str);
 	ft_printf("\n *** YA VERNUL ***:\n%s\n *** * ***\n", str);
 	arr_str = ft_strsplit(str, ';');
 	i = 0;
