@@ -27,33 +27,32 @@ static char		**ft_autocompl_path(t_mygv *mygv)
 	}
 	if (!tmp)
 		return (NULL);
-	ft_printf("\n\n%s", ((t_var_env *)tmp->content)->value);
+	//ft_printf("\n\n%s", ((t_var_env *)tmp->content)->value);
 	arr = ft_strsplit(((t_var_env *)tmp->content)->value, ':');
-	ft_printf("\n\nPATH\n\n");
 	ret = ft_get_path_bins(arr);
 	ft_del_arr(&arr);
 	return (ret);
 }
 
-static char		**ft_autocompl_dir(t_mygv *mygv)
-{
-	char		**arr;
-	t_vector	*tmp;
-	
-	tmp = mygv->env;
-	while (tmp)
-	{
-		if (ft_strequ(((t_var_env *)tmp->content)->key, "PATH"))
-			break;
-		tmp = tmp->next;
-	}
-	if (!tmp)
-		return (NULL);
-	arr = ft_strsplit(((t_var_env *)tmp->content)->value, ':');
-	ft_printf("\n\nDIR\n\n");
-	ft_del_arr(&arr);
-	return (NULL);
-}
+//static char		**ft_autocompl_dir(t_mygv *mygv)
+//{
+//	char		**arr;
+//	t_vector	*tmp;
+//	
+//	tmp = mygv->env;
+//	while (tmp)
+//	{
+//		if (ft_strequ(((t_var_env *)tmp->content)->key, "PATH"))
+//			break;
+//		tmp = tmp->next;
+//	}
+//	if (!tmp)
+//		return (NULL);
+//	arr = ft_strsplit(((t_var_env *)tmp->content)->value, ':');
+//	//ft_printf("\n\nDIR\n\n");
+//	ft_del_arr(&arr);
+//	return (NULL);
+//}
 
 static int		ft_number_of_word(char *s, int cur)
 {
@@ -76,11 +75,13 @@ void			ft_autocompl(t_mygv *mygv)
 	
 	arr = NULL;
 	if (ft_number_of_word(mygv->g_str, mygv->g_j))
-		arr = ft_autocompl_dir(mygv);
+		arr = ft_autocompl_path(mygv);
+//		arr = ft_autocompl_dir(mygv);
 	else
 		arr = ft_autocompl_path(mygv);
+//		arr = ft_autocompl_dir(mygv);
 	ft_autocompl_2(arr, mygv);
-	for (int i = 0; arr[i]; ++i)
-		ft_printf("%s ", arr[i]);
+//	for (int i = 0; arr[i]; ++i)
+//		ft_printf("%s ", arr[i]);
 	ft_del_arr(&arr);
 }
