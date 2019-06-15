@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 18:31:12 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/14 17:18:12 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/15 11:25:58 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,15 @@ static void		out(int fd, char **old_result)
 {
 	int			bits;
 	char		*tmp;
-	char		*buff;
+	char		buff[STDMES];
 
-	if (!(buff = ft_memalloc(STDMES)))
-		return ;
-	while ((bits = read(fd, buff, STDMES)) > 0)
+	while ((bits = read(fd, buff, STDMES - 1)) > 0)
 	{
+		buff[STDMES - 1] = 0;
 		tmp = *old_result;
 		*old_result = ft_strjoin(*old_result, buff);
 		ft_strdel(&tmp);
 	}
-	ft_strdel(&buff);
 }
 
 static void		pipe_redir(char *str, char **arr_env, char **old_result)
@@ -47,32 +45,43 @@ static void		pipe_redir(char *str, char **arr_env, char **old_result)
 	int			tmp;
 
 	param = ft_strsplit(str, ' ');
+	savestd[0] = dup(0);
+	savestd[1] = dup(1);
 	pipe(pipefd);
-	write(1, param[0], ft_strlen(param[0]));
+	ft_printf("{%s}\n", *old_result);
+	if ((tmp = open(".tmp", O_CREAT | O_RDWR, S_IRWXU)) == -1)
+		return ;
+	write(tmp, *old_result, ft_strlen(*old_result));
+	ft_strdel(old_result);
 	father = fork();
 	if (!father)
 	{
-		savestd[0] = dup(0);
-		savestd[1] = dup(1);
-		dup2(pipefd[0], 0);
+		dup2(tmp, 0);
 		dup2(pipefd[1], 1);
 		if ((execve(param[0], param, arr_env) == -1))
 			return ;
 	}
 	else
 	{
-		write(pipefd[1], *old_result, ft_strlen(*old_result));
 		close(pipefd[1]);
-		ft_strdel(old_result);
 		*old_result = ft_strdup("\0");
 		out(pipefd[0], old_result);
 		wait(0);
 		close(pipefd[0]);
-		dup2(savestd[0], 0);
-		dup2(savestd[1], 1);
-		close(savestd[0]);
-		close(savestd[1]);
 	}
+	dup2(savestd[0], 0);
+	dup2(savestd[1], 1);
+	close(savestd[0]);
+	close(savestd[1]);
+	close(tmp);
+/*	char **tmp2;
+	tmp2 = ft_strsplit("/bin/rm .tmp", ' ');
+	father = fork();
+	if (!father)
+		execve(tmp2[0], tmp2, arr_env);
+	else
+		wait(0);
+	ft_del_arr(&tmp2);*/
 	ft_del_arr(&param);
 }
 
