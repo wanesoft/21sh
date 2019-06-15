@@ -13,7 +13,7 @@
 #include "../include/twenty_one_sh.h"
 
 /*
- 
+
  ** dl - delete line
  ** cr - cursor <-- move to left side
  ** up - cursor up 1 line
@@ -28,6 +28,8 @@ static int		ft_input_proc(unsigned i, t_mygv *mygv)
 		return (ft_i_enter(mygv));
 	else if (i == K_DEL || i == K_BACKSP)
 		ft_del_letter(i, mygv);
+    else if (i == K_TAB)
+        ft_autocompl(mygv);
 	else if (i == K_ESC)
 		exit(1); //ft_clear_mygv(&mygv);
 	else if (i == K_LEFT || i == K_RIGHT)

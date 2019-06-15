@@ -42,6 +42,7 @@
 
 # define K_SPACE		32
 # define K_ESC			27
+# define K_TAB			9
 # define K_Q			113
 # define K_DOWN			4348699
 # define K_UP			4283163
@@ -122,5 +123,8 @@ void                ft_i_arrow_u_d(unsigned i, t_mygv *mygv);
 void                ft_prompt_line(t_mygv *mygv);
 void                ft_back_screen(void);
 void                ft_get_tty_col_ros(void);
+void				ft_autocompl(t_mygv *mygv);
+char				**ft_get_path_bins(char **arr);
+void				ft_autocompl_2(char **arr, t_mygv *mygv);
 
 #endif

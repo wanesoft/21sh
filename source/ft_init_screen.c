@@ -47,7 +47,7 @@ void					ft_init_screen(void)
 	{
 		ft_printf("Error load TERMCAP\n");
 		ft_bye(&(mygv->env));
-		exit(0);
+		exit(EXIT_FAILURE);
 	}
 	ft_putstr_fd(tgetstr("vi", NULL), STDIN_FILENO);
 }

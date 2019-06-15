@@ -40,6 +40,9 @@ SRC :=	begin.c\
 		ft_prompt_line.c\
 		ft_back_screen.c\
 		ft_i_arrow_u_d.c\
+		ft_autocompl.c\
+		ft_get_path_bins.c\
+		ft_autocompl_2.c\
 
 SRC := $(addprefix ./source/, $(SRC))
 
