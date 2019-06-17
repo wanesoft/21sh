@@ -44,6 +44,7 @@ SRC :=	begin.c\
 		ft_get_path_bins.c\
 		ft_autocompl_2.c\
 		ft_autocompl_3.c\
+		ft_autocompl_dir.c\
 
 SRC := $(addprefix ./source/, $(SRC))
 

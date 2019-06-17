@@ -129,5 +129,6 @@ void				ft_autocompl(t_mygv *mygv);
 char				**ft_get_path_bins(char **arr);
 void				ft_autocompl_2(char **arr, t_mygv *mygv);
 void				ft_autocompl_3(char **arr, t_mygv *mygv, char *str, int len);
+char                **ft_autocompl_dir(void);
 
 #endif
