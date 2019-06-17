@@ -8,8 +8,25 @@ FLAGS := -Wall -Wector -Werror
 
 VPATH := ./source
 
-SRC :=	begin.c\
+SRC :=	ft_autocompl.c\
+		ft_autocompl_2.c\
+		ft_autocompl_3.c\
+		ft_autocompl_dir.c\
+		ft_back_screen.c\
+		ft_clear_mygv.c\
+		ft_del_letter.c\
+		ft_get_mygv.c\
+		ft_get_path_bins.c\
+		ft_i_arrow_l_r.c\
+		ft_i_arrow_u_d.c\
+		ft_i_enter.c\
+		ft_init_screen.c\
+		ft_input.c\
+		ft_prompt_line.c\
+		ft_put_letter.c\
+		begin.c\
 		file_check.c\
+		ft_addenv.c\
 		ft_bye.c\
 		ft_cd.c\
 		ft_divide.c\
@@ -17,34 +34,20 @@ SRC :=	begin.c\
 		ft_env.c\
 		ft_error.c\
 		ft_execute.c\
-		ft_vector_to_arr.c\
+		ft_forward.c\
+		ft_get_redir.c\
 		ft_list_bins.c\
+		ft_prep_for_pipes.c\
 		ft_prossesing.c\
 		ft_replacment.c\
-		ft_prep_for_pipes.c\
-		ft_take_value_env.c\
 		ft_search.c\
 		ft_setenv.c\
+		ft_space_for_redirs.c\
+		ft_take_value_env.c\
 		ft_unsetenv.c\
+		ft_vector_to_arr.c\
 		fts_var_env.c\
-		main.c\
-		ft_addenv.c\
-		ft_input.c\
-		ft_init_screen.c\
-		ft_get_mygv.c\
-		ft_clear_mygv.c\
-		ft_put_letter.c\
-		ft_del_letter.c\
-		ft_i_enter.c\
-		ft_i_arrow_l_r.c\
-		ft_prompt_line.c\
-		ft_back_screen.c\
-		ft_i_arrow_u_d.c\
-		ft_autocompl.c\
-		ft_get_path_bins.c\
-		ft_autocompl_2.c\
-		ft_autocompl_3.c\
-		ft_autocompl_dir.c\
+		main.c
 
 SRC := $(addprefix ./source/, $(SRC))
 

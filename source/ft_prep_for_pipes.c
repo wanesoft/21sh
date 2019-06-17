@@ -6,16 +6,30 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 12:53:36 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/14 18:19:35 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/17 15:36:20 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/twenty_one_sh.h"
 
+static int	check_builts(char *command)
+{
+	if (ft_strequ("cd", command) ||
+			ft_strequ("setenv", command) ||
+			ft_strequ("unsetenv", command) ||
+			ft_strequ("exit", command) ||
+			ft_strequ("--help", command) ||
+			ft_strequ("addenv", command) ||
+			ft_strequ("echo", command) ||
+			ft_strequ("env", command))
+		return (EXEC_SUCC);
+	return (EXEC_FAIL);
+}
+
 static int	path_bins(char **str, t_vector **env)
 {
 	int		i;
-	int		fl;
+	int		ans;
 	char	*command;
 	char	*path;
 	char	*tmp;
@@ -24,24 +38,20 @@ static int	path_bins(char **str, t_vector **env)
 	i = 0;
 	path = 0;
 	back = *str;
-	while ((*str)[i] &&  (*str)[i] == ' ')
+	while ((*str)[i] && (*str)[i] == ' ')
 		++(*str);
 	while ((*str)[i] && (*str)[i] != ' ')
 		++i;
 	command = ft_strndup(*str, i);
-	fl = 0;
+	ans = EXEC_FAIL;
 	if (ft_strlen(*str) == 1 && command[0] == '.')
-	{
 		write(1, ".: usage: ./path [arguments]\n", 29);
-		return (EXEC_FAIL);
-	}
-	else if (ft_strchr(command, '/') &&
-			file_check(command, BIN, 1, command))
-		fl = 1;
-	else if (!ft_strchr(command, '/') &&
-			ft_search(env, command, &path))
+	else if (check_builts(command) == EXEC_SUCC ||
+			(ft_strchr(command, '/') && file_check(command, BIN, 1, command)))
+		ans = EXEC_SUCC;
+	else if (!ft_strchr(command, '/') && ft_search(env, command, &path))
 	{
-		fl = 1;
+		ans = EXEC_SUCC;
 		if ((*str)[i])
 			tmp = ft_strjoin(path, &(*str)[i]);
 		else
@@ -51,7 +61,7 @@ static int	path_bins(char **str, t_vector **env)
 		*str = tmp;
 	}
 	ft_strdel(&command);
-	return ((fl) ? EXEC_SUCC : EXEC_FAIL);
+	return (ans);
 }
 
 int			ft_prep_for_pipes(char *str, char **prep_for_pipes, t_vector **env)
@@ -64,8 +74,11 @@ int			ft_prep_for_pipes(char *str, char **prep_for_pipes, t_vector **env)
 	i = 0;
 	while (tmp[i])
 	{
-		if (path_bins(&tmp[i], env))
+		if (path_bins(&tmp[i], env) == EXEC_FAIL)
+		{
+			ft_del_arr(&tmp);
 			return (EXEC_FAIL);
+		}
 		++i;
 	}
 	i = 0;
@@ -82,4 +95,4 @@ int			ft_prep_for_pipes(char *str, char **prep_for_pipes, t_vector **env)
 	}
 	ft_del_arr(&tmp);
 	return (EXEC_SUCC);
-}	
+}

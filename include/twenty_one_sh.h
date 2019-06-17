@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 14:43:18 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/14 18:35:04 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/17 18:25:20 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,11 @@ void				ft_del_content_var_env(t_var_env *cur);
 
 void				begin(t_vector **env);
 void				ft_prossesing(char *str, t_vector **env);
+
+void				ft_space_for_redirs(char **str);
+
+int					ft_forward(char *str, t_vector **env, char *command);
+
 void				ft_replacment(char **str, t_vector **env);
 int					ft_prep_for_pipes(char *str, char **prep_pipes, t_vector **env);
 
