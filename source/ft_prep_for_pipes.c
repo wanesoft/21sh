@@ -29,6 +29,7 @@ static int	check_builts(char *command)
 static int	path_bins(char **str, t_vector **env)
 {
 	int		i;
+	int		j;
 	int		ans;
 	char	*command;
 	char	*command2;
@@ -36,14 +37,15 @@ static int	path_bins(char **str, t_vector **env)
 	char	*tmp;
 	char	*back;
 
-	i = 0;
+	j = 0;
 	path = 0;
 	back = *str;
-	while ((*str)[i] && (*str)[i] == ' ')
-		++(*str);
+	while ((*str)[j] && (*str)[j] == ' ')
+		++j;
+	i = j;
 	while ((*str)[i] && (*str)[i] != ' ')
 		++i;
-	command = ft_strndup(*str, i);
+	command = ft_strndup(&(*str)[j], i - j);
 	command2 = ft_strdup(command);
 	ft_strtolower(command2);
 	ans = EXEC_FAIL;
