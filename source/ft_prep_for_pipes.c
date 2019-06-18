@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 12:53:36 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/18 12:18:52 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/18 13:29:49 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static int	path_bins(char **str, t_vector **env)
 	int		i;
 	int		ans;
 	char	*command;
+	char	*command2;
 	char	*path;
 	char	*tmp;
 	char	*back;
@@ -43,13 +44,15 @@ static int	path_bins(char **str, t_vector **env)
 	while ((*str)[i] && (*str)[i] != ' ')
 		++i;
 	command = ft_strndup(*str, i);
+	command2 = ft_strdup(command);
+	ft_strtolower(command2);
 	ans = EXEC_FAIL;
-	if (ft_strlen(*str) == 1 && command[0] == '.')
+	if (ft_strlen(*str) == 1 && command2[0] == '.')
 		write(1, ".: usage: ./path [arguments]\n", 29);
-	else if (check_builts(command) == EXEC_SUCC ||
-			(ft_strchr(command, '/') && file_check(command, BIN, 1, command)))
+	else if (check_builts(command2) == EXEC_SUCC ||
+			(ft_strchr(command2, '/') && file_check(command2, BIN, 1, command)))
 		ans = EXEC_SUCC;
-	else if (!ft_strchr(command, '/') && ft_search(env, command, &path))
+	else if (!ft_strchr(command2, '/') && ft_search(env, command2, &path))
 	{
 		ans = EXEC_SUCC;
 		if ((*str)[i])
@@ -61,6 +64,7 @@ static int	path_bins(char **str, t_vector **env)
 		*str = tmp;
 	}
 	ft_strdel(&command);
+	ft_strdel(&command2);
 	return (ans);
 }
 
