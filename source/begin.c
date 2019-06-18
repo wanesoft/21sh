@@ -32,6 +32,10 @@ void			ft_restart(int sign)
 		ft_prompt_line(ft_get_mygv(NULL));
 		signal(SIGINT, ft_restart);
 	}
+	if (sign == SIGTSTP)
+	{
+		exit(EXIT_SUCCESS);
+	}
 }
 
 void			begin(t_vector **env)
@@ -46,8 +50,9 @@ void			begin(t_vector **env)
 	//str = ft_input();
 	
 	/* *** TEST *** */
+	signal(SIGTSTP, ft_restart);
 	static int p = 0;
-	str = ft_strdup("cd; cd;");
+	str = ft_strdup("cd; cd; cd -; cd ~; cd /; pwd");
 	ft_printf("%d\n", p);
 	++p;
 	/* *** TEST *** */
