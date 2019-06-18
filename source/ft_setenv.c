@@ -37,5 +37,5 @@ void		ft_setenv(char *param, t_vector **env)
 		tmp = tmp->next;
 	}
 	if (!tmp)
-		ft_add_vector(*env, new);
+		*env = ft_add_vector(*env, new);
 }
