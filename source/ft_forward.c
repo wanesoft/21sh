@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 15:33:51 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/17 18:24:21 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/18 12:32:05 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,15 @@ static void	ft_help(void)
 //	ft_printf("echo     - вывести текст\n");
 }
 
-int			ft_forward(char *str, t_vector **env, char *command)
+int			ft_forward(char *str, t_vector **env)
 {
+	char	*command;
+	int		i;
+
+	i = 0;
+	while (str[i] && str[i] != ' ')
+		++i;
+	command = ft_strndup(str, i);
 	if (ft_strequ(command, "cd"))
 		ft_cd(str, env);
 	else if (ft_strequ(command, "setenv"))
@@ -38,11 +45,15 @@ int			ft_forward(char *str, t_vector **env, char *command)
 		ft_help();
 	else if (ft_strequ(command, "addenv"))
 		ft_addenv(str + 6, env);
-//	else if (ft_strequ(command, "echo"))
-//		ft_echo(str);
-//	else if (ft_strequ(command, "env"))
-//		ft_env(env, str + 3);
+	else if (ft_strequ(command, "echo"))
+		ft_echo(str);
+	else if (ft_strequ(command, "env"))
+		ft_env(env, str + 3);
 	else
+	{
+		ft_strdel(&command);
 		return (EXEC_FAIL);
+	}
+	ft_strdel(&command);
 	return (EXEC_SUCC);
 }

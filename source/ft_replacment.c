@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 16:08:49 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/17 15:49:37 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/18 12:16:10 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,16 @@ static void	ft_variab(char **str, t_vector **env, int i, char mod)
 void		ft_replacment(char **str, t_vector **env)
 {
 	int		i;
-	char	*tmp;
 
 	i = 0;
-	tmp = ft_strdup(*str);
-	while (tmp[i])
+	while ((*str)[i])
 	{
-		if ((tmp)[i] == '~'
-			|| ((tmp)[i] == '$' && (tmp)[i + 1]
-				&& (ft_check((tmp)[i + 1]))))
+		if ((*str)[i] == '~'
+			|| ((*str)[i] == '$' && (*str)[i + 1]
+				&& (ft_check((*str)[i + 1]))))
 		{
-			ft_variab(str, env, i, (tmp)[i]);
+			ft_variab(str, env, i, (*str)[i]);
 		}
 		++i;
 	}
-	ft_strdel(&tmp);
 }

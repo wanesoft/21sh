@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 16:02:51 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/17 20:14:54 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/18 12:31:08 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static int	check(char c)
 {
-	if (c == '>' || 
-		c == '<' || 
-		c == '&')
+	if (c == '>' ||
+			c == '<' ||
+			c == '&')
 		return (EXEC_SUCC);
 	return (EXEC_FAIL);
 }
 
-static void	ft_chto_to(char *str, char *tmp_str, int *i_new, int *i_old)
+static void	ft_fill_redir(char *str, char *tmp_str, int *i_new, int *i_old)
 {
 	char	c;
 	char	d;
@@ -39,12 +39,12 @@ static void	ft_chto_to(char *str, char *tmp_str, int *i_new, int *i_old)
 		if ((c == '>' && (d == '>' || d == '&')) ||
 				(c == '<' && (d == '<' || d == '&')) ||
 				(c == '&' && (d == '>' || d == '<')))
-		{	
+		{
 			tmp_str[*i_new - 1] = d;
 			tmp_str[*i_new] = ' ';
 			++(*i_new);
+			++(*i_old);
 		}
-		++(*i_old);
 	}
 }
 
@@ -59,15 +59,15 @@ void		ft_space_for_redirs(char **str)
 		return ;
 	i_old = 0;
 	i_new = 0;
-	while((*str)[i_old])
+	while ((*str)[i_old])
 	{
 		if (check((*str)[i_old]) == EXEC_SUCC)
-			ft_chto_to(*str, tmp_str, &i_new, &i_old);
+			ft_fill_redir(*str, tmp_str, &i_new, &i_old);
 		else
 		{
 			tmp_str[i_new] = (*str)[i_old];
 			++i_new;
-			++i_old;		
+			++i_old;
 		}
 	}
 	new_str = ft_strdup(tmp_str);

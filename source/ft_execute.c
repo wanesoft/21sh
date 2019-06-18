@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 18:31:12 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/17 20:13:07 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/18 12:21:12 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,10 @@ void			ft_execute(char *str, t_vector **env)
 	old_result = ft_strdup("\0");
 	while (turn[i])
 	{
+//		str = ft_divide(str, " \t\n");
 //		if (ft_get_redir(&turn[i], redirs) == EXIT_FAIL)
 //			break;
-//		if (ft_forward(str, env, command) == EXEC_FAIL)
+		if (ft_forward(turn[i], env) == EXEC_FAIL)
 			pipe_redir(turn[i], arr_env, &old_result, i);
 		++i;
 		if (!turn[i])
