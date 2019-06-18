@@ -36,6 +36,8 @@ static int		ft_input_proc(unsigned i, t_mygv *mygv)
 		ft_i_arrow_l_r(i, mygv);
 	else if (i == K_UP || i == K_DOWN || i == K_HOME || i == K_END)
 		ft_i_arrow_u_d(i, mygv);
+	else if (i == K_PGUP || i == K_PGDOWN)
+		ft_i_pgup_pgdown(mygv);
 	else if (ft_isprint(i))
 		ft_put_letter(i, mygv);
 	return (0);
@@ -52,8 +54,16 @@ char			*ft_input(void)
 		input = 0;
 		ft_prompt_line(mygv);
 		read(STDIN_FILENO, &input, 8);
+		//ft_printf("\n\n%d\n\n", input);
 		if (ft_input_proc(input, mygv))
+		{
+			write(mygv->g_fd, ft_itoa(mygv->g_n_his), ft_strlen(ft_itoa(mygv->g_n_his)));
+			write(mygv->g_fd, ":", 1);
+			write(mygv->g_fd, mygv->g_str, ft_strlen(mygv->g_str));
+			write(mygv->g_fd, "\n", 1);
+			++mygv->g_n_his;
 			break;
+		}
 	}
 	return (ft_strdup(mygv->g_str)); // a nado li malloc???
 }

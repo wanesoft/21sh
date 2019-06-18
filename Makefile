@@ -47,7 +47,8 @@ SRC :=	ft_autocompl.c\
 		ft_unsetenv.c\
 		ft_vector_to_arr.c\
 		fts_var_env.c\
-		main.c
+		main.c\
+		ft_i_pgup_pgdown.c\
 
 SRC := $(addprefix ./source/, $(SRC))
 

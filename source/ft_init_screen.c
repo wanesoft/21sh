@@ -35,6 +35,7 @@ void					ft_init_screen(void)
 {
 	struct termios		new;
 	t_mygv				*mygv;
+	char				*tmp;
 	
 	mygv = ft_get_mygv(NULL);
 	tcgetattr(STDIN_FILENO, &new);
@@ -50,4 +51,10 @@ void					ft_init_screen(void)
 		exit(EXIT_FAILURE);
 	}
 	ft_putstr_fd(tgetstr("vi", NULL), STDIN_FILENO);
+	tmp = ft_strjoin(getenv("HOME"), "/Desktop/21sh_history.txt");
+	mygv->g_fd = open(tmp, O_WRONLY | O_APPEND | O_CREAT, S_IRWXU);
+	
+	mygv->g_n_his = 0;
+	
+	free(tmp);
 }
