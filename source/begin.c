@@ -43,8 +43,15 @@ void			begin(t_vector **env)
 
 	signal(SIGINT, ft_restart);
 	g_env = env;
-	str = ft_input();
-	ft_printf("\n *** YA VERNUL ***:\n%s\n *** * ***\n", str);
+	//str = ft_input();
+	
+	/* *** TEST *** */
+	static int p = 0;
+	str = ft_strdup("cd; cd;");
+	ft_printf("%d\n", p);
+	++p;
+	/* *** TEST *** */
+	
 	arr_str = ft_strsplit(str, ';');
 	i = 0;
 	while (arr_str[i])
