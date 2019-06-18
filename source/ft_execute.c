@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 18:31:12 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/18 12:21:12 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/18 13:07:33 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void		pipe_redir(char *str, char **arr_env, char **old_result, int i)
 	father = fork();
 	if (!father)
 	{
-		dup2(tmp, 0);
+		dup2((i) ? tmp : 0, 0);
 		dup2(pipefd[1], 1);
 		if ((execve(param[0], param, arr_env) == -1))
 			return ;
@@ -84,27 +84,34 @@ static void		pipe_redir(char *str, char **arr_env, char **old_result, int i)
 	ft_del_arr(&param);
 }
 
+static void		ft_prep_for_execute(char *turn_str, char **arr_env,
+									char **old_result, int i, t_vector **env)
+{
+//	t_vector	*redirs;
+	
+//	redirs = 0;
+//	str = ft_divide(str, " \t\n");
+//	if (ft_get_redir(turn_str, redirs) == EXIT_FAIL)
+//		break;
+	if (ft_forward(turn_str, env) == EXEC_FAIL)
+		pipe_redir(turn_str, arr_env, old_result, i);
+}
+
 void			ft_execute(char *str, t_vector **env)
 {
 	char		**arr_env;
 	char		**turn;
 	char		*old_result;
 	int			i;
-//	t_vector	*redirs;
 
 	arr_env = ft_vector_to_arr(env);
 	signal(SIGINT, ft_abort);
 	turn = ft_strsplit(str, '|');
 	i = 0;
-//	redirs = 0;
 	old_result = ft_strdup("\0");
 	while (turn[i])
 	{
-//		str = ft_divide(str, " \t\n");
-//		if (ft_get_redir(&turn[i], redirs) == EXIT_FAIL)
-//			break;
-		if (ft_forward(turn[i], env) == EXEC_FAIL)
-			pipe_redir(turn[i], arr_env, &old_result, i);
+		ft_prep_for_execute(turn[i], arr_env, &old_result, i, env);
 		++i;
 		if (!turn[i])
 			write(1, old_result, ft_strlen(old_result));
