@@ -55,13 +55,9 @@ void			ft_autocompl(t_mygv *mygv)
 	
 	arr = NULL;
 	if (ft_number_of_word(mygv->g_str, mygv->g_j))
-//		arr = ft_autocompl_path(mygv);
 		arr = ft_autocompl_dir();
 	else
 		arr = ft_autocompl_path(mygv);
-//		arr = ft_autocompl_dir(mygv);
 	ft_autocompl_2(arr, mygv);
-//	for (int i = 0; arr[i]; ++i)
-//		ft_printf("%s ", arr[i]);
 	ft_del_arr(&arr);
 }
