@@ -21,8 +21,8 @@ char			**ft_vector_to_arr(t_vector **env)
 	if (!(arr_env = (char **)malloc(sizeof(char *) *
 					(ft_count_vector(*env) + 1))))
 		return (0);
-	tmp = *env;
 	i = 0;
+	tmp = *env;
 	while (tmp)
 	{
 		arr_env[i] = ft_strdup(((t_var_env *)tmp->content)->full_line);
