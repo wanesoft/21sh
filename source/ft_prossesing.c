@@ -21,7 +21,7 @@ void		ft_prossesing(char **str, t_vector **env)
 	prep_pipes = 0;
 	if (ft_prep_for_pipes(*str, &prep_pipes, env) == EXEC_SUCC)
 	{
-		ft_printf("{%s}\n", prep_pipes);
+		ft_printf("{%s}\n", prep_pipes);			//ft_prossesing.c
 		ft_execute(prep_pipes, env);
 	}
 	ft_strdel(&prep_pipes);

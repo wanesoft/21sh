@@ -15,19 +15,28 @@
 t_var_env		*ft_take_info(char *str)
 {
 	t_var_env	*tmp;
-	int			i;
+	char		**tmp2;
+//	int			i;
 
 	if (!str || !(tmp = (t_var_env *)malloc(sizeof(t_var_env))))
 		return (0);
 	tmp->full_line = ft_strdup(str);
-	i = 0;
+	tmp2 = ft_strsplit(str, '=');
+	/*i = 0;
 	while (str[i] && str[i] != '=')
 		++i;
 	tmp->key = ft_strndup(str, i);
-	if (str[i])
+	if (str[i] && str[i + 1])
 		tmp->value = ft_strdup(&str[i + 1]);
 	else
 		tmp->value = ft_strdup("\0");
+	++i;*/
+	tmp->key = ft_strdup(tmp2[0]);
+	if (tmp2[1])
+		tmp->value = ft_strdup(tmp2[1]);
+	else
+		tmp->value = ft_strdup("\0");
+	ft_del_arr(&tmp2);
 	return (tmp);
 }
 

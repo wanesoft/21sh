@@ -19,9 +19,9 @@ static void	ft_help(void)
 	ft_printf("сd       - поменять рабочую директорию\n");
 	ft_printf("addenv   - добавить к переменной окружения одно значение\n");
 	ft_printf("exit     - выйти из программы\n");
-//	ft_printf("env      - показать переменные окружения\n");
-//	ft_printf("env -s   - показать переменные окружения по алфавиту\n");
-//	ft_printf("echo     - вывести текст\n");
+	ft_printf("env      - показать переменные окружения\n");
+	ft_printf("env -s   - показать переменные окружения по алфавиту\n");
+	ft_printf("echo     - вывести текст\n");
 }
 
 int			ft_forward(char *str, t_vector **env)

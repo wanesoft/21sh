@@ -26,7 +26,7 @@ static void	ft_replace(char **str, int i, char *replace, int len_var)
 {
 	char	*tmp;
 
-	if (!(tmp = ft_memalloc(ft_strlen(*str) +
+	if (!(tmp = ft_memalloc(10 * ft_strlen(*str) +
 					ft_strlen(replace) + 1)))
 		return ;
 	ft_strncpy(tmp, *str, i);
