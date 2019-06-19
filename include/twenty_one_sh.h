@@ -55,6 +55,8 @@
 # define K_BACKSP		127
 # define K_HOME			4741915
 # define K_END			4610843
+# define K_PGUP			2117491483
+# define K_PGDOWN		2117425947
 # define BUF_G_STR		2048
 
 typedef struct		s_var_env
@@ -75,6 +77,10 @@ typedef struct      s_mygv
     int             g_stage;
     int             g_y_pos;
     int             g_x_pos;
+	int				g_fd_r;
+    int             g_fd_w;
+	unsigned		g_n_his;
+	int				g_c_his;
 }                   t_mygv;
 
 t_var_env			*ft_take_info(char *str);
@@ -135,5 +141,7 @@ char				**ft_get_path_bins(char **arr);
 void				ft_autocompl_2(char **arr, t_mygv *mygv);
 void				ft_autocompl_3(char **arr, t_mygv *mygv, char *str, int len);
 char                **ft_autocompl_dir(void);
+void				ft_i_pgup_pgdown(unsigned i, t_mygv *mygv);
+int					ft_gnl_pro(const int fd, char **line, char ch);
 
 #endif

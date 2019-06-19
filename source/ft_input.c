@@ -24,6 +24,7 @@
  
 static int		ft_input_proc(unsigned i, t_mygv *mygv)
 {
+	//i = 2117491483;
 	if (i == K_ENTER)
 		return (ft_i_enter(mygv));
 	else if (i == K_DEL || i == K_BACKSP)
@@ -36,6 +37,8 @@ static int		ft_input_proc(unsigned i, t_mygv *mygv)
 		ft_i_arrow_l_r(i, mygv);
 	else if (i == K_UP || i == K_DOWN || i == K_HOME || i == K_END)
 		ft_i_arrow_u_d(i, mygv);
+	else if (i == K_PGUP || i == K_PGDOWN)
+		ft_i_pgup_pgdown(i, mygv);
 	else if (ft_isprint(i))
 		ft_put_letter(i, mygv);
 	return (0);
@@ -52,8 +55,10 @@ char			*ft_input(void)
 		input = 0;
 		ft_prompt_line(mygv);
 		read(STDIN_FILENO, &input, 8);
+		//ft_printf("\n\n%d\n\n", input);
 		if (ft_input_proc(input, mygv))
 			break;
 	}
-	return (ft_strdup(mygv->g_str)); // a nado li malloc???
+	//return (ft_strdup(mygv->g_str)); // a nado li malloc???
+	return (NULL);
 }
