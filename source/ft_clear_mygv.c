@@ -19,4 +19,5 @@ void			ft_clear_mygv(t_mygv *mygv)
 	mygv->g_x_pos = 0;
 	mygv->g_stage = 0;
 	mygv->g_y_pos = 0;
+	mygv->g_c_his = 0;
 }

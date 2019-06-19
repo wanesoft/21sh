@@ -31,11 +31,50 @@ void					ft_get_tty_col_ros(void)
 	}
 }
 
+static void				ft_init_history_2(t_mygv *mygv, char *str)
+{
+	char				**arr;
+	
+	arr = ft_strsplit(str, ':');
+	if (arr && arr[0])
+		mygv->g_n_his = ft_atoi(arr[0]);
+	else
+		mygv->g_n_his = 0;
+	ft_del_arr(&arr);
+	//podumat o perepolnenii
+}
+
+static void				ft_init_history(t_mygv *mygv)
+{
+	char				*tmp;
+	char				*tmp2;
+	char				*tmp3;
+
+	tmp2 = (char *)malloc(sizeof(char) * BUF_G_STR);
+	tmp3 = (char *)malloc(sizeof(char) * BUF_G_STR);
+	tmp = ft_strjoin(getenv("HOME"), "/Desktop/21sh_history.txt");
+	mygv->g_fd_w = open(tmp, O_WRONLY | O_APPEND | O_CREAT, S_IRWXU);
+	mygv->g_fd_r = open(tmp, O_RDONLY | O_CREAT, S_IRWXU);
+	if (mygv->g_fd_w < 0 || mygv->g_fd_r < 0)
+	{
+		ft_printf("Error open/create %s\n", tmp);
+		exit(EXIT_FAILURE);
+	}
+//	while (get_next_line(mygv->g_fd_r, &tmp2) > 0)
+	while (ft_gnl_pro(mygv->g_fd_r, &tmp2, '\t') > 0)
+		ft_memcpy(tmp3, tmp2, ft_strlen(tmp2));
+	ft_init_history_2(mygv, tmp3);
+	close(mygv->g_fd_r);
+	free(tmp);
+	free(tmp2);
+	free(tmp3);
+}
+
 void					ft_init_screen(void)
 {
 	struct termios		new;
 	t_mygv				*mygv;
-	char				*tmp;
+	
 	
 	mygv = ft_get_mygv(NULL);
 	tcgetattr(STDIN_FILENO, &new);
@@ -51,10 +90,5 @@ void					ft_init_screen(void)
 		exit(EXIT_FAILURE);
 	}
 	ft_putstr_fd(tgetstr("vi", NULL), STDIN_FILENO);
-	tmp = ft_strjoin(getenv("HOME"), "/Desktop/21sh_history.txt");
-	mygv->g_fd = open(tmp, O_WRONLY | O_APPEND | O_CREAT, S_IRWXU);
-	
-	mygv->g_n_his = 0;
-	
-	free(tmp);
+	ft_init_history(mygv);
 }

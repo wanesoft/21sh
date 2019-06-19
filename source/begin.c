@@ -38,17 +38,35 @@ void			ft_restart(int sign)
 	}
 }
 
+static void		ft_put_history(t_mygv *mygv)
+{
+	if (mygv->g_str[0] == '\0')
+		return;
+	if (mygv->g_n_his == 0)
+	{
+		write(mygv->g_fd_w, ft_itoa(mygv->g_n_his), ft_strlen(ft_itoa(mygv->g_n_his)));
+		write(mygv->g_fd_w, ":", 1);
+	}
+	write(mygv->g_fd_w, mygv->g_str, ft_strlen(mygv->g_str));
+	write(mygv->g_fd_w, "\t", 1);
+	++mygv->g_n_his;
+	write(mygv->g_fd_w, ft_itoa(mygv->g_n_his), ft_strlen(ft_itoa(mygv->g_n_his)));
+	write(mygv->g_fd_w, ":", 1);
+}
+
 void			begin(t_vector **env)
 {
-	char		*str;
+	//char		*str;
 	char		*tmp;
 	char		**arr_str;
 	int			i;
+	t_mygv		*mygv;
 
+	mygv = ft_get_mygv(NULL);
 	signal(SIGINT, ft_restart);
 	g_env = env;
-	str = ft_input();
-	
+	ft_input();
+	ft_put_history(mygv);
 	/* *** TEST *** */
 	signal(SIGTSTP, ft_restart);
 //	static int p = 0;
@@ -57,7 +75,7 @@ void			begin(t_vector **env)
 //	++p;
 	/* *** TEST *** */
 	
-	arr_str = ft_strsplit(str, ';');
+	arr_str = ft_strsplit(mygv->g_str, ';');
 	i = 0;
 	while (arr_str[i])
 	{
@@ -67,7 +85,7 @@ void			begin(t_vector **env)
 		ft_prossesing(&arr_str[i], env);
 		++i;
 	}
-	ft_strdel(&str);
+	//ft_strdel(&str);
 	ft_clear_mygv(ft_get_mygv(NULL));
 	ft_del_arr(&arr_str);
 }

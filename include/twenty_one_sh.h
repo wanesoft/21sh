@@ -77,9 +77,10 @@ typedef struct      s_mygv
     int             g_stage;
     int             g_y_pos;
     int             g_x_pos;
-	int				g_fd;
+	int				g_fd_r;
+    int             g_fd_w;
 	unsigned		g_n_his;
-	unsigned		g_c_his;
+	int				g_c_his;
 }                   t_mygv;
 
 t_var_env			*ft_take_info(char *str);
@@ -140,6 +141,7 @@ char				**ft_get_path_bins(char **arr);
 void				ft_autocompl_2(char **arr, t_mygv *mygv);
 void				ft_autocompl_3(char **arr, t_mygv *mygv, char *str, int len);
 char                **ft_autocompl_dir(void);
-void				ft_i_pgup_pgdown(t_mygv *mygv);
+void				ft_i_pgup_pgdown(unsigned i, t_mygv *mygv);
+int					ft_gnl_pro(const int fd, char **line, char ch);
 
 #endif
