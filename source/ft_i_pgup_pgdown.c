@@ -25,10 +25,10 @@ static void		ft_put_his_g_str(t_mygv *mygv, int find)
 
 static int		ft_foo(int bar, unsigned max)
 {
-	if ((-bar) >= max - 1)
-		return ((-max) + 1);
-	else if (bar > 0)
-		return (0);
+	if (bar > max)
+		return (max);
+	else if (bar <= 1)
+		return (1);
 	return (bar);
 }
 
@@ -37,18 +37,22 @@ void			ft_i_pgup_pgdown(unsigned i, t_mygv *mygv)
 	int			find;
 	char		*tmp;
 	
-	if (i == K_PGDOWN)
-		--mygv->g_c_his;
-	else
+	if (i == K_PGUP)
 		++mygv->g_c_his;
+	else
+		--mygv->g_c_his;
+	if (mygv->g_c_his < 1)
+	{
+		ft_clear_mygv(mygv);
+		mygv->g_c_his = 0;
+		return ;
+	}
 	mygv->g_c_his = ft_foo(mygv->g_c_his, mygv->g_n_his);
-	find = mygv->g_n_his - 1 + mygv->g_c_his;
-	ft_printf("\n\n%d\n\n", find);
+	find = mygv->g_n_his - mygv->g_c_his;
 	tmp = ft_strjoin(getenv("HOME"), "/Desktop/21sh_history.txt");
 	mygv->g_fd_r = open(tmp, O_RDONLY | O_CREAT, S_IRWXU);
 	if (mygv->g_fd_r < 0)
 	{
-		//edit must
 		ft_printf("Error open/create !!IN THE INPUT!! %s\n", tmp);
 		exit(EXIT_FAILURE);
 	}

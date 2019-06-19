@@ -55,8 +55,8 @@
 # define K_BACKSP		127
 # define K_HOME			4741915
 # define K_END			4610843
-# define K_PGUP			2117491483
-# define K_PGDOWN		2117425947
+# define K_PGUP			2117425947
+# define K_PGDOWN		2117491483
 # define BUF_G_STR		2048
 
 typedef struct		s_var_env
