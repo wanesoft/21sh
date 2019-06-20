@@ -55,7 +55,7 @@ void		ft_space_for_redirs(char **str)
 	int		i_old;
 	int		i_new;
 
-	if (!(tmp_str = ft_memalloc(ft_strlen(*str) * 3 + 1)))
+	if (!(tmp_str = ft_memalloc(ft_strlen(*str) * 3 + 1))) //sho za 3??
 		return ;
 	i_old = 0;
 	i_new = 0;

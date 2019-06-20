@@ -32,15 +32,20 @@ static int		ft_foo(int bar, unsigned max)
 	return (bar);
 }
 
+static void		ft_muli(unsigned i, t_mygv *mygv)
+{
+	if (i == K_PGUP)
+		++mygv->g_c_his;
+	else
+		--mygv->g_c_his;
+}
+
 void			ft_i_pgup_pgdown(unsigned i, t_mygv *mygv)
 {
 	int			find;
 	char		*tmp;
 	
-	if (i == K_PGUP)
-		++mygv->g_c_his;
-	else
-		--mygv->g_c_his;
+	ft_muli(i, mygv);
 	if (mygv->g_c_his < 1)
 	{
 		ft_clear_mygv(mygv);
