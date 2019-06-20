@@ -65,8 +65,9 @@ void			begin(t_vector **env)
 	/* *** TEST *** */
 	signal(SIGTSTP, ft_restart);
 	static int p = 0;
-	//str = ft_strdup("cd; cd; cd -; cd ~; cd /; pwd");
-	str = ft_strdup("cd; cd; cd -; cd ~; cd /;    pwd;  ls;  env   ;");
+	str = ft_strdup("cd; cd; cd -; cd ~; cd /; pwd");
+	//str = ft_strdup("cd| cd| cd -| cd ~| cd /| pwd");
+	//str = ft_strdup("cd; cd; cd -; cd ~; cd /;    pwd;  ls;  env   ;");
 	//str = ft_strdup("cd /;pwd;env;ls;cd -;pwd;env;ls;");
 	ft_printf("%d\n", p);
 	++p;
@@ -80,17 +81,13 @@ void			begin(t_vector **env)
 		tmp = ft_strjoin("_=", arr_str[i]);
 		ft_setenv(tmp, env);
 		ft_strdel(&tmp);
+		tmp = arr_str[i];
+		arr_str[i] = ft_strtrim(arr_str[i]);
+		ft_strdel(&tmp);
 		ft_prossesing(&arr_str[i], env);
 		++i;
 	}
 	ft_strdel(&str);
-	ft_clear_mygv(ft_get_mygv(NULL));
-	i = 0;
-	while (arr_str[i])
-	{
-		write(1, arr_str[i], ft_strlen(arr_str[i]));
-		write(1, "\n", 1);
-		++i;
-	}
 	ft_del_arr(&arr_str);
+	ft_clear_mygv(ft_get_mygv(NULL));
 }
