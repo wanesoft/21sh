@@ -40,19 +40,15 @@ static void		pipe_redir(char *str, char **arr_env, char **old_result, int i)
 {
 	char		**param;
 	int			pipefd[2];
-	int			savestd[2];
 	pid_t		father;
 	int			tmp;
 //	char		**tmp2;
 
 	param = ft_strsplit(str, ' ');
-	savestd[0] = dup(0);
-	savestd[1] = dup(1);
-	if ((tmp = open(".tmp", O_CREAT | O_RDWR, S_IRWXU)) == -1)
+	if ((tmp = open("/goinfre/.tmp", O_CREAT | O_RDWR, S_IRWXU)) == -1)
 		return ;
 	write(tmp, *old_result, ft_strlen(*old_result));
 	ft_strdel(old_result);
-	close(tmp);
 	pipe(pipefd);
 	father = fork();
 	if (!father)
@@ -70,11 +66,8 @@ static void		pipe_redir(char *str, char **arr_env, char **old_result, int i)
 		wait(0);
 		close(pipefd[0]);
 	}
-	dup2(savestd[0], 0);
-	dup2(savestd[1], 1);
-	close(savestd[0]);
-	close(savestd[1]);
-	/*tmp2 = ft_strsplit("/bin/rm .tmp", ' ');
+	close(tmp);
+	/*tmp2 = ft_strsplit("/bin/rm /goinfre/.tmp", ' ');
 	father = fork();
 	if (!father)
 		execve(tmp2[0], tmp2, arr_env);
@@ -84,17 +77,25 @@ static void		pipe_redir(char *str, char **arr_env, char **old_result, int i)
 	ft_del_arr(&param);
 }
 
-static void		ft_prep_for_execute(char *turn_str, char **arr_env,
+static int		ft_prep_for_execute(char **turn_str, char **arr_env,
 									char **old_result, int i, t_vector **env)
 {
-//	t_vector	*redirs;
+	t_vector	*redirs;
+	int			savestd[2];
 	
-//	redirs = 0;
+	savestd[0] = dup(0);
+	savestd[1] = dup(1);
+	redirs = 0;
 //	str = ft_divide(str, " \t\n");
-//	if (ft_get_redir(turn_str, redirs) == EXIT_FAIL)
-//		break;
-	if (ft_forward(turn_str, env) == EXEC_FAIL)
-		pipe_redir(turn_str, arr_env, old_result, i);
+	if (ft_get_redir(turn_str, &redirs) == EXEC_FAIL)
+		return (EXEC_FAIL);
+	if (ft_forward(*turn_str, env) == EXEC_FAIL)
+		pipe_redir(*turn_str, arr_env, old_result, i);
+	dup2(savestd[0], 0);
+	dup2(savestd[1], 1);
+	close(savestd[0]);
+	close(savestd[1]);
+	return (EXEC_SUCC);
 }
 
 void			ft_execute(char *str, t_vector **env)
@@ -111,7 +112,9 @@ void			ft_execute(char *str, t_vector **env)
 	old_result = ft_strdup("\0");
 	while (turn[i])
 	{
-		ft_prep_for_execute(turn[i], arr_env, &old_result, i, env);
+		if (ft_prep_for_execute(
+						&turn[i], arr_env, &old_result, i, env) == EXEC_FAIL)
+			break ;
 		++i;
 		if (!turn[i])
 			write(1, old_result, ft_strlen(old_result));

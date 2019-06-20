@@ -36,7 +36,6 @@ SRC :=	ft_autocompl.c\
 		ft_execute.c\
 		ft_forward.c\
 		ft_get_redir.c\
-		ft_list_bins.c\
 		ft_prep_for_pipes.c\
 		ft_prossesing.c\
 		ft_replacment.c\

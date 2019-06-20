@@ -41,6 +41,7 @@
 # define NOTDIR 3
 # define PERDEN 4
 # define NOTEXIST 5
+# define REDICTFAIL 6
 
 # define K_SPACE		32
 # define K_ESC			27
@@ -65,6 +66,12 @@ typedef struct		s_var_env
 	char			*value;
 	char			*full_line;
 }					t_var_env;
+
+typedef struct      s_stream
+{
+    int             type_stream;
+    char            *file;
+}                   t_stream;
 
 typedef struct      s_mygv
 {
@@ -114,6 +121,12 @@ int					file_check(char *path, int type, int mod, char *command);
 void				ft_error(int error, char *str);
 
 void				ft_execute(char *str, t_vector **env);
+
+int					ft_get_redir(char **string, t_vector **redirs);
+
+void				destroy_t_stream(t_stream **tmp);
+t_stream			*ft_creat(char *file, int type_stream);
+
 char				**ft_vector_to_arr(t_vector **env);
 
 void				ft_restart(int sign);

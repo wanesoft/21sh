@@ -59,22 +59,22 @@ void			begin(t_vector **env)
 	mygv = ft_get_mygv(NULL);
 	signal(SIGINT, ft_restart);
 	g_env = env;
-	//ft_input();
-	//ft_put_history(mygv);
+	ft_input();
+	ft_put_history(mygv);
 	
 	/* *** TEST *** */
 	signal(SIGTSTP, ft_restart);
 	static int p = 0;
-	str = ft_strdup("cd; cd; cd -; cd ~; cd /; pwd");
+	//str = ft_strdup("cd; cd; cd -; cd ~; cd /; pwd");
 	//str = ft_strdup("cd| cd| cd -| cd ~| cd /| pwd");
 	//str = ft_strdup("cd; cd; cd -; cd ~; cd /;    pwd;  ls;  env   ;");
 	//str = ft_strdup("cd /;pwd;env;ls;cd -;pwd;env;ls;");
 	ft_printf("%d\n", p);
 	++p;
-	arr_str = ft_strsplit(str, ';');
+	//arr_str = ft_strsplit(str, ';');
 	/* *** TEST *** */
 	
-	//arr_str = ft_strsplit(mygv->g_str, ';');
+	arr_str = ft_strsplit(mygv->g_str, ';');
 	i = 0;
 	while (arr_str[i])
 	{

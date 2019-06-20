@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_prossesing.c                                    :+:      :+:    :+:   */
+/*   fts_stream.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/22 15:09:32 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/19 13:34:42 by udraugr-         ###   ########.fr       */
+/*   Created: 2019/06/20 15:30:32 by udraugr-          #+#    #+#             */
+/*   Updated: 2019/06/20 15:30:57 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/twenty_one_sh.h"
 
-void		ft_prossesing(char **str, t_vector **env)
+t_stream		*ft_creat(char *file, int type_stream)
 {
-	char	*prep_pipes;
+	t_stream	*tmp;
 	
-	if ((*str)[ft_strlen(*str) - 1] == '|')
-	{
-		ft_error(REDICTFAIL, "");
+	if (!(tmp = (t_stream *)malloc(sizeof(t_stream))))
+		return (0);
+	tmp->file = 0;
+	tmp->type_stream = 0;
+	tmp->file = ft_strdup(file);
+	tmp->type_stream = type_stream;
+	return (tmp);
+}
+
+void			destroy_t_stream(t_stream **tmp)
+{
+	if (!tmp)
 		return ;
-	}
-	ft_space_for_redirs(str);
-	ft_replacment(str, env);
-	prep_pipes = 0;
-	if (ft_prep_for_pipes(*str, &prep_pipes, env) == EXEC_SUCC)
-	{
-		ft_execute(prep_pipes, env);
-	}
-	ft_strdel(&prep_pipes);
+	(*tmp)->type_stream = 0;
+	if ((*tmp)->file)
+		ft_strdel(&(*tmp)->file);
+	free(*tmp);
+	*tmp = 0;
 }

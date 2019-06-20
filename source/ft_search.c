@@ -20,10 +20,7 @@ static int	look_in_dir(char *dir, char *file, char **path)
 	int				flag;
 
 	if (!(cur_dir = opendir(dir)))
-	{
-		perror("WHAT'S HAPPEND ???");
 		return (0);
-	}
 	flag = 0;
 	while ((cur_file = readdir(cur_dir)))
 	{

@@ -26,5 +26,7 @@ void	ft_error(int error, char *str)
 		write(2, ": Not a regular file or a soft link", 35);
 	else if (error == NOTDIR)
 		write(2, ": Not a directory", 17);
+	else if (error == REDICTFAIL)
+		write(2, "Fail with redirection or pipe", 29);
 	write(1, "\n", 1);
 }

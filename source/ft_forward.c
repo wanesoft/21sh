@@ -28,8 +28,10 @@ int			ft_forward(char *str, t_vector **env)
 {
 	char	*command;
 	int		i;
+	int		ans;
 
 	i = 0;
+	ans = EXEC_SUCC;
 	while (str[i] && str[i] != ' ')
 		++i;
 	command = ft_strndup(str, i);
@@ -50,10 +52,7 @@ int			ft_forward(char *str, t_vector **env)
 	else if (ft_strequ(command, "env"))
 		ft_env(env, str + 3);
 	else
-	{
-		ft_strdel(&command);
-		return (EXEC_FAIL);
-	}
+		ans = EXEC_FAIL;
 	ft_strdel(&command);
-	return (EXEC_SUCC);
+	return (ans);
 }
