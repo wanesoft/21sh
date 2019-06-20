@@ -88,7 +88,7 @@ int			ft_prep_for_pipes(char *str, char **prep_for_pipes, t_vector **env)
 		++i;
 	}
 	i = 0;
-	*prep_for_pipes = ft_strdup("\0");
+	*prep_for_pipes = ft_strdup("");
 	while (tmp[i])
 	{
 		trash = *prep_for_pipes;

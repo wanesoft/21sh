@@ -14,15 +14,9 @@
 
 t_vector		**g_env;
 
-void			ft_hello(void)
-{
-	write(1, "\033[32mMishinshell:\033[0m ", 22);
-}
-
 void			ft_restart(int sign)
 {
 	write(1, "\n", 1);
-	//ft_hello();
 	ft_init_screen();
 	//ft_clear_mygv(ft_get_mygv(NULL));
 	if (sign == SIGINT)
@@ -56,7 +50,7 @@ static void		ft_put_history(t_mygv *mygv)
 
 void			begin(t_vector **env)
 {
-	//char		*str;
+	char		*str;
 	char		*tmp;
 	char		**arr_str;
 	int			i;
@@ -65,17 +59,19 @@ void			begin(t_vector **env)
 	mygv = ft_get_mygv(NULL);
 	signal(SIGINT, ft_restart);
 	g_env = env;
-	ft_input();
-	ft_put_history(mygv);
+	//ft_input();
+	//ft_put_history(mygv);
 	/* *** TEST *** */
 	signal(SIGTSTP, ft_restart);
-//	static int p = 0;
-//	str = ft_strdup("cd; cd; cd -; cd ~; cd /; pwd");
-//	ft_printf("%d\n", p);
-//	++p;
+	static int p = 0;
+	str = ft_strdup("cd; cd; cd -; cd ~; cd /; pwd; env;");
+	ft_printf("%d\n", p);
+	++p;
+	if( p == 1000)
+		ft_bye(env);
 	/* *** TEST *** */
 	
-	arr_str = ft_strsplit(mygv->g_str, ';');
+	arr_str = ft_strsplit(str, ';');//(mygv->g_str, ';');
 	i = 0;
 	while (arr_str[i])
 	{
@@ -85,7 +81,14 @@ void			begin(t_vector **env)
 		ft_prossesing(&arr_str[i], env);
 		++i;
 	}
-	//ft_strdel(&str);
+	ft_strdel(&str);
 	ft_clear_mygv(ft_get_mygv(NULL));
+	i = 0;
+	while (arr_str[i])
+	{
+		write(1, arr_str[i], ft_strlen(arr_str[i]));
+		write(1, "\n", 1);
+		++i;
+	}
 	ft_del_arr(&arr_str);
 }

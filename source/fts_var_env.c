@@ -15,28 +15,21 @@
 t_var_env		*ft_take_info(char *str)
 {
 	t_var_env	*tmp;
-	char		**tmp2;
-//	int			i;
+	char		**arr;
 
 	if (!str || !(tmp = (t_var_env *)malloc(sizeof(t_var_env))))
 		return (0);
+	tmp->full_line = 0;
+	tmp->key = 0;
+	tmp->value = 0;
 	tmp->full_line = ft_strdup(str);
-	tmp2 = ft_strsplit(str, '=');
-	/*i = 0;
-	while (str[i] && str[i] != '=')
-		++i;
-	tmp->key = ft_strndup(str, i);
-	if (str[i] && str[i + 1])
-		tmp->value = ft_strdup(&str[i + 1]);
+	arr = ft_strsplit(str, '=');
+	tmp->key = ft_strdup(arr[0]);
+	if (arr[1])
+		tmp->value = ft_strdup(arr[1]);
 	else
 		tmp->value = ft_strdup("\0");
-	++i;*/
-	tmp->key = ft_strdup(tmp2[0]);
-	if (tmp2[1])
-		tmp->value = ft_strdup(tmp2[1]);
-	else
-		tmp->value = ft_strdup("\0");
-	ft_del_arr(&tmp2);
+	ft_del_arr(&arr);
 	return (tmp);
 }
 
@@ -44,10 +37,7 @@ void			ft_del_content_var_env(t_var_env *cur)
 {
 	if (!cur)
 		return ;
-	free(cur->key);
-	cur->key = 0;
-	free(cur->value);
-	cur->value = 0;
-	free(cur->full_line);
-	cur->full_line = 0;
+	ft_strdel(&cur->key);
+	ft_strdel(&cur->value);
+	ft_strdel(&cur->full_line);
 }

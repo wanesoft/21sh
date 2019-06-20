@@ -29,31 +29,28 @@ static void	ft_change_dir(char *path, t_vector **env)
 	char	*pwd;
 	char	*new_pwd;
 
-	if (*path)
+	pwd = 0;
+	new_pwd = 0;
+	if (*path &&
+		(pwd = ft_memalloc(STDMES)) &&
+			(new_pwd = ft_memalloc(STDMES)))
 	{
-		if (!(pwd = ft_memalloc(STDMES)) ||
-			(!(new_pwd = ft_memalloc(STDMES))))
-		{
-			ft_strdel(&pwd);
-			ft_strdel(&new_pwd);
-			return ;
-		}
-		if (file_check(path, FOLD, 1, path))
-		{
-			if (!(pwd = getcwd(pwd, STDMES)))
-				return ;
-			ft_change_var_env(env, "OLDPWD", pwd);
-			chdir(path);
-			if (!(new_pwd = getcwd(new_pwd, STDMES)))
+			if (file_check(path, FOLD, 1, path))
 			{
-				ft_strdel(&pwd);
-				return ;
+				if (!(pwd = getcwd(pwd, STDMES)))
+					return ;
+				ft_change_var_env(env, "OLDPWD", pwd);
+				chdir(path);
+				if (!(new_pwd = getcwd(new_pwd, STDMES)))
+				{
+					ft_strdel(&pwd);
+					return ;
+				}
+				ft_change_var_env(env, "PWD", new_pwd);
 			}
-			ft_change_var_env(env, "PWD", new_pwd);
-		}
+	}
 		ft_strdel(&pwd);
 		ft_strdel(&new_pwd);
-	}
 }
 
 void		ft_cd(char *param, t_vector **env)

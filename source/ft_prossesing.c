@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:09:32 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/18 12:31:32 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/19 13:34:42 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		ft_prossesing(char **str, t_vector **env)
 {
 	char	*prep_pipes;
-
+	
 	ft_space_for_redirs(str);
 	ft_replacment(str, env);
 	prep_pipes = 0;

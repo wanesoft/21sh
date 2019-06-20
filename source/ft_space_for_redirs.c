@@ -32,7 +32,7 @@ static void	ft_fill_redir(char *str, char *tmp_str, int *i_new, int *i_old)
 	tmp_str[*i_new + 1] = ' ';
 	(*i_new) += 2;
 	++(*i_old);
-	if (str[*i_old] && str[*i_old - 1])
+	if (*i_old > 0 && str[*i_old])
 	{
 		c = str[*i_old - 1];
 		d = str[*i_old];
