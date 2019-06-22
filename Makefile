@@ -54,7 +54,9 @@ SRC :=	ft_autocompl.c\
 		ft_i_pgup_pgdown.c\
 		ft_gnl_pro.c\
 		fts_stream.c\
-		ft_redirs.c
+		ft_redirs.c\
+
+SRC := $(addprefix ./source/, $(SRC))
 
 OBJ := $(patsubst %.c, %.o, $(notdir $(SRC)))
 
