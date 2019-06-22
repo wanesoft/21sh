@@ -60,10 +60,10 @@ static void		pipe_redir(char *str, char **arr_env, char **old_result, int i)
 	}
 	else
 	{
-		close(pipefd[1]);
 		*old_result = ft_strdup("\0");
 		out(pipefd[0], old_result);
 		wait(0);
+		close(pipefd[1]);
 		close(pipefd[0]);
 	}
 	close(tmp);
@@ -81,20 +81,25 @@ static int		ft_prep_for_execute(char **turn_str, char **arr_env,
 									char **old_result, int i, t_vector **env)
 {
 	t_vector	*redirs;
-	int			savestd[2];
+	int			savestd[3];
 	
 	savestd[0] = dup(0);
 	savestd[1] = dup(1);
+	savestd[2] = dup(2);
 	redirs = 0;
 //	str = ft_divide(str, " \t\n");
 	if (ft_get_redir(turn_str, &redirs) == EXEC_FAIL)
 		return (EXEC_FAIL);
+	//ft_input_redirect(&redirs, old_result);
 	if (ft_forward(*turn_str, env) == EXEC_FAIL)
 		pipe_redir(*turn_str, arr_env, old_result, i);
+	//ft_output_redirect(&redirs, old_result);
 	dup2(savestd[0], 0);
 	dup2(savestd[1], 1);
+	dup2(savestd[2], 2);
 	close(savestd[0]);
 	close(savestd[1]);
+	close(savestd[2]);
 	return (EXEC_SUCC);
 }
 

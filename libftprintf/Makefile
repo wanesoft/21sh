@@ -6,7 +6,7 @@
 #    By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/17 17:34:34 by udraugr-          #+#    #+#              #
-#    Updated: 2019/06/01 16:35:52 by udraugr-         ###   ########.fr        #
+#    Updated: 2019/06/22 14:56:03 by udraugr-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,6 +85,7 @@ SRC_LIB := 	ft_atoi.c\
 			fts_vector.c\
 			fts_vector2.c\
 			ft_arrlen.c\
+			ft_strjoin_pro.c
 
 OBJ_LIB := $(patsubst %.c, %.o, $(notdir $(SRC_LIB)))
 
@@ -99,7 +100,7 @@ SRC_PRINTF := 	ft_printf.c\
 				parsing_ft_printf.c\
 				sup_all_numb.c\
 				sup_fraction_efg.c\
-				sup_other.c\
+				sup_other.c
 
 OBJ_PRINTF := $(patsubst %.c, %.o, $(notdir $(SRC_PRINTF)))
 
@@ -107,16 +108,18 @@ FLAGS := -Wall -Wextra -Werror
 
 DIR_SRC := libft ft_printf
 
+VPATH := libft ft_printf
+
+OBJ_DIR := ./objects/
+
 all: $(NAME)
 
 $(NAME): $(OBJ_LIB) $(OBJ_PRINTF)
 	@ar rcs  $(NAME) $(OBJ_LIB) $(OBJ_PRINTF)
 	@echo "Create a library!"
 
-VPATH := $(DIR_SRC)
-
 %.o: %.c
-	gcc $(FLAGS) -I ft_printf -c $< -o $@
+	gcc $(FLAGS) -I ft_printf -c $< -o $(OBJ_DIR)$@
 
 clean:
 	@/bin/rm -f $(OBJ_PRINTF) $(OBJ_LIB)

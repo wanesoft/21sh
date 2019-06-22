@@ -1,2 +1,4 @@
-1.txt
-2.txt
+cat: 0: No such file or directory
+cat: 1: No such file or directory
+cat: 0: No such file or directory
+cat: 1: No such file or directory

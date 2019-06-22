@@ -1,1 +1,1 @@
-begin.c file_check.c ft_addenv.c ft_bye.c ft_cd.c ft_divide.c ft_echo.c ft_env.c ft_error.c ft_execute.c ft_forward.c ft_get_redir.c ft_list_bins.c ft_prep_for_pipes.c ft_prossesing.c ft_replacment.c ft_search.c ft_setenv.c ft_space_for_redirs.c ft_take_value_env.c ft_unsetenv.c ft_vector_to_arr.c fts_var_env.c main.c 
+chto-to i dont understand

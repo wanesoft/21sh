@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 19:17:06 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/01 16:35:24 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/22 14:44:44 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # include <sys/uio.h>
 
 # define BUFF_SIZE 1024
+# define ONLY_FIRST 0
+# define ONLY_SECOND 1
+# define BOTH 2
+
 
 typedef struct			s_list
 {
@@ -113,6 +117,7 @@ void					ft_swap(int *a, int *b);
 char					*ft_strrev(char *str);
 int						ft_lstlen(t_list *begin);
 void					*ft_lstfree(t_list *begin);
+
 int						get_next_line(const int fd, char **line);
 
 char					**ft_copy_arr(int number_of_str, char **str_arr);
@@ -127,6 +132,8 @@ void					ft_del_vector(t_vector **chain);
 t_vector				*ft_add_vector(t_vector *begin, void *content);
 void					ft_swap_vector(t_vector *v1, t_vector *v2);
 void					ft_delall_vector(t_vector **chain);
+
 int						ft_arrlen(char **arr);
+char					*ft_strjoin_pro(char *begin, char *end, int mod);
 
 #endif
