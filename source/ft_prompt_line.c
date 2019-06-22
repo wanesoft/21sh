@@ -3,15 +3,6 @@
 
 static void		ft_prompt_line_3(t_mygv *mygv)
 {
-//	int			x;
-//
-//	x = mygv->g_x_pos + 10;
-//	ft_putstr_fd(tgetstr("cr", NULL), STDOUT_FILENO);
-//	while (x)
-//	{
-//		ft_putstr_fd(tgetstr("nd", NULL), STDOUT_FILENO);
-//		--x;
-//	}
 	if (mygv->g_j == ft_strlen(mygv->g_str) && !mygv->g_y_pos)
 		ft_putstr_fd("\033[7m \033[0m", STDIN_FILENO);
 }
@@ -27,9 +18,6 @@ static void		ft_prompt_line_2(t_mygv *mygv)
 	{
 		if (i == mygv->g_j && mygv->g_str[i] != '\n' && !mygv->g_y_pos)
 		{
-//			ft_putstr_fd("\033[7m", STDIN_FILENO);
-//			write(STDIN_FILENO, &mygv->g_str[i], 1);
-//			ft_putstr_fd("\033[0m", STDOUT_FILENO);
 			ft_printf("\033[7m%c\033[0m", mygv->g_str[i]);
 			++i;
 		}
@@ -47,10 +35,23 @@ static void		ft_prompt_line_2(t_mygv *mygv)
 	}
 }
 
+static void		ft_test_width(t_mygv *mygv)
+{
+	int			line_test;
+
+	line_test = ft_get_max_line(mygv->g_str) + 11;
+	ft_get_tty_col_ros();
+	if (line_test > mygv->col)
+	{
+		mygv->g_stage = line_test / (mygv->col);
+	}
+}
+
 void			ft_prompt_line(t_mygv *mygv)
 {
 	int			y;
 	
+	ft_test_width(mygv);
 	y = mygv->g_stage;
 	while (y >= 0)
 	{

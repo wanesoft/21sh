@@ -27,7 +27,6 @@ static char		**ft_autocompl_path(t_mygv *mygv)
 	}
 	if (!tmp)
 		return (NULL);
-	//ft_printf("\n\n%s", ((t_var_env *)tmp->content)->value);
 	arr = ft_strsplit(((t_var_env *)tmp->content)->value, ':');
 	ret = ft_get_path_bins(arr);
 	ft_del_arr(&arr);

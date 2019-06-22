@@ -158,5 +158,8 @@ void				ft_autocompl_3(char **arr, t_mygv *mygv, char *str, int len);
 char                **ft_autocompl_dir(void);
 void				ft_i_pgup_pgdown(unsigned i, t_mygv *mygv);
 int					ft_gnl_pro(const int fd, char **line, char ch);
+void				ft_foo_2(t_mygv *mygv);
+void				ft_foo_3(t_mygv *mygv);
+int					ft_get_max_line(char *str);
 
 #endif

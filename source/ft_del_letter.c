@@ -14,20 +14,7 @@
 
 void			ft_del_letter(unsigned i, t_mygv *mygv)
 {
-	/* kostyl */
-	int			ii;
-	int			j;
-	
-	ii = 0;
-	j = 0;
-	while (mygv->g_str[ii])
-	{
-		if (mygv->g_str[ii] == '\n')
-			++j;
-		++ii;
-	}
-	mygv->g_stage = j;
-	/* */
+	ft_foo_2(mygv);
 	if (i == K_DEL)
 	{
 		return;
@@ -42,7 +29,6 @@ void			ft_del_letter(unsigned i, t_mygv *mygv)
 			ft_putstr_fd(tgetstr("dl", NULL), STDOUT_FILENO);
 			ft_putstr_fd(tgetstr("cr", NULL), STDOUT_FILENO);
 			--mygv->g_stage;
-			//problema navigacii
 		}
 		ft_memmove(&mygv->g_str[mygv->g_j], &mygv->g_str[mygv->g_j + 1], ft_strlen(&mygv->g_str[mygv->g_j]));
 	}

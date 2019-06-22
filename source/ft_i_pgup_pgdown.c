@@ -53,10 +53,6 @@ void			ft_for_misha(t_mygv *mygv)
 			++count;
 		++i;
 	}
-//	if (count)
-//		mygv->g_stage = count + 2;
-//	else
-//		mygv->g_stage = 0;
 	while (count)
 	{
 		ft_putstr_fd(tgetstr("up", NULL), STDOUT_FILENO);
@@ -74,26 +70,7 @@ void			ft_i_pgup_pgdown(unsigned i, t_mygv *mygv)
 	ft_muli(i, mygv);
 	if (mygv->g_c_his < 1)
 	{
-		/*KOKOK*/
-		int			ii;
-		int			j;
-		
-		ii = 0;
-		j = 0;
-		while (mygv->g_str[ii])
-		{
-			if (mygv->g_str[ii] == '\n')
-				++j;
-			++ii;
-		}
-		while (j)
-		{
-			ft_putstr_fd(tgetstr("up", NULL), STDOUT_FILENO);
-			ft_putstr_fd(tgetstr("dl", NULL), STDOUT_FILENO);
-			ft_putstr_fd(tgetstr("cr", NULL), STDOUT_FILENO);
-			--j;
-		}
-		
+		ft_foo_3(mygv);
 		ft_clear_mygv(mygv);
 		mygv->g_c_his = 0;
 		return ;
