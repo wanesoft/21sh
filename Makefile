@@ -2,7 +2,7 @@ NAME := 21sh
 
 INC := ./include/
 
-LIB := ./libftprintf
+LIB := ./libftprintf/
 
 OBJ_DIR := ./objects/
 
