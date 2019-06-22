@@ -94,6 +94,9 @@ int				ft_get_redir(char **string, t_vector **redirs)
 		tmp = ans;
 		ans = ft_strjoin(ans, arr_string[i]);
 		ft_strdel(&tmp);
+		tmp = ans;
+		ans = ft_strjoin(ans, " ");
+		ft_strdel(&tmp);
 	}
 	ft_del_arr(&arr_string);
 	ft_strdel(string);

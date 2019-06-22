@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 14:01:32 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/19 13:27:54 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/20 19:40:01 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void			begin(t_vector **env)
 		ft_prossesing(&arr_str[i], env);
 		++i;
 	}
-	ft_strdel(&str);
+	//ft_strdel(&str);
 	ft_del_arr(&arr_str);
 	ft_clear_mygv(ft_get_mygv(NULL));
 }

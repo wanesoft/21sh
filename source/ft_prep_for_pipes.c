@@ -26,35 +26,42 @@ static int	check_builts(char *command)
 	return (EXEC_FAIL);
 }
 
-static int	path_bins(char **str, t_vector **env)
+static char	*take_command(char **str)
 {
 	int		i;
 	int		j;
-	int		ans;
 	char	*command;
-	char	*command2;
-	char	*path;
-	char	*tmp;
-	char	*back;
-
+	
 	j = 0;
-	path = 0;
-	back = *str;
 	while ((*str)[j] && (*str)[j] == ' ')
 		++j;
 	i = j;
 	while ((*str)[i] && (*str)[i] != ' ')
 		++i;
 	command = ft_strndup(&(*str)[j], i - j);
-	command2 = ft_strdup(command);
-	ft_strtolower(command2);
+	ft_strtolower(command);
+	return (command);
+}
+
+static int	path_bins(char **str, t_vector **env)
+{
+
+	int		ans;
+	char	*command;
+	char	*path;
+	char	*tmp;
+	char	*back;
+
+	path = 0;
+	back = *str;
+	command = take_command(str);
 	ans = EXEC_FAIL;
-	if (ft_strlen(*str) == 1 && command2[0] == '.')
+	if (ft_strlen(*str) == 1 && command[0] == '.')
 		write(1, ".: usage: ./path [arguments]\n", 29);
-	else if (check_builts(command2) == EXEC_SUCC ||
-			(ft_strchr(command2, '/') && file_check(command2, BIN, 1, command)))
+	else if (check_builts(command) == EXEC_SUCC ||
+			(ft_strchr(command, '/') && file_check(command, BIN, 1, command)))
 		ans = EXEC_SUCC;
-	else if (!ft_strchr(command2, '/') && ft_search(env, command2, &path))
+	else if (!ft_strchr(command, '/') && ft_search(env, command, &path))
 	{
 		ans = EXEC_SUCC;
 		if ((*str)[i])
@@ -66,7 +73,6 @@ static int	path_bins(char **str, t_vector **env)
 		*str = tmp;
 	}
 	ft_strdel(&command);
-	ft_strdel(&command2);
 	return (ans);
 }
 

@@ -4,6 +4,8 @@ INC := ./include
 
 LIB := ./libftprintf
 
+OBJ_DIR := ./objects/
+
 FLAGS := -Wall -Wector -Werror
 
 VPATH := ./source
@@ -49,6 +51,8 @@ SRC :=	ft_autocompl.c\
 		main.c\
 		ft_i_pgup_pgdown.c\
 		ft_gnl_pro.c\
+		fts_stream.c\
+		ft_redirs.c\
 
 SRC := $(addprefix ./source/, $(SRC))
 
@@ -62,7 +66,7 @@ $(NAME): $(OBJ)
 	gcc $(FLAGS) -I $(INC) -L$(LIB) -lftprintf  -lreadline -ltermcap $(OBJ) -o $(NAME)
 
 %.o: %.c
-	gcc -c $< -o $@
+	gcc -c $< -o $(OBJ_DIR)$@
 
 clean:
 	@/bin/rm -f $(OBJ)

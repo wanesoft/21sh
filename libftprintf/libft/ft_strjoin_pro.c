@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_prossesing.c                                    :+:      :+:    :+:   */
+/*   ft_strjoin_pro.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/22 15:09:32 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/19 13:34:42 by udraugr-         ###   ########.fr       */
+/*   Created: 2019/06/22 14:10:49 by udraugr-          #+#    #+#             */
+/*   Updated: 2019/06/22 14:56:29 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/twenty_one_sh.h"
+#include "libft.h"
 
-void		ft_prossesing(char **str, t_vector **env)
+char			*ft_strjoin_pro(char *begin, char *end, int mod)
 {
-	char	*prep_pipes;
-	
-	if ([ft_strlen(*str) - 1] == '|')
+	char		*ans;
+
+	if (!begin && !end)
+		return (0);
+	if (!begin)
+		ans = ft_strdup(end);
+	else if (!end)
+		ans = ft_strdup(begin);
+	else
+		ans = ft_strjoin(begin, end);
+	if (mod == ONLY_FIRST)
+		ft_strdel(&begin);
+	else if (mod == ONLY_SECOND)
+		ft_strdel(&end);
+	else if (mod == BOTH)
 	{
-		ft_error(REDICTFAIL, "");
-		return ;
+		ft_strdel(&begin);
+		ft_strdel(&end);
 	}
-	ft_space_for_redirs(str);
-	ft_replacment(str, env);
-	prep_pipes = 0;
-	if (ft_prep_for_pipes(*str, &prep_pipes, env) == EXEC_SUCC)
-	{
-		ft_execute(prep_pipes, env);
-	}
-	ft_strdel(&prep_pipes);
+	return (ans);
 }

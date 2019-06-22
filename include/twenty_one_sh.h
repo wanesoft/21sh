@@ -123,6 +123,8 @@ void				ft_error(int error, char *str);
 void				ft_execute(char *str, t_vector **env);
 
 int					ft_get_redir(char **string, t_vector **redirs);
+void				ft_output_redirect(t_vector **redirs, char **old_result);
+void				ft_input_redirect(t_vector **redirs, char **old_result);
 
 void				destroy_t_stream(t_stream **tmp);
 t_stream			*ft_creat(char *file, int type_stream);

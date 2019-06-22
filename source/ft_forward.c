@@ -35,6 +35,7 @@ int			ft_forward(char *str, t_vector **env)
 	while (str[i] && str[i] != ' ')
 		++i;
 	command = ft_strndup(str, i);
+	ft_strtolower(command);
 	if (ft_strequ(command, "cd"))
 		ft_cd(str, env);
 	else if (ft_strequ(command, "setenv"))

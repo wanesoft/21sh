@@ -32,8 +32,7 @@ static void	ft_change_dir(char *path, t_vector **env)
 	pwd = 0;
 	new_pwd = 0;
 	if (*path &&
-		(pwd = ft_memalloc(STDMES)) &&
-			(new_pwd = ft_memalloc(STDMES)))
+		(pwd = ft_memalloc(STDMES)) && (new_pwd = ft_memalloc(STDMES)))
 	{
 			if (file_check(path, FOLD, 1, path))
 			{
