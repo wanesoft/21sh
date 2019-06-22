@@ -59,6 +59,7 @@ char			*ft_input(void)
 		if (ft_input_proc(input, mygv))
 			break;
 	}
+	//ft_printf("\n\nKOKO\n\n");
 	//return (ft_strdup(mygv->g_str)); // a nado li malloc???
 	return (NULL);
 }

@@ -49,6 +49,7 @@ SRC :=	ft_autocompl.c\
 		main.c\
 		ft_i_pgup_pgdown.c\
 		ft_gnl_pro.c\
+		fts_stream.c\
 
 SRC := $(addprefix ./source/, $(SRC))
 

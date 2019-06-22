@@ -124,6 +124,22 @@ static void		ft_down(unsigned i, t_mygv *mygv)
 
 void			ft_i_arrow_u_d(unsigned i, t_mygv *mygv)
 {
+	
+	/* kostyl */
+	int			ii;
+	int			j;
+	
+	ii = 0;
+	j = 0;
+	while (mygv->g_str[ii])
+	{
+		if (mygv->g_str[ii] == '\n')
+			++j;
+		++ii;
+	}
+	mygv->g_stage = j;
+	/* */
+	
 	if (i == K_UP)
 		ft_up(i, mygv);
 	else if (i == K_DOWN)

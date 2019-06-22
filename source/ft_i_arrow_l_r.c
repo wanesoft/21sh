@@ -3,6 +3,18 @@
 
 void			ft_i_arrow_l_r(unsigned i, t_mygv *mygv)
 {
+	int			ii;
+	int			j;
+	
+	ii = 0;
+	j = 0;
+	while (mygv->g_str[ii])
+	{
+		if (mygv->g_str[ii] == '\n')
+			++j;
+		++ii;
+	}
+	mygv->g_stage = j;
 	if (i == K_RIGHT && mygv->g_j < ft_strlen(mygv->g_str))
 	{
 		++mygv->g_x_pos;

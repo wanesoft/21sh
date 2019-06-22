@@ -40,6 +40,32 @@ static void		ft_muli(unsigned i, t_mygv *mygv)
 		--mygv->g_c_his;
 }
 
+void			ft_for_misha(t_mygv *mygv)
+{
+	int			count;
+	int			i;
+	
+	i = 0;
+	count = 0;
+	while (mygv->g_str[i])
+	{
+		if (mygv->g_str[i] == '\n')
+			++count;
+		++i;
+	}
+//	if (count)
+//		mygv->g_stage = count + 2;
+//	else
+//		mygv->g_stage = 0;
+	while (count)
+	{
+		ft_putstr_fd(tgetstr("up", NULL), STDOUT_FILENO);
+		ft_putstr_fd(tgetstr("dl", NULL), STDOUT_FILENO);
+		ft_putstr_fd(tgetstr("cr", NULL), STDOUT_FILENO);
+		--count;
+	}
+}
+
 void			ft_i_pgup_pgdown(unsigned i, t_mygv *mygv)
 {
 	int			find;
@@ -48,10 +74,32 @@ void			ft_i_pgup_pgdown(unsigned i, t_mygv *mygv)
 	ft_muli(i, mygv);
 	if (mygv->g_c_his < 1)
 	{
+		/*KOKOK*/
+		int			ii;
+		int			j;
+		
+		ii = 0;
+		j = 0;
+		while (mygv->g_str[ii])
+		{
+			if (mygv->g_str[ii] == '\n')
+				++j;
+			++ii;
+		}
+		while (j)
+		{
+			ft_putstr_fd(tgetstr("up", NULL), STDOUT_FILENO);
+			ft_putstr_fd(tgetstr("dl", NULL), STDOUT_FILENO);
+			ft_putstr_fd(tgetstr("cr", NULL), STDOUT_FILENO);
+			--j;
+		}
+		
 		ft_clear_mygv(mygv);
 		mygv->g_c_his = 0;
 		return ;
 	}
+	mygv->g_stage = 0;
+	ft_for_misha(mygv);
 	mygv->g_c_his = ft_foo(mygv->g_c_his, mygv->g_n_his);
 	find = mygv->g_n_his - mygv->g_c_his;
 	tmp = ft_strjoin(getenv("HOME"), "/Desktop/21sh_history.txt");

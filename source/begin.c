@@ -50,7 +50,7 @@ static void		ft_put_history(t_mygv *mygv)
 
 void			begin(t_vector **env)
 {
-	char		*str;
+	//char		*str;
 	char		*tmp;
 	char		**arr_str;
 	int			i;
@@ -69,7 +69,7 @@ void			begin(t_vector **env)
 	//str = ft_strdup("cd| cd| cd -| cd ~| cd /| pwd");
 	//str = ft_strdup("cd; cd; cd -; cd ~; cd /;    pwd;  ls;  env   ;");
 	//str = ft_strdup("cd /;pwd;env;ls;cd -;pwd;env;ls;");
-	ft_printf("%d\n", p);
+	//ft_printf("%d\n", p);
 	++p;
 	//arr_str = ft_strsplit(str, ';');
 	/* *** TEST *** */
@@ -87,7 +87,7 @@ void			begin(t_vector **env)
 		ft_prossesing(&arr_str[i], env);
 		++i;
 	}
-	ft_strdel(&str);
+	//ft_strdel(&str);
 	ft_del_arr(&arr_str);
 	ft_clear_mygv(ft_get_mygv(NULL));
 }

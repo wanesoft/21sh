@@ -54,4 +54,3 @@ int				ft_gnl_pro(const int fd, char **line, char ch)
 		return (-1);
 	return (ft_out(&big[fd], line, ans, ch));
 }
-
