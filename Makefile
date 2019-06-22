@@ -1,14 +1,16 @@
 NAME := 21sh
 
-INC := ./include
+INC := ./include/
 
 LIB := ./libftprintf
 
 OBJ_DIR := ./objects/
 
+SRC_DIR := ./source/
+
 FLAGS := -Wall -Wector -Werror
 
-VPATH := ./source
+VPATH := source
 
 SRC :=	ft_autocompl.c\
 		ft_autocompl_2.c\
@@ -52,12 +54,7 @@ SRC :=	ft_autocompl.c\
 		ft_i_pgup_pgdown.c\
 		ft_gnl_pro.c\
 		fts_stream.c\
-<<<<<<< HEAD
-=======
-		ft_redirs.c\
->>>>>>> 8fc428079b77f9953b52138e11a2cdc2e1d9a6a5
-
-SRC := $(addprefix ./source/, $(SRC))
+		ft_redirs.c
 
 OBJ := $(patsubst %.c, %.o, $(notdir $(SRC)))
 
@@ -69,7 +66,7 @@ $(NAME): $(OBJ)
 	gcc $(FLAGS) -I $(INC) -L$(LIB) -lftprintf  -lreadline -ltermcap $(OBJ) -o $(NAME)
 
 %.o: %.c
-	gcc -c $< -o $(OBJ_DIR)$@
+	gcc -c $< -o $@
 
 clean:
 	@/bin/rm -f $(OBJ)
