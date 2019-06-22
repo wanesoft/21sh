@@ -41,6 +41,21 @@ void		ft_put_letter(unsigned i, t_mygv *mygv)
 {
 	int		line_test;
 	
+	/* kostyl */
+	int			ii;
+	int			j;
+	
+	ii = 0;
+	j = 0;
+	while (mygv->g_str[ii])
+	{
+		if (mygv->g_str[ii] == '\n')
+			++j;
+		++ii;
+	}
+	mygv->g_stage = j;
+	/* */
+	
 	ft_memmove(&mygv->g_str[mygv->g_j + 1], &mygv->g_str[mygv->g_j], ft_strlen(&mygv->g_str[mygv->g_j]));
 	mygv->g_str[mygv->g_j] = (char)i;
 	++mygv->g_j;

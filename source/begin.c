@@ -58,12 +58,13 @@ void			begin(t_vector **env)
 
 	mygv = ft_get_mygv(NULL);
 	signal(SIGINT, ft_restart);
+	signal(SIGTSTP, ft_restart);
 	g_env = env;
 	ft_input();
 	ft_put_history(mygv);
 	
 	/* *** TEST *** */
-	signal(SIGTSTP, ft_restart);
+	
 	static int p = 0;
 	//str = ft_strdup("cd; cd; cd -; cd ~; cd /; pwd");
 	//str = ft_strdup("cd| cd| cd -| cd ~| cd /| pwd");

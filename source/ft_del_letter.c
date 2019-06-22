@@ -14,6 +14,20 @@
 
 void			ft_del_letter(unsigned i, t_mygv *mygv)
 {
+	/* kostyl */
+	int			ii;
+	int			j;
+	
+	ii = 0;
+	j = 0;
+	while (mygv->g_str[ii])
+	{
+		if (mygv->g_str[ii] == '\n')
+			++j;
+		++ii;
+	}
+	mygv->g_stage = j;
+	/* */
 	if (i == K_DEL)
 	{
 		return;
