@@ -1,14 +1,16 @@
 NAME := 21sh
 
-INC := ./include
+INC := ./include/
 
 LIB := ./libftprintf
 
 OBJ_DIR := ./objects/
 
+SRC_DIR := ./source/
+
 FLAGS := -Wall -Wector -Werror
 
-VPATH := ./source
+VPATH := source
 
 SRC :=	ft_autocompl.c\
 		ft_autocompl_2.c\
@@ -66,7 +68,7 @@ $(NAME): $(OBJ)
 	gcc $(FLAGS) -I $(INC) -L$(LIB) -lftprintf  -lreadline -ltermcap $(OBJ) -o $(NAME)
 
 %.o: %.c
-	gcc -c $< -o $(OBJ_DIR)$@
+	gcc -c $< -o $@
 
 clean:
 	@/bin/rm -f $(OBJ)

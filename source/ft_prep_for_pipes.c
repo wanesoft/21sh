@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 12:53:36 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/18 13:29:49 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/22 15:45:38 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,27 @@ static int	path_bins(char **str, t_vector **env)
 {
 
 	int		ans;
-	char	*command;
+	//char	*command;
 	char	*path;
 	char	*tmp;
 	char	*back;
 
 	path = 0;
 	back = *str;
-	command = take_command(str);
+	//command = take_command(str);
+	int		i;
+	int		j;
+	char	*command;
+	
+	j = 0;
+	while ((*str)[j] && (*str)[j] == ' ')
+		++j;
+	i = j;
+	while ((*str)[i] && (*str)[i] != ' ')
+		++i;
+	command = ft_strndup(&(*str)[j], i - j);
+	ft_strtolower(command);
+	
 	ans = EXEC_FAIL;
 	if (ft_strlen(*str) == 1 && command[0] == '.')
 		write(1, ".: usage: ./path [arguments]\n", 29);

@@ -6,7 +6,7 @@
 #    By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/17 17:34:34 by udraugr-          #+#    #+#              #
-#    Updated: 2019/06/22 14:56:03 by udraugr-         ###   ########.fr        #
+#    Updated: 2019/06/22 15:38:04 by udraugr-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,6 +87,8 @@ SRC_LIB := 	ft_atoi.c\
 			ft_arrlen.c\
 			ft_strjoin_pro.c
 
+OBJ_DIR := ./objects/
+
 OBJ_LIB := $(patsubst %.c, %.o, $(notdir $(SRC_LIB)))
 
 SRC_PRINTF := 	ft_printf.c\
@@ -110,8 +112,6 @@ DIR_SRC := libft ft_printf
 
 VPATH := libft ft_printf
 
-OBJ_DIR := ./objects/
-
 all: $(NAME)
 
 $(NAME): $(OBJ_LIB) $(OBJ_PRINTF)
@@ -119,7 +119,7 @@ $(NAME): $(OBJ_LIB) $(OBJ_PRINTF)
 	@echo "Create a library!"
 
 %.o: %.c
-	gcc $(FLAGS) -I ft_printf -c $< -o $(OBJ_DIR)$@
+	gcc $(FLAGS) -I ft_printf -c $< -o $@
 
 clean:
 	@/bin/rm -f $(OBJ_PRINTF) $(OBJ_LIB)
