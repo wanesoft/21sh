@@ -60,5 +60,5 @@ int			ft_i_enter(t_mygv *mygv)
 		ft_prompt_line(mygv);
 		write(STDOUT_FILENO, "\n", 1);
 	}
-	return (1);
+	return (2);
 }

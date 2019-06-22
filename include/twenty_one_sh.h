@@ -58,7 +58,7 @@
 # define K_END			4610843
 # define K_PGUP			2117425947
 # define K_PGDOWN		2117491483
-# define BUF_G_STR		2048
+# define BUF_G_STR		8192
 
 typedef struct		s_var_env
 {
