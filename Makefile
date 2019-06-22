@@ -52,10 +52,7 @@ SRC :=	ft_autocompl.c\
 		ft_i_pgup_pgdown.c\
 		ft_gnl_pro.c\
 		fts_stream.c\
-<<<<<<< HEAD
-=======
 		ft_redirs.c\
->>>>>>> 8fc428079b77f9953b52138e11a2cdc2e1d9a6a5
 
 SRC := $(addprefix ./source/, $(SRC))
 
