@@ -36,7 +36,7 @@ static void		out(int fd, char **old_result)
 	}
 }
 
-static void		pipe_redir(char *str, char **arr_env, char **old_result, int i)
+static void		pipe_redir(char *str, char **arr_env, char **old_result)
 {
 	char		**param;
 	int			pipefd[2];
@@ -53,7 +53,7 @@ static void		pipe_redir(char *str, char **arr_env, char **old_result, int i)
 	father = fork();
 	if (!father)
 	{
-		dup2((i) ? tmp : 0, 0);
+		dup2(tmp, 0);
 		dup2(pipefd[1], 1);
 		if ((execve(param[0], param, arr_env) == -1))
 			return ;
@@ -77,54 +77,51 @@ static void		pipe_redir(char *str, char **arr_env, char **old_result, int i)
 	ft_del_arr(&param);
 }
 
-static int		ft_prep_for_execute(char **turn_str, char **arr_env,
-									char **old_result, int i, t_vector **env)
+static int		ft_prep_for_execute(char **turn_str, t_stream *stream,
+									char **old_result, t_vector **env)
 {
-	t_vector	*redirs;
-	int			savestd[3];
+	char		**arr_env;
 	
-	savestd[0] = dup(0);
-	savestd[1] = dup(1);
-	savestd[2] = dup(2);
-	redirs = 0;
-//	str = ft_divide(str, " \t\n");
-	if (ft_get_redir(turn_str, &redirs) == EXEC_FAIL)
-		return (EXEC_FAIL);
+	arr_env = ft_vector_to_arr(env);
+	//str = ft_divide(str, " \t\n");
+	//if (ft_get_redir(turn_str, stream) == EXEC_FAIL)
+	//	return (EXEC_FAIL);
 	//ft_input_redirect(&redirs, old_result);
 	if (ft_forward(*turn_str, env) == EXEC_FAIL)
-		pipe_redir(*turn_str, arr_env, old_result, i);
-	//ft_output_redirect(&redirs, old_result);
-	dup2(savestd[0], 0);
-	dup2(savestd[1], 1);
-	dup2(savestd[2], 2);
-	close(savestd[0]);
-	close(savestd[1]);
-	close(savestd[2]);
+		pipe_redir(*turn_str, arr_env, old_result);
+	//ft_output_redirect(&stream->output, old_result);
+	ft_del_arr(&arr_env);
 	return (EXEC_SUCC);
 }
 
 void			ft_execute(char *str, t_vector **env)
 {
-	char		**arr_env;
 	char		**turn;
 	char		*old_result;
+	t_stream	*stream;
 	int			i;
-
-	arr_env = ft_vector_to_arr(env);
+	int			arr_len;
+	
 	signal(SIGINT, ft_abort);
 	turn = ft_strsplit(str, '|');
 	i = 0;
-	old_result = ft_strdup("\0");
-	while (turn[i])
+	old_result = ft_strdup("");
+	stream = ft_create_stream();
+	arr_len = ft_arrlen(turn);
+	while (i < arr_len)
 	{
-		if (ft_prep_for_execute(
-						&turn[i], arr_env, &old_result, i, env) == EXEC_FAIL)
+		if (ft_prep_for_execute(&turn[i], stream,
+								&old_result, env) == EXEC_FAIL)
+		{
+			ft_get_back(stream);
 			break ;
+		}
 		++i;
 		if (!turn[i])
 			write(1, old_result, ft_strlen(old_result));
+		ft_get_back(stream);
 	}
 	ft_strdel(&old_result);
 	ft_del_arr(&turn);
-	ft_del_arr(&arr_env);
+	destroy_t_stream(&stream);
 }

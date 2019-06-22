@@ -67,10 +67,12 @@ typedef struct		s_var_env
 	char			*full_line;
 }					t_var_env;
 
-typedef struct      s_stream
+typedef struct		s_stream
 {
-    int             type_stream;
-    char            *file;
+    int				save_std[3];
+    int				std_now[3];
+	t_vector		*output;
+	t_vector		*input;
 }                   t_stream;
 
 typedef struct      s_mygv
@@ -122,12 +124,13 @@ void				ft_error(int error, char *str);
 
 void				ft_execute(char *str, t_vector **env);
 
-int					ft_get_redir(char **string, t_vector **redirs);
+int					ft_get_redir(char **string, t_stream *stream);
 void				ft_output_redirect(t_vector **redirs, char **old_result);
 void				ft_input_redirect(t_vector **redirs, char **old_result);
 
 void				destroy_t_stream(t_stream **tmp);
-t_stream			*ft_creat(char *file, int type_stream);
+t_stream			*ft_create_stream(void);
+void				ft_get_back(t_stream *tmp);
 
 char				**ft_vector_to_arr(t_vector **env);
 

@@ -12,18 +12,7 @@
 
 #include "../include/twenty_one_sh.h"
 
-void			ft_input_redirect(t_vector **redirs, char **old_result)
-{
-	t_vector	*tmp;
-	
-	tmp = *redirs;
-	while (tmp)
-	{
-		tmp = tmp->next;
-	}
-}
-
-void			ft_output_redirect(t_vector **redirs, char **old_result)
+/*void			ft_output_redirect(t_vector *output, char **old_result)
 {
 	t_vector	*tmp;
 	int			fd;
@@ -47,4 +36,4 @@ void			ft_output_redirect(t_vector **redirs, char **old_result)
 		}
 		tmp = tmp->next;
 	}
-}
+}*/

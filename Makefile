@@ -4,8 +4,6 @@ INC := ./include/
 
 LIB := ./libftprintf/
 
-OBJ_DIR := ./objects/
-
 SRC_DIR := ./source/
 
 FLAGS := -Wall -Wector -Werror
@@ -54,10 +52,9 @@ SRC :=	ft_autocompl.c\
 		ft_i_pgup_pgdown.c\
 		ft_gnl_pro.c\
 		fts_stream.c\
-		ft_redirs.c\
+		ft_redirs.c
 
-
-SRC := $(addprefix ./source/, $(SRC))
+SRC := $(addprefix $(SRC_DIR), $(SRC))
 
 OBJ := $(patsubst %.c, %.o, $(notdir $(SRC)))
 
