@@ -64,6 +64,7 @@ static void		pipe_redir(char *str, char **arr_env, char **old_result, int i)
 	}
 	else
 	{
+		ft_printf("\n\nZASHEL!!!\n\n");
 		close(pipefd[1]);
 		*old_result = ft_strdup("\0");
 		out(pipefd[0], old_result);
