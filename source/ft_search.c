@@ -30,7 +30,7 @@ static int	look_in_dir(char *dir, char *file, char **path)
 			*path = ft_strjoin(full_name, file);
 			ft_strdel(&full_name);
 			flag = 1;
-			if (file_check(*path, BIN, 1, file))
+			if (file_check(*path, BIN, X_OK, file))
 				break ;
 			else
 				ft_strdel(path);

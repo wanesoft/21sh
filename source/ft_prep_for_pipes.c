@@ -58,7 +58,7 @@ static int	path_bins(char **str, t_vector **env)
 	if (ft_strlen(command) == 1 && command[0] == '.')
 		write(1, ".: usage: ./path [arguments]\n", 29);
 	else if (check_builts(command) == EXEC_SUCC ||
-			(ft_strchr(command, '/') && file_check(command, BIN, 1, command)))
+			(ft_strchr(command, '/') && file_check(command, BIN, X_OK, command)))
 		ans = EXEC_SUCC;
 	else if (!ft_strchr(command, '/') && ft_search(env, command, &path))
 	{

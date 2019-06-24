@@ -52,7 +52,10 @@ SRC :=	ft_autocompl.c\
 		ft_i_pgup_pgdown.c\
 		ft_gnl_pro.c\
 		fts_stream.c\
-		ft_redirs.c
+		ft_advanced_redir.c\
+		ft_simple_redir.c\
+		ft_diff_redir.c\
+		ft_exec.c
 
 SRC := $(addprefix $(SRC_DIR), $(SRC))
 
