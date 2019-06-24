@@ -12,26 +12,65 @@
 
 #include "../include/twenty_one_sh.h"
 
-t_stream		*ft_creat(char *file, int type_stream)
+static void		ft_fill_save(t_stream *tmp)
+{
+	tmp->save_std[0] = dup(0);
+	tmp->save_std[1] = dup(1);
+	tmp->save_std[2] = dup(2);
+	tmp->std_now[0] = -1;
+	tmp->std_now[1] = -1;
+	tmp->std_now[2] = -1;
+}
+
+t_stream		*ft_create_stream(int all_pipe)
 {
 	t_stream	*tmp;
 	
 	if (!(tmp = (t_stream *)malloc(sizeof(t_stream))))
 		return (0);
-	tmp->file = 0;
-	tmp->type_stream = 0;
-	tmp->file = ft_strdup(file);
-	tmp->type_stream = type_stream;
+	ft_fill_save(tmp);
+	tmp->all_pipe = all_pipe;
+	tmp->now_pipe = 1;
 	return (tmp);
+}
+
+void			ft_get_back(t_stream *tmp)
+{
+	if (tmp->std_now[0] != -1)
+	{
+		close (tmp->std_now[0]);
+		tmp->std_now[0] = -1;
+		dup2(tmp->save_std[0], 0);
+	}
+	if (tmp->std_now[1] != -1)
+	{
+		close (tmp->std_now[1]);
+		tmp->std_now[1] = -1;
+		dup2(tmp->save_std[1], 1);
+	}
+	if (tmp->std_now[2] != -1)
+	{
+		close (tmp->std_now[2]);
+		tmp->std_now[2] = -1;
+		dup2(tmp->save_std[2], 2);
+	}
+	//dup2(tmp->save_std[0], 0);
+	//dup2(tmp->save_std[1], 1);
+	//dup2(tmp->save_std[2], 2);
+	++tmp->now_pipe;
 }
 
 void			destroy_t_stream(t_stream **tmp)
 {
 	if (!tmp)
 		return ;
-	(*tmp)->type_stream = 0;
-	if ((*tmp)->file)
-		ft_strdel(&(*tmp)->file);
+	ft_get_back(*tmp);
+	close((*tmp)->save_std[0]);
+	(*tmp)->save_std[0] = -1;
+	close((*tmp)->save_std[1]);
+	(*tmp)->save_std[1] = -1;
+	close((*tmp)->save_std[2]);
+	(*tmp)->save_std[2] = -1;
 	free(*tmp);
 	*tmp = 0;
 }

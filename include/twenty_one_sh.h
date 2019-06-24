@@ -67,10 +67,12 @@ typedef struct		s_var_env
 	char			*full_line;
 }					t_var_env;
 
-typedef struct      s_stream
+typedef struct		s_stream
 {
-    int             type_stream;
-    char            *file;
+    int				save_std[3];
+    int				std_now[3];
+    int             all_pipe;
+    int             now_pipe;
 }                   t_stream;
 
 typedef struct      s_mygv
@@ -116,18 +118,26 @@ void				ft_cd(char *param, t_vector **env);
 
 int					ft_search(t_vector **env, char *file, char **path);
 
-int					file_check(char *path, int type, int mod, char *command);
+int					file_check(char *path, int type, int rigths, char *command);
 
 void				ft_error(int error, char *str);
 
 void				ft_execute(char *str, t_vector **env);
 
-int					ft_get_redir(char **string, t_vector **redirs);
-void				ft_output_redirect(t_vector **redirs, char **old_result);
-void				ft_input_redirect(t_vector **redirs, char **old_result);
+int					ft_get_redir(char **string, t_stream *stream);
+int					ft_simple_redir(char ***arr_string, int i,
+									t_stream *stream, int check);
+int					ft_advanced_redir(char ***arr_string, int i,
+									  t_stream *stream, int check);
+int					ft_difficult_redir(char ***arr_string, int i,
+									   t_stream *stream, int check);
+
+void				ft_exec(char *str, char **arr_env,
+							char **old_result, t_stream *stream);
 
 void				destroy_t_stream(t_stream **tmp);
-t_stream			*ft_creat(char *file, int type_stream);
+t_stream			*ft_create_stream(int all_pipe);
+void				ft_get_back(t_stream *tmp);
 
 char				**ft_vector_to_arr(t_vector **env);
 

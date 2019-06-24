@@ -12,7 +12,7 @@
 
 #include "../include/twenty_one_sh.h"
 
-int					file_check(char *path, int type, int mod, char *command)
+int					file_check(char *path, int type, int rights, char *command)
 {
 	struct stat		buf;
 
@@ -23,15 +23,15 @@ int					file_check(char *path, int type, int mod, char *command)
 					(S_ISREG(buf.st_mode) || S_ISLNK(buf.st_mode))) ||
 			(type == FOLD && S_ISDIR(buf.st_mode)))
 		{
-			if (!access(path, X_OK))
+			if (!access(path, rights))
 				return (1);
-			else if (mod)
+			else
 				ft_error(PERDEN, command);
 		}
-		else if (mod)
+		else
 			ft_error((type == BIN) ? NOTREG : NOTDIR, command);
 	}
-	else if (mod)
+	else
 		ft_error(NOTEXIST, command);
 	return (0);
 }
