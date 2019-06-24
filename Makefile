@@ -1,12 +1,14 @@
 NAME := 21sh
 
-INC := ./include
+INC := ./include/
 
-LIB := ./libftprintf
+LIB := ./libftprintf/
+
+SRC_DIR := ./source/
 
 FLAGS := -Wall -Wector -Werror
 
-VPATH := ./source
+VPATH := source
 
 SRC :=	ft_autocompl.c\
 		ft_autocompl_2.c\
@@ -36,7 +38,6 @@ SRC :=	ft_autocompl.c\
 		ft_execute.c\
 		ft_forward.c\
 		ft_get_redir.c\
-		ft_list_bins.c\
 		ft_prep_for_pipes.c\
 		ft_prossesing.c\
 		ft_replacment.c\
@@ -50,8 +51,13 @@ SRC :=	ft_autocompl.c\
 		main.c\
 		ft_i_pgup_pgdown.c\
 		ft_gnl_pro.c\
+		fts_stream.c\
+		ft_advanced_redir.c\
+		ft_simple_redir.c\
+		ft_diff_redir.c\
+		ft_exec.c
 
-SRC := $(addprefix ./source/, $(SRC))
+SRC := $(addprefix $(SRC_DIR), $(SRC))
 
 OBJ := $(patsubst %.c, %.o, $(notdir $(SRC)))
 

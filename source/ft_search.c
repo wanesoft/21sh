@@ -20,10 +20,7 @@ static int	look_in_dir(char *dir, char *file, char **path)
 	int				flag;
 
 	if (!(cur_dir = opendir(dir)))
-	{
-		perror("WHAT'S HAPPEND ???");
 		return (0);
-	}
 	flag = 0;
 	while ((cur_file = readdir(cur_dir)))
 	{
@@ -33,7 +30,7 @@ static int	look_in_dir(char *dir, char *file, char **path)
 			*path = ft_strjoin(full_name, file);
 			ft_strdel(&full_name);
 			flag = 1;
-			if (file_check(*path, BIN, 1, file))
+			if (file_check(*path, BIN, X_OK, file))
 				break ;
 			else
 				ft_strdel(path);

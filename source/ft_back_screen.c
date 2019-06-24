@@ -1,6 +1,44 @@
 
 #include "../include/twenty_one_sh.h"
 
+void				ft_foo_2(t_mygv *mygv)
+{
+	int				ii;
+	int				j;
+
+	ii = 0;
+	j = 0;
+	while (mygv->g_str[ii])
+	{
+		if (mygv->g_str[ii] == '\n')
+			++j;
+		++ii;
+	}
+	mygv->g_stage = j;
+}
+
+void				ft_foo_3(t_mygv *mygv)
+{
+	int			ii;
+	int			j;
+
+	ii = 0;
+	j = 0;
+	while (mygv->g_str[ii])
+	{
+		if (mygv->g_str[ii] == '\n')
+			++j;
+		++ii;
+	}
+	while (j)
+	{
+		ft_putstr_fd(tgetstr("up", NULL), STDOUT_FILENO);
+		ft_putstr_fd(tgetstr("dl", NULL), STDOUT_FILENO);
+		ft_putstr_fd(tgetstr("cr", NULL), STDOUT_FILENO);
+		--j;
+	}
+}
+
 void				ft_back_screen(void)
 {
 	t_mygv			*mygv;

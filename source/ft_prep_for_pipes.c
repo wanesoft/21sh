@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 12:53:36 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/18 13:29:49 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/22 15:45:38 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,54 +26,54 @@ static int	check_builts(char *command)
 	return (EXEC_FAIL);
 }
 
-static int	path_bins(char **str, t_vector **env)
+static int	take_command(char **str, char **command)
 {
 	int		i;
 	int		j;
-	int		ans;
-	char	*command;
-	char	*command2;
-	char	*path;
-	char	*tmp;
-	char	*back;
-
+	
 	j = 0;
-	path = 0;
-	back = *str;
 	while ((*str)[j] && (*str)[j] == ' ')
 		++j;
 	i = j;
 	while ((*str)[i] && (*str)[i] != ' ')
 		++i;
-	command = ft_strndup(&(*str)[j], i - j);
-	command2 = ft_strdup(command);
-	ft_strtolower(command2);
+	*command = ft_strndup(&(*str)[j], i - j);
+	ft_strtolower(*command);
+	return (i);
+}
+
+static int	path_bins(char **str, t_vector **env)
+{
+
+	int		ans;
+	char	*command;
+	char	*path;
+	char	*tmp;
+	int		i;
+
+	path = 0;
+	command = 0;
+	i = take_command(str, &command);
 	ans = EXEC_FAIL;
-	if (ft_strlen(*str) == 1 && command2[0] == '.')
+	if (ft_strlen(command) == 1 && command[0] == '.')
 		write(1, ".: usage: ./path [arguments]\n", 29);
-	else if (check_builts(command2) == EXEC_SUCC ||
-			(ft_strchr(command2, '/') && file_check(command2, BIN, 1, command)))
+	else if (check_builts(command) == EXEC_SUCC ||
+			(ft_strchr(command, '/') && file_check(command, BIN, X_OK, command)))
 		ans = EXEC_SUCC;
-	else if (!ft_strchr(command2, '/') && ft_search(env, command2, &path))
+	else if (!ft_strchr(command, '/') && ft_search(env, command, &path))
 	{
 		ans = EXEC_SUCC;
-		if ((*str)[i])
-			tmp = ft_strjoin(path, &(*str)[i]);
-		else
-			tmp = ft_strdup(path);
-		ft_strdel(&path);
-		ft_strdel(&back);
+		tmp = ft_strjoin_pro(path, &(*str)[i], ONLY_FIRST);
+		ft_strdel(str);
 		*str = tmp;
 	}
 	ft_strdel(&command);
-	ft_strdel(&command2);
 	return (ans);
 }
 
 int			ft_prep_for_pipes(char *str, char **prep_for_pipes, t_vector **env)
 {
 	char	**tmp;
-	char	*trash;
 	int		i;
 
 	tmp = ft_strsplit(str, '|');
@@ -88,15 +88,10 @@ int			ft_prep_for_pipes(char *str, char **prep_for_pipes, t_vector **env)
 		++i;
 	}
 	i = 0;
-	*prep_for_pipes = ft_strdup("");
 	while (tmp[i])
 	{
-		trash = *prep_for_pipes;
-		*prep_for_pipes = ft_strjoin(*prep_for_pipes, tmp[i]);
-		ft_strdel(&trash);
-		trash = *prep_for_pipes;
-		*prep_for_pipes = ft_strjoin(*prep_for_pipes, "|");
-		ft_strdel(&trash);
+		*prep_for_pipes = ft_strjoin_pro(*prep_for_pipes, tmp[i], ONLY_FIRST);
+		*prep_for_pipes = ft_strjoin_pro(*prep_for_pipes, "|", ONLY_FIRST);
 		++i;
 	}
 	ft_del_arr(&tmp);

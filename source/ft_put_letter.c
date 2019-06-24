@@ -39,18 +39,9 @@ int			ft_get_max_line(char *str)
 
 void		ft_put_letter(unsigned i, t_mygv *mygv)
 {
-	int		line_test;
-	
+	ft_foo_2(mygv);
 	ft_memmove(&mygv->g_str[mygv->g_j + 1], &mygv->g_str[mygv->g_j], ft_strlen(&mygv->g_str[mygv->g_j]));
 	mygv->g_str[mygv->g_j] = (char)i;
 	++mygv->g_j;
 	++mygv->g_x_pos;
-	line_test = ft_get_max_line(mygv->g_str) + 11;
-	ft_get_tty_col_ros();
-	if (line_test > mygv->col)
-	{
-		mygv->g_stage = line_test / mygv->col;
-		write(1, "\n>=(\nIDI V PIZDU, TESTER\n\n", 30);
-		exit(1);
-	}
 }

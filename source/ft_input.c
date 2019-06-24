@@ -21,10 +21,22 @@
  ** nd - cursor right 1 char
 
 */
- 
-static int		ft_input_proc(unsigned i, t_mygv *mygv)
+
+
+static void		ft_put_ctrl_v(char *buf, t_mygv *mygv)
 {
-	//i = 2117491483;
+	int			i;
+	
+	i = 0;
+	while (buf[i])
+	{
+		ft_put_letter(buf[i], mygv);
+		++i;
+	}
+}
+
+static int		ft_input_proc(unsigned i, char *buf, t_mygv *mygv)
+{
 	if (i == K_ENTER)
 		return (ft_i_enter(mygv));
 	else if (i == K_DEL || i == K_BACKSP)
@@ -39,6 +51,8 @@ static int		ft_input_proc(unsigned i, t_mygv *mygv)
 		ft_i_arrow_u_d(i, mygv);
 	else if (i == K_PGUP || i == K_PGDOWN)
 		ft_i_pgup_pgdown(i, mygv);
+	else if (buf[1])
+		ft_put_ctrl_v(buf, mygv);
 	else if (ft_isprint(i))
 		ft_put_letter(i, mygv);
 	return (0);
@@ -46,19 +60,26 @@ static int		ft_input_proc(unsigned i, t_mygv *mygv)
 
 char			*ft_input(void)
 {
-	unsigned	input;
+	char		buf[BUF_G_STR];
+	unsigned	*temp;
 	t_mygv		*mygv;
 
 	mygv = ft_get_mygv(NULL);
 	while (1)
 	{
-		input = 0;
 		ft_prompt_line(mygv);
-		read(STDIN_FILENO, &input, 8);
-		//ft_printf("\n\n%d\n\n", input);
-		if (ft_input_proc(input, mygv))
+		ft_bzero(buf, BUF_G_STR);
+		read(STDIN_FILENO, buf, BUF_G_STR);
+		temp = (unsigned int*)buf;
+		//ft_printf("\n\n%d\n\n", *temp);
+		if (ft_input_proc(*temp, buf, mygv))
 			break;
+//		else if (buf[1])
+//			ft_put_ctrl_v(buf, mygv);
+//		else if (buf[0])
+//			ft_put_letter(buf[0], mygv);
 	}
+	//ft_printf("\n\nKOKO\n\n");
 	//return (ft_strdup(mygv->g_str)); // a nado li malloc???
 	return (NULL);
 }

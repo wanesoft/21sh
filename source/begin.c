@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 14:01:32 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/19 13:27:54 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/20 19:40:01 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void		ft_put_history(t_mygv *mygv)
 
 void			begin(t_vector **env)
 {
-	char		*str;
+	//char		*str;
 	char		*tmp;
 	char		**arr_str;
 	int			i;
@@ -58,23 +58,24 @@ void			begin(t_vector **env)
 
 	mygv = ft_get_mygv(NULL);
 	signal(SIGINT, ft_restart);
+	signal(SIGTSTP, ft_restart);
 	g_env = env;
-	//ft_input();
-	//ft_put_history(mygv);
+	ft_input();
+	ft_put_history(mygv);
 	
 	/* *** TEST *** */
-	signal(SIGTSTP, ft_restart);
+	
 	static int p = 0;
-	str = ft_strdup("cd; cd; cd -; cd ~; cd /; pwd");
+	//str = ft_strdup("cd; cd; cd -; cd ~; cd /; pwd");
 	//str = ft_strdup("cd| cd| cd -| cd ~| cd /| pwd");
 	//str = ft_strdup("cd; cd; cd -; cd ~; cd /;    pwd;  ls;  env   ;");
 	//str = ft_strdup("cd /;pwd;env;ls;cd -;pwd;env;ls;");
-	ft_printf("%d\n", p);
+	//ft_printf("%d\n", p);
 	++p;
-	arr_str = ft_strsplit(str, ';');
+	//arr_str = ft_strsplit(str, ';');
 	/* *** TEST *** */
 	
-	//arr_str = ft_strsplit(mygv->g_str, ';');
+	arr_str = ft_strsplit(mygv->g_str, ';');
 	i = 0;
 	while (arr_str[i])
 	{
@@ -87,7 +88,7 @@ void			begin(t_vector **env)
 		ft_prossesing(&arr_str[i], env);
 		++i;
 	}
-	ft_strdel(&str);
+	//ft_strdel(&str);
 	ft_del_arr(&arr_str);
 	ft_clear_mygv(ft_get_mygv(NULL));
 }

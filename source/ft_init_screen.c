@@ -41,7 +41,6 @@ static void				ft_init_history_2(t_mygv *mygv, char *str)
 	else
 		mygv->g_n_his = 0;
 	ft_del_arr(&arr);
-	//podumat o perepolnenii
 }
 
 static void				ft_init_history(t_mygv *mygv)
@@ -60,7 +59,6 @@ static void				ft_init_history(t_mygv *mygv)
 		ft_printf("Error open/create %s\n", tmp);
 		exit(EXIT_FAILURE);
 	}
-//	while (get_next_line(mygv->g_fd_r, &tmp2) > 0)
 	while (ft_gnl_pro(mygv->g_fd_r, &tmp2, '\t') > 0)
 		ft_memcpy(tmp3, tmp2, ft_strlen(tmp2));
 	ft_init_history_2(mygv, tmp3);
@@ -74,7 +72,6 @@ void					ft_init_screen(void)
 {
 	struct termios		new;
 	t_mygv				*mygv;
-	
 	
 	mygv = ft_get_mygv(NULL);
 	tcgetattr(STDIN_FILENO, &new);

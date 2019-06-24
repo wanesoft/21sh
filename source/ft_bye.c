@@ -47,5 +47,8 @@ void			ft_bye(t_vector **env)
 	ft_delall_vector(env);
 	ft_bye_mes();
 	ft_back_screen();
+	
+	//do free mygv
+	
 	exit(0);
 }

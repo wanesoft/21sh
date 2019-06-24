@@ -21,8 +21,10 @@ void			ft_abort(int sign)
 	}
 }
 
-static void		out(int fd, char **old_result)
+static int		ft_prep_for_execute(char **turn_str, t_stream *stream,
+									char **old_result, t_vector **env)
 {
+<<<<<<< HEAD
 	long long	bits;
 	char		*tmp;
 	char		buff[STDMES];
@@ -89,35 +91,39 @@ static void		ft_prep_for_execute(char *turn_str, char **arr_env,
 									char **old_result, int i, t_vector **env)
 {
 //	t_vector	*redirs;
+	char		**arr_env;
 	
-//	redirs = 0;
-//	str = ft_divide(str, " \t\n");
-//	if (ft_get_redir(turn_str, redirs) == EXIT_FAIL)
-//		break;
-	if (ft_forward(turn_str, env) == EXEC_FAIL)
-		pipe_redir(turn_str, arr_env, old_result, i);
+	arr_env = ft_vector_to_arr(env);
+	if (ft_get_redir(turn_str, stream) == EXEC_FAIL)
+		return (EXEC_FAIL);
+	if (ft_forward(*turn_str, env) == EXEC_FAIL)
+		ft_exec(*turn_str, arr_env, old_result, stream);
+	ft_del_arr(&arr_env);
+	return (EXEC_SUCC);
 }
 
 void			ft_execute(char *str, t_vector **env)
 {
-	char		**arr_env;
 	char		**turn;
 	char		*old_result;
+	t_stream	*stream;
 	int			i;
-
-	arr_env = ft_vector_to_arr(env);
+	int			arr_len;
+	
 	signal(SIGINT, ft_abort);
 	turn = ft_strsplit(str, '|');
-	i = 0;
-	old_result = ft_strdup("\0");
-	while (turn[i])
+	i = -1;
+	old_result = ft_strdup("");
+	arr_len = ft_arrlen(turn);
+	stream = ft_create_stream(arr_len);
+	while (++i < arr_len)
 	{
-		ft_prep_for_execute(turn[i], arr_env, &old_result, i, env);
-		++i;
-		if (!turn[i])
-			write(1, old_result, ft_strlen(old_result));
+		if (ft_prep_for_execute(&turn[i], stream,
+								&old_result, env) == EXEC_FAIL)
+			break ;
+		ft_get_back(stream);
 	}
 	ft_strdel(&old_result);
 	ft_del_arr(&turn);
-	ft_del_arr(&arr_env);
+	destroy_t_stream(&stream);
 }
