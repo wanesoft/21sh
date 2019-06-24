@@ -43,12 +43,12 @@ static void	prepare(t_stream *stream, char **old_res, int pipe_fd[2])
 
 static void	ft_change_std(t_stream *stream)
 {
-	if (stream->save_std[0] != -1)
-		dup2(stream->save_std[0], 0);
-	if (stream->save_std[1] != -1)
-		dup2(stream->save_std[1], 1);
-	if (stream->save_std[2] != -1)
-		dup2(stream->save_std[2], 2);
+	if (stream->std_now[0] != -1)
+		dup2(stream->std_now[0], 0);
+	if (stream->std_now[1] != -1)
+		dup2(stream->std_now[1], 1);
+	if (stream->std_now[2] != -1)
+		dup2(stream->std_now[2], 2);
 }
 
 void		ft_exec(char *str, char **arr_env,

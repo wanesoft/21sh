@@ -54,9 +54,6 @@ void			ft_get_back(t_stream *tmp)
 		tmp->std_now[2] = -1;
 		dup2(tmp->save_std[2], 2);
 	}
-	//dup2(tmp->save_std[0], 0);
-	//dup2(tmp->save_std[1], 1);
-	//dup2(tmp->save_std[2], 2);
 	++tmp->now_pipe;
 }
 
