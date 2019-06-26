@@ -53,7 +53,10 @@ void			ft_execute(char *str, t_vector **env)
 	{
 		if (ft_prep_for_execute(&turn[i], stream,
 								&old_result, env) == EXEC_FAIL)
+		{
+			ft_error(REDICTFAIL, "");
 			break ;
+		}
 		ft_get_back(stream);
 	}
 	ft_strdel(&old_result);

@@ -18,17 +18,14 @@ static int	simple_in(char ***arr_string, int i,
 	int		fd;
 	char	*file;
 	
-	file = *arr_string[i + 2];
-	if (!file)
-		return (EXEC_FAIL);
+	file = (*arr_string)[i + 2];
 	if (check == 0)
 	{
-		if (file_check(file, BIN, R_OK, file) == 0)
-			return (EXEC_FAIL);
-		if ((fd = open(file, O_RDONLY)) == -1)
+		if ((file_check(file, BIN, R_OK, file) == 0) ||
+			((fd = open(file, O_RDONLY)) == -1))
 			return (EXEC_FAIL);
 	}
-/*	else
+	/*else
 	{
 		
 	}*/
@@ -45,13 +42,13 @@ static int	simple_out(char ***arr_string, int i,
 	char	*file;
 	
 	file = (*arr_string)[i + 2];
-	ft_printf("%s\n", file);
 	if (!file ||
 		(!access(file, F_OK) && file_check(file, BIN, W_OK, file) == 0))
 		return (EXEC_FAIL);
 	if (check == 2)
 	{
-		if ((fd = open(file, O_CREAT | O_WRONLY, S_IRWXU)) == -1)
+		if ((fd = open(file, O_CREAT | O_WRONLY | O_TRUNC,
+					   S_IRWXU)) == -1)
 			return (EXEC_FAIL);
 	}
 	else

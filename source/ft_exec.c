@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 16:19:53 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/26 11:22:00 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/06/26 12:04:56 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,34 +57,44 @@ void		ft_exec(char *str, char **arr_env,
 	char		**param;
 	int			pipefd[2];
 	pid_t		father;
-	//char		**tmp2;
+	char		**tmp2;
 	
 	param = ft_strsplit(str, ' ');
 	pipe(pipefd);
 	prepare(stream, old_result, pipefd);
+	ft_change_std(stream);
 	father = fork();
 	if (!father)
 	{
 		close(pipefd[0]);
-		ft_change_std(stream);
 		if ((execve(param[0], param, arr_env) == -1))
 			return ;
 	}
 	else
 	{
 		close(pipefd[1]);
-		wait(0);
 		*old_result = ft_strdup("");
 		if (stream->now_pipe != stream->all_pipe)
-			out(pipefd[0], old_result);
+        {
+            //out(pipefd[0], old_result);
+            ssize_t        bits;
+            char        buff[STDMES];
+            
+            while ((bits = read(pipefd[0], buff, STDMES - 1)) > 0)
+            {
+                buff[STDMES - 1] = 0;
+                *old_result = ft_strjoin_pro(*old_result, buff, ONLY_FIRST);
+            }
+        }
+        wait(0);
 		close(pipefd[0]);
 	}
-	/*tmp2 = ft_strsplit("/bin/rm /goinfre/.tmp", ' ');
-	 father = fork();
-	 if (!father)
-	 execve(tmp2[0], tmp2, arr_env);
-	 else
-	 wait(0);
-	 ft_del_arr(&tmp2);*/
+	tmp2 = ft_strsplit("/bin/rm /goinfre/.tmp", ' ');
+	father = fork();
+	if (!father)
+		execve(tmp2[0], tmp2, arr_env);
+	else
+		wait(0);
+	ft_del_arr(&tmp2);
 	ft_del_arr(&param);
 }

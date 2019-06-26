@@ -52,14 +52,16 @@ int				ft_get_redir(char **string, t_stream *stream)
 		if (arr_string[i + 1])
 		{
 			check = ft_check(arr_string[i + 1]);
-		if (check >= 6)
-			res = ft_difficult_redir(&arr_string, i, stream, check);
-		else if (check >= 4)
-			res = ft_advanced_redir(&arr_string, i, stream, check);
-		else if (check >= 0)
-			res = ft_simple_redir(&arr_string, i, stream, check);
-		if (res == EXEC_FAIL)
-			return (EXEC_FAIL);
+			if (ft_check(arr_string[i + 2]) != -1)
+				return (EXEC_FAIL);
+			if (check >= 6)
+				res = ft_difficult_redir(&arr_string, i, stream, check);
+			else if (check >= 4)
+				res = ft_advanced_redir(&arr_string, i, stream, check);
+			else if (check >= 0)
+				res = ft_simple_redir(&arr_string, i, stream, check);
+			if (res == EXEC_FAIL)
+				return (EXEC_FAIL);
 		}
 	}
 	ans = ft_strdup("");
