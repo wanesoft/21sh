@@ -14,10 +14,10 @@
 
 static void		out(int fd, char **old_result)
 {
-	long long	bits;
+	ssize_t		bits;
 	char		buff[STDMES];
 	
-	while ((bits = (long long)read(fd, buff, STDMES - 1)) > 0)
+	while ((bits = read(fd, buff, STDMES - 1)) > 0)
 	{
 		buff[STDMES - 1] = 0;
 		*old_result = ft_strjoin_pro(*old_result, buff, ONLY_FIRST);
@@ -65,16 +65,18 @@ void		ft_exec(char *str, char **arr_env,
 	father = fork();
 	if (!father)
 	{
+		close(pipefd[0]);
 		ft_change_std(stream);
 		if ((execve(param[0], param, arr_env) == -1))
 			return ;
 	}
 	else
 	{
+		close(pipefd[1]);
+		wait(0);
+		*old_result = ft_strdup("");
 		if (stream->now_pipe != stream->all_pipe)
 			out(pipefd[0], old_result);
-		wait(0);
-		close(pipefd[1]);
 		close(pipefd[0]);
 	}
 	/*tmp2 = ft_strsplit("/bin/rm /goinfre/.tmp", ' ');

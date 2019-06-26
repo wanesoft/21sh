@@ -40,19 +40,19 @@ void			ft_get_back(t_stream *tmp)
 	{
 		close (tmp->std_now[0]);
 		tmp->std_now[0] = -1;
-		dup2(tmp->save_std[0], 0);
+        dup2(tmp->save_std[0], 0);
 	}
 	if (tmp->std_now[1] != -1)
 	{
 		close (tmp->std_now[1]);
 		tmp->std_now[1] = -1;
-		dup2(tmp->save_std[1], 1);
+        dup2(tmp->save_std[1], 1);
 	}
 	if (tmp->std_now[2] != -1)
 	{
 		close (tmp->std_now[2]);
 		tmp->std_now[2] = -1;
-		dup2(tmp->save_std[2], 2);
+        dup2(tmp->save_std[2], 2);
 	}
 	++tmp->now_pipe;
 }
