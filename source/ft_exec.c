@@ -19,7 +19,7 @@ static void		out(int fd, char **old_result)
 	
 	while ((bits = read(fd, buff, STDMES - 1)) > 0)
 	{
-		buff[STDMES - 1] = 0;
+		buff[bits] = 0;
 		*old_result = ft_strjoin_pro(*old_result, buff, ONLY_FIRST);
 	}
 }
@@ -61,8 +61,10 @@ void		ft_exec(char *str, char **arr_env,
 	
 	param = ft_strsplit(str, ' ');
 	pipe(pipefd);
-	prepare(stream, old_result, pipefd);
-	ft_change_std(stream);
+	//prepare(stream, old_result, pipefd);
+	//ft_change_std(stream);
+	dup2(pipefd[0], 0);
+	dup2(pipefd[1], 1);
 	father = fork();
 	if (!father)
 	{
@@ -73,28 +75,33 @@ void		ft_exec(char *str, char **arr_env,
 	else
 	{
 		close(pipefd[1]);
+		wait(0);
 		*old_result = ft_strdup("");
 		if (stream->now_pipe != stream->all_pipe)
         {
             //out(pipefd[0], old_result);
-            ssize_t        bits;
+			ssize_t        bits;
             char        buff[STDMES];
-            
-            while ((bits = read(pipefd[0], buff, STDMES - 1)) > 0)
+			int sd;
+//            while (ioctl(pipefd[0], FIONREAD, &sd) == 0 && read(pipefd[0], buff, STDMES - 1))
+			while (ioctl(pipefd[0], FIONREAD, &sd) == 0 && sd > 0)
             {
-                buff[STDMES - 1] = 0;
+//                buff[bits] = 0;
+				bits = read(pipefd[0], buff, STDMES - 1);
+				buff[bits] = 0;
                 *old_result = ft_strjoin_pro(*old_result, buff, ONLY_FIRST);
+//				close(pipefd[0]);
             }
         }
-        wait(0);
+       // wait(0);
 		close(pipefd[0]);
 	}
-	tmp2 = ft_strsplit("/bin/rm /goinfre/.tmp", ' ');
-	father = fork();
-	if (!father)
-		execve(tmp2[0], tmp2, arr_env);
-	else
-		wait(0);
-	ft_del_arr(&tmp2);
+//	tmp2 = ft_strsplit("/bin/rm /goinfre/.tmp", ' ');
+//	father = fork();
+//	if (!father)
+//		execve(tmp2[0], tmp2, arr_env);
+//	else
+//		wait(0);
+//	ft_del_arr(&tmp2);
 	ft_del_arr(&param);
 }
