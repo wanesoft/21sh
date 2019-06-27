@@ -30,10 +30,15 @@ static void	prepare(t_stream *stream, char **old_res, int pipe_fd[2])
 	
 	if (stream->now_pipe != 1 && stream->std_now[0] == -1)
 	{
-		if ((fd = open("/goinfre/.tmp", O_CREAT | O_RDWR, S_IRWXU)) == -1)
+		if ((fd = open("/goinfre/.tmp", O_CREAT | O_RDWR | O_TRUNC,
+					   S_IRWXU)) == -1)
 			return ;
-		stream->std_now[0] = fd;
 		write(fd, *old_res, ft_strlen(*old_res));
+		close (fd);
+		if ((fd = open("/goinfre/.tmp", O_RDWR)) == -1)
+			return ;
+		
+		stream->std_now[0] = fd;
 	}
 	if (stream->now_pipe != stream->all_pipe &&
 		stream->std_now[1] == -1)
@@ -57,24 +62,28 @@ void		ft_exec(char *str, char **arr_env,
 	char		**param;
 	int			pipefd[2];
 	pid_t		father;
-	char		**tmp2;
+	
 	
 	param = ft_strsplit(str, ' ');
 	pipe(pipefd);
-	//prepare(stream, old_result, pipefd);
-	//ft_change_std(stream);
-	dup2(pipefd[0], 0);
-	dup2(pipefd[1], 1);
+	prepare(stream, old_result, pipefd);
+	ft_change_std(stream);
+	//ft_printf("\n\n%d %d %d\n\n", stream->std_now[0], stream->std_now[1], stream->std_now[2]);
+//	ft_printf("\n\n%d %d %d\n\n", stream->std_now[0], stream->std_now[1], stream->std_now[2]);
 	father = fork();
 	if (!father)
 	{
-		close(pipefd[0]);
+//		if (ft_strequ(param[0], "/bin/cat"))
+//		{
+//			int fd = open("/goinfre/.tmp", O_RDONLY);
+//			dup2(fd, 0);
+//		}
+		
 		if ((execve(param[0], param, arr_env) == -1))
 			return ;
 	}
 	else
 	{
-		close(pipefd[1]);
 		wait(0);
 		*old_result = ft_strdup("");
 		if (stream->now_pipe != stream->all_pipe)
@@ -83,17 +92,15 @@ void		ft_exec(char *str, char **arr_env,
 			ssize_t        bits;
             char        buff[STDMES];
 			int sd;
-//            while (ioctl(pipefd[0], FIONREAD, &sd) == 0 && read(pipefd[0], buff, STDMES - 1))
 			while (ioctl(pipefd[0], FIONREAD, &sd) == 0 && sd > 0)
             {
-//                buff[bits] = 0;
 				bits = read(pipefd[0], buff, STDMES - 1);
 				buff[bits] = 0;
                 *old_result = ft_strjoin_pro(*old_result, buff, ONLY_FIRST);
-//				close(pipefd[0]);
             }
         }
-       // wait(0);
+
+		close(pipefd[1]);
 		close(pipefd[0]);
 	}
 //	tmp2 = ft_strsplit("/bin/rm /goinfre/.tmp", ' ');
@@ -103,5 +110,7 @@ void		ft_exec(char *str, char **arr_env,
 //	else
 //		wait(0);
 //	ft_del_arr(&tmp2);
+//	ft_get_back(stream);
+//	ft_printf("\n\n\n%s\n\n\n", *old_result);
 	ft_del_arr(&param);
 }

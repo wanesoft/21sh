@@ -58,6 +58,7 @@ void			ft_execute(char *str, t_vector **env)
 			break ;
 		}
 		ft_get_back(stream);
+
 	}
 	ft_strdel(&old_result);
 	ft_del_arr(&turn);
