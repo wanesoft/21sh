@@ -12,17 +12,17 @@
 
 #include "../include/twenty_one_sh.h"
 
-static void		out(int fd, char **old_result)
-{
-	ssize_t		bits;
-	char		buff[STDMES];
-	
-	while ((bits = read(fd, buff, STDMES - 1)) > 0)
-	{
-		buff[bits] = 0;
-		*old_result = ft_strjoin_pro(*old_result, buff, ONLY_FIRST);
-	}
-}
+//static void		out(int fd, char **old_result)
+//{
+//	ssize_t		bits;
+//	char		buff[STDMES];
+//	
+//	while ((bits = read(fd, buff, STDMES - 1)) > 0)
+//	{
+//		buff[bits] = 0;
+//		*old_result = ft_strjoin_pro(*old_result, buff, ONLY_FIRST);
+//	}
+//}
 
 static void	prepare(t_stream *stream, char **old_res, int pipe_fd[2])
 {

@@ -31,7 +31,7 @@ static int	simple_in(char ***arr_string, int i,
 	}*/
 	if (stream->std_now[0] != -1)
 		close(stream->std_now[0]);
-	stream->std_now[0] = fd;
+	//stream->std_now[0] = fd;
 	return (EXEC_SUCC);
 }
 

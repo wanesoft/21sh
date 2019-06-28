@@ -14,7 +14,7 @@
 
 static void		ft_bye_mes(void)
 {
-	ft_putstr("\033[032m");
+	ft_putstr("\033[032m------------------\n");
 	ft_putstr("| |\n");
 	ft_putstr("| |__  _   _  ___\n");
 	ft_putstr("| '_ \\| | | |/ _ \\\n");
@@ -22,7 +22,7 @@ static void		ft_bye_mes(void)
 	ft_putstr("|_.__/ \\__, |\\___|\n");
 	ft_putstr("        __/ |\n");
 	ft_putstr("       |___/\n");
-	ft_putstr("\033[0m");
+	ft_putstr("------------------\033[0m\n");
 //	write(1, "\033[032m___________________________\n", 34);
 //	write(1, "    _                      \n", 28);
 //	write(1, "  /   \\             _      \n", 28);
@@ -59,5 +59,5 @@ void			ft_bye(t_vector **env)
 	
 	//do free mygv
 	
-	exit(0);
+	exit(EXIT_SUCCESS);
 }

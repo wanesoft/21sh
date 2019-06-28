@@ -55,7 +55,8 @@ SRC :=	ft_autocompl.c\
 		ft_advanced_redir.c\
 		ft_simple_redir.c\
 		ft_diff_redir.c\
-		ft_exec.c
+		ft_exec.c\
+		ft_work_stack.c\
 
 SRC := $(addprefix $(SRC_DIR), $(SRC))
 

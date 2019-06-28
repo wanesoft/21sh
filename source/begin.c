@@ -16,13 +16,10 @@ t_vector		**g_env;
 
 void			ft_restart(int sign)
 {
-	write(1, "\n", 1);
-	ft_init_screen();
-	//ft_clear_mygv(ft_get_mygv(NULL));
+	write(1, "CTRL+C\n", 7);
 	if (sign == SIGINT)
 	{
-		ft_init_screen();
-		//ft_clear_mygv(ft_get_mygv(NULL));
+		ft_clear_mygv(ft_get_mygv(NULL));
 		ft_prompt_line(ft_get_mygv(NULL));
 		signal(SIGINT, ft_restart);
 	}
@@ -52,6 +49,7 @@ void			begin(t_vector **env)
 {
 	char		*tmp;
 	char		**arr_str;
+	
 	int			i;
 	t_mygv		*mygv;
 
@@ -74,7 +72,6 @@ void			begin(t_vector **env)
 		ft_prossesing(&arr_str[i], env);
 		++i;
 	}
-	//ft_strdel(&str);
 	ft_del_arr(&arr_str);
 	ft_clear_mygv(ft_get_mygv(NULL));
 }

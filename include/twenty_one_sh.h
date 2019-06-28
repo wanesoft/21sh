@@ -73,6 +73,12 @@ typedef struct		s_stream
     int             now_pipe;
 }                   t_stream;
 
+typedef struct      s_stack
+{
+    char            *data;
+    struct s_stack  *next;
+}                   t_stack;
+
 typedef struct      s_mygv
 {
     struct termios  old;
@@ -88,6 +94,7 @@ typedef struct      s_mygv
     int             g_fd_w;
 	unsigned		g_n_his;
 	int				g_c_his;
+    t_stack         *grab;
 }                   t_mygv;
 
 t_var_env			*ft_take_info(char *str);
@@ -169,5 +176,10 @@ int					ft_gnl_pro(const int fd, char **line, char ch);
 void				ft_foo_2(t_mygv *mygv);
 void				ft_foo_3(t_mygv *mygv);
 int					ft_get_max_line(char *str);
+
+t_stack				*ft_get_data_by_nb(t_stack *head, int n);
+void				ft_push_stack(t_stack **head, t_stack *tail);
+t_stack				*ft_new_stack(char *s);
+int					ft_len_stack(t_stack *head);
 
 #endif
