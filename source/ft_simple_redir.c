@@ -19,7 +19,7 @@ static int	simple_in(char ***arr_string, int i,
 	char	*file;
 	
 	file = (*arr_string)[i + 2];
-	if (check == 0)
+	if (check == 0 || check == 4)
 	{
 		if ((file_check(file, BIN, R_OK, file) == 0) ||
 			((fd = open(file, O_RDONLY)) == -1))
@@ -31,7 +31,7 @@ static int	simple_in(char ***arr_string, int i,
 	}*/
 	if (stream->std_now[0] != -1)
 		close(stream->std_now[0]);
-	//stream->std_now[0] = fd;
+    stream->std_now[0] = fd;
 	return (EXEC_SUCC);
 }
 

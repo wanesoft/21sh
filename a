@@ -45,10 +45,12 @@ ft_space_for_redirs.o
 ft_take_value_env.o
 ft_unsetenv.o
 ft_vector_to_arr.o
+ft_work_stack.o
 fts_stream.o
 fts_var_env.o
 include
 libftprintf
 main.o
 masterskai_fei
+pwd
 source

@@ -56,7 +56,7 @@ int				ft_get_redir(char **string, t_stream *stream)
 				return (EXEC_FAIL);
 			if (check >= 6)
 				res = ft_difficult_redir(&arr_string, i, stream, check);
-			else if (check >= 4)
+			else if (check == 5)
 				res = ft_advanced_redir(&arr_string, i, stream, check);
 			else if (check >= 0)
 				res = ft_simple_redir(&arr_string, i, stream, check);
