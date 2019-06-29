@@ -64,9 +64,17 @@ void		ft_exec(char *str, char **arr_env,
 	char		**param;
 	int			pipefd[2];
 	pid_t		father;
-	
+	char		*back;
+	int			i;
 	
 	param = ft_strsplit(str, ' ');
+	i = -1;
+	while (param[++i])
+	{
+		back = param[i];
+		param[i] = ft_ungrab(param[i], 0);
+		ft_strdel(&back);
+	}
 //	pipe(pipefd);
 //	prepare(stream, old_result, pipefd);
 //	ft_change_std(stream);

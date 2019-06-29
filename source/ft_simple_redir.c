@@ -17,6 +17,8 @@ static int	simple_in(char ***arr_string, int i,
 {
 	int		fd;
 	char	*file;
+//	char	*ans;
+//	char	*tmp;
 	
 	file = (*arr_string)[i + 2];
 	if (check == 0 || check == 4)
@@ -25,10 +27,16 @@ static int	simple_in(char ***arr_string, int i,
 			((fd = open(file, O_RDONLY)) == -1))
 			return (EXEC_FAIL);
 	}
-	/*else
-	{
-		
-	}*/
+//	else
+//	{
+//	 	if ((fd = open("/goinfre/.tmp", O_CREAT | O_WRONLY | O_TRUNC,
+//	 		S_IRWXU)) == -1)
+//	 		return (EXEC_FAIL);
+//	 	write(fd, chto_to, ft_strlen(chego_to));
+//	 	close(fd);
+//	 	if ((fd = open("/goinfre/.tmp", O_RDONLY)) == -1)
+//	 		return (EXEC_FAIL);
+//	}
 	if (stream->std_now[0] != -1)
 		close(stream->std_now[0]);
     stream->std_now[0] = fd;
