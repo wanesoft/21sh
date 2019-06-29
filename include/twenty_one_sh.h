@@ -184,5 +184,6 @@ t_stack				*ft_new_stack(char *s);
 int					ft_len_stack(t_stack *head);
 void				ft_grab(char **s, int i, int j);
 char				*ft_ungrab(char *s, int i);
+int					ft_heredoc(t_mygv *mygv);
 
 #endif

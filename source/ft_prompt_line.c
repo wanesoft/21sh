@@ -26,9 +26,9 @@ static void		ft_prompt_line_2(t_mygv *mygv)
 		write(STDOUT_FILENO, &mygv->g_str[i], 1);
 		if (mygv->g_str[i] == '\n')
 		{
-			ft_printf("\033[33mquotes_");
+			ft_printf("\033[33m[line_");
 			(stage > 9) ? 0 : write(1, "0", 1);
-			ft_printf("%d> \033[0m", stage);
+			ft_printf("%d]> \033[0m", stage);
 			++stage;
 		}
 		++i;

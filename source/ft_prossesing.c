@@ -37,7 +37,6 @@ void		ft_prossesing(char **str, t_vector **env)
 	/* DEMO FOR MISHA ->>>>> DEL WHEN POJMESH' */
 	
 	//ft_grab(*str); <<----- vklyuchaet vora kavychek
-	t_stack *s = (ft_get_mygv(NULL))->grab;
 	ft_space_for_redirs(str);
 	ft_replacment(str, env);
 	prep_pipes = 0;
