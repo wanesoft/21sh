@@ -71,6 +71,7 @@ typedef struct		s_stream
     int				std_now[3];
     int             all_pipe;
     int             now_pipe;
+	int				pipefd[2];
 }                   t_stream;
 
 typedef struct      s_stack

@@ -21,6 +21,38 @@ void			ft_abort(int sign)
 	}
 }
 
+static void    prepare(t_stream *stream, char **old_res, int pipe_fd[2])
+{
+    int        fd;
+    
+    if (stream->now_pipe != 1 && stream->std_now[0] == -1)
+    {
+        if ((fd = open("/goinfre/.tmp", O_CREAT | O_RDWR | O_TRUNC,
+                       S_IRWXU)) == -1)
+            return ;
+        write(fd, *old_res, ft_strlen(*old_res));
+        close (fd);
+        if ((fd = open("/goinfre/.tmp", O_RDWR)) == -1)
+            return ;
+        
+        stream->std_now[0] = fd;
+    }
+    if (stream->now_pipe != stream->all_pipe &&
+        stream->std_now[1] == -1)
+        stream->std_now[1] = pipe_fd[1];
+    ft_strdel(old_res);
+}
+
+static void    ft_change_std(t_stream *stream)
+{
+    if (stream->std_now[0] != -1)
+        dup2(stream->std_now[0], 0);
+    if (stream->std_now[1] != -1)
+        dup2(stream->std_now[1], 1);
+    if (stream->std_now[2] != -1)
+        dup2(stream->std_now[2], 2);
+}
+
 static int		ft_prep_for_execute(char **turn_str, t_stream *stream,
 									char **old_result, t_vector **env)
 {
@@ -29,6 +61,9 @@ static int		ft_prep_for_execute(char **turn_str, t_stream *stream,
 	arr_env = ft_vector_to_arr(env);
 	if (ft_get_redir(turn_str, stream) == EXEC_FAIL)
 		return (EXEC_FAIL);
+    pipe(stream->pipefd);
+    prepare(stream, old_result, stream->pipefd);
+    ft_change_std(stream);
 	if (ft_forward(*turn_str, env) == EXEC_FAIL)
 		ft_exec(*turn_str, arr_env, old_result, stream);
 	ft_del_arr(&arr_env);

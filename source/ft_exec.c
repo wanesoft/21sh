@@ -12,49 +12,51 @@
 
 #include "../include/twenty_one_sh.h"
 
-//static void		out(int fd, char **old_result)
-//{
-//	ssize_t		bits;
-//	char		buff[STDMES];
-//	
-//	while ((bits = read(fd, buff, STDMES - 1)) > 0)
-//	{
-//		buff[bits] = 0;
-//		*old_result = ft_strjoin_pro(*old_result, buff, ONLY_FIRST);
-//	}
-//}
-
-static void	prepare(t_stream *stream, char **old_res, int pipe_fd[2])
+static void		out(int fd, char **old_result, t_stream *stream)
 {
-	int		fd;
-	
-	if (stream->now_pipe != 1 && stream->std_now[0] == -1)
+	ssize_t			bits;
+	char			buff[STDMES];
+	int				sd;
+
+	while (ioctl(stream->pipefd[0], FIONREAD, &sd) == 0 && sd > 0)
 	{
-		if ((fd = open("/goinfre/.tmp", O_CREAT | O_RDWR | O_TRUNC,
-					   S_IRWXU)) == -1)
-			return ;
-		write(fd, *old_res, ft_strlen(*old_res));
-		close (fd);
-		if ((fd = open("/goinfre/.tmp", O_RDWR)) == -1)
-			return ;
-		
-		stream->std_now[0] = fd;
+    	bits = read(stream->pipefd[0], buff, STDMES - 1);
+    	buff[bits] = 0;
+    	*old_result = ft_strjoin_pro(*old_result, buff, ONLY_FIRST);
 	}
-	if (stream->now_pipe != stream->all_pipe &&
-		stream->std_now[1] == -1)
-		stream->std_now[1] = pipe_fd[1];
-	ft_strdel(old_res);
 }
 
-static void	ft_change_std(t_stream *stream)
-{
-	if (stream->std_now[0] != -1)
-		dup2(stream->std_now[0], 0);
-	if (stream->std_now[1] != -1)
-		dup2(stream->std_now[1], 1);
-	if (stream->std_now[2] != -1)
-		dup2(stream->std_now[2], 2);
-}
+//static void	prepare(t_stream *stream, char **old_res, int pipe_fd[2])
+//{
+//	int		fd;
+//
+//	if (stream->now_pipe != 1 && stream->std_now[0] == -1)
+//	{
+//		if ((fd = open("/goinfre/.tmp", O_CREAT | O_RDWR | O_TRUNC,
+//					   S_IRWXU)) == -1)
+//			return ;
+//		write(fd, *old_res, ft_strlen(*old_res));
+//		close (fd);
+//		if ((fd = open("/goinfre/.tmp", O_RDWR)) == -1)
+//			return ;
+//
+//		stream->std_now[0] = fd;
+//	}
+//	if (stream->now_pipe != stream->all_pipe &&
+//		stream->std_now[1] == -1)
+//		stream->std_now[1] = pipe_fd[1];
+//	ft_strdel(old_res);
+//}
+//
+//static void	ft_change_std(t_stream *stream)
+//{
+//	if (stream->std_now[0] != -1)
+//		dup2(stream->std_now[0], 0);
+//	if (stream->std_now[1] != -1)
+//		dup2(stream->std_now[1], 1);
+//	if (stream->std_now[2] != -1)
+//		dup2(stream->std_now[2], 2);
+//}
 
 void		ft_exec(char *str, char **arr_env,
 					   char **old_result, t_stream *stream)
@@ -65,11 +67,11 @@ void		ft_exec(char *str, char **arr_env,
 	
 	
 	param = ft_strsplit(str, ' ');
-	pipe(pipefd);
-	prepare(stream, old_result, pipefd);
-	ft_change_std(stream);
+//	pipe(pipefd);
+//	prepare(stream, old_result, pipefd);
+//	ft_change_std(stream);
 	//ft_printf("\n\n%d %d %d\n\n", stream->std_now[0], stream->std_now[1], stream->std_now[2]);
-//	ft_printf("\n\n%d %d %d\n\n", stream->std_now[0], stream->std_now[1], stream->std_now[2]);
+	//ft_printf("\n\n%d %d %d\n\n", stream->std_now[0], stream->std_now[1], stream->std_now[2]);
 	father = fork();
 	if (!father)
 	{
@@ -78,7 +80,6 @@ void		ft_exec(char *str, char **arr_env,
 //			int fd = open("/goinfre/.tmp", O_RDONLY);
 //			dup2(fd, 0);
 //		}
-		
 		if ((execve(param[0], param, arr_env) == -1))
 			return ;
 	}
@@ -88,20 +89,20 @@ void		ft_exec(char *str, char **arr_env,
 		*old_result = ft_strdup("");
 		if (stream->now_pipe != stream->all_pipe)
         {
-            //out(pipefd[0], old_result);
-			ssize_t        bits;
-            char        buff[STDMES];
-			int sd;
-			while (ioctl(pipefd[0], FIONREAD, &sd) == 0 && sd > 0)
-            {
-				bits = read(pipefd[0], buff, STDMES - 1);
-				buff[bits] = 0;
-                *old_result = ft_strjoin_pro(*old_result, buff, ONLY_FIRST);
-            }
+            out(pipefd[0], old_result, stream);
+//			ssize_t		bits;
+//			char		buff[STDMES];
+//			int			sd;
+//			while (ioctl(pipefd[0], FIONREAD, &sd) == 0 && sd > 0)
+//			{
+//				bits = read(pipefd[0], buff, STDMES - 1);
+//				buff[bits] = 0;
+//				*old_result = ft_strjoin_pro(*old_result, buff, ONLY_FIRST);
+//			}
         }
 
-		close(pipefd[1]);
-		close(pipefd[0]);
+		close(stream->pipefd[1]);
+		close(stream->pipefd[0]);
 	}
 //	tmp2 = ft_strsplit("/bin/rm /goinfre/.tmp", ' ');
 //	father = fork();
