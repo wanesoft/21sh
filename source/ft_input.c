@@ -71,15 +71,8 @@ char			*ft_input(void)
 		ft_bzero(buf, BUF_G_STR);
 		read(STDIN_FILENO, buf, BUF_G_STR);
 		temp = (unsigned int*)buf;
-		//ft_printf("\n\n%d\n\n", *temp);
 		if (ft_input_proc(*temp, buf, mygv))
 			break;
-//		else if (buf[1])
-//			ft_put_ctrl_v(buf, mygv);
-//		else if (buf[0])
-//			ft_put_letter(buf[0], mygv);
 	}
-	//ft_printf("\n\nKOKO\n\n");
-	//return (ft_strdup(mygv->g_str)); // a nado li malloc???
 	return (NULL);
 }

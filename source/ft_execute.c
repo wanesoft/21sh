@@ -57,12 +57,8 @@ static int		ft_prep_for_execute(char **turn_str, t_stream *stream,
 									char **old_result, t_vector **env)
 {
 	char		**arr_env;
-	char		*back;
 	
 	arr_env = ft_vector_to_arr(env);
-	back = *turn_str;
-	*turn_str = ft_ungrab(*turn_str, 0);
-	ft_strdel(&back);
 	if (ft_get_redir(turn_str, stream) == EXEC_FAIL)
 		return (EXEC_FAIL);
     pipe(stream->pipefd);
