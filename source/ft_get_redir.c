@@ -23,8 +23,8 @@ static int		ft_check(char *str_tmp)
 	redirs[3] = ">>";
 	redirs[4] = "&<";
 	redirs[5] = "&>";
-	redirs[6] = "<&";
-	redirs[7] = ">&";
+	redirs[6] = ">&";
+	redirs[7] = "<&";
 	redirs[8] = 0;
 	i = 0;
 	while (redirs[i])
@@ -54,7 +54,7 @@ int				ft_get_redir(char **string, t_stream *stream)
 			check = ft_check(arr_string[i + 1]);
 			if (check != -1 && ft_check(arr_string[i + 2]) != -1)
 				return (EXEC_FAIL);
-			if (check >= 6)
+			if (check == 6)
 				res = ft_difficult_redir(&arr_string, i, stream, check);
 			else if (check == 5)
 				res = ft_advanced_redir(&arr_string, i, stream, check);
