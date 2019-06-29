@@ -94,11 +94,13 @@ int					ft_pre_heredoc(t_mygv *mygv)
 					++mygv->g_j;
 				tmp = ft_heredoc(&(mygv->g_str[mygv->cur_her]));
 //
-//				int fd = open("log.txt", O_CREAT | O_RDWR | O_TRUNC, S_IRWXU);
-//				write(fd, ft_itoa(tmp), ft_strlen(ft_itoa(tmp)));
-//				write(fd, " ", 1);
-//				write(fd, ft_itoa(mygv->cur_her), ft_strlen(ft_itoa(mygv->cur_her)));
-//				write(fd, "\n", 1);
+				int fd = open("log.txt", O_CREAT | O_RDWR | O_TRUNC, S_IRWXU);
+				write(fd, ft_itoa(tmp), ft_strlen(ft_itoa(tmp)));
+				write(fd, " ", 1);
+				write(fd, ft_itoa(mygv->g_j), ft_strlen(ft_itoa(mygv->g_j)));
+				write(fd, " ", 1);
+				write(fd, ft_itoa(mygv->cur_her), ft_strlen(ft_itoa(mygv->cur_her)));
+				write(fd, "\n", 1);
 			
 //				while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] == ' ')
 //					++mygv->g_j;
@@ -109,6 +111,10 @@ int					ft_pre_heredoc(t_mygv *mygv)
 				{
 					mygv->cur_her += 2;
 					mygv->g_j = mygv->cur_her;
+					while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] != '<')
+						++mygv->g_j;
+					while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] == '<')
+						++mygv->g_j;
 					while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] != '<')
 						++mygv->g_j;
 					return ((int)(ft_strstr(&mygv->g_str[mygv->cur_her], "<<")));
