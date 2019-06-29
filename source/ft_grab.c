@@ -62,6 +62,5 @@ void			ft_grab(char **s, int i, int j)
 	}
 	else
 		return;
-	if (j < ft_strlen(*s))
-		ft_grab(s, 0, j);
+	ft_grab(s, 0, j);
 }
