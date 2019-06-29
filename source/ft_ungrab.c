@@ -6,10 +6,12 @@ static int		ft_add_to_str(char **s, int i, int n)
 	char		*tmp;
 	char		*tmp2;
 	char		*tmp3;
+	t_mygv		*m;
+	t_stack		*st;
 	
 	tmp = ft_strndup(*s, i);
-	t_mygv *m = ft_get_mygv(NULL);
-	t_stack *st = ft_imap_stack(m->grab, n);
+	m = ft_get_mygv(NULL);
+	st = ft_imap_stack(m->grab, n);
 	tmp2 = ft_strjoin(tmp, st->data);
 	++i;
 	while ((*s)[i] != -50)

@@ -35,10 +35,14 @@ static void		ft_grab_3(char **s, int i, int j, int len)
 static void		ft_grab_2(char **s, int i, int j)
 {
 	t_mygv		*mygv;
+	char		*tmp;
 	int			len;
 	
 	mygv = ft_get_mygv(NULL);
-	ft_push_stack(&(mygv->grab), ft_new_stack(ft_strndup(&(*s)[i], j - i)));
+	tmp = ft_strndup(&(*s)[i + 1], j - i - 2);
+	if ((*s)[i] == '"')
+		ft_replacment(&tmp, &(mygv->env));
+	ft_push_stack(&(mygv->grab), ft_new_stack(tmp));
 	(*s)[i] = -50;
 	len = ft_len_stack(mygv->grab);
 	++i;
