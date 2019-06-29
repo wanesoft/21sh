@@ -33,10 +33,12 @@ ft_i_enter.o
 ft_i_pgup_pgdown.o
 ft_init_screen.o
 ft_input.o
+ft_list_bins.o
 ft_prep_for_pipes.o
 ft_prompt_line.o
 ft_prossesing.o
 ft_put_letter.o
+ft_redirs.o
 ft_replacment.o
 ft_search.o
 ft_setenv.o

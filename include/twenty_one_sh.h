@@ -181,5 +181,6 @@ t_stack				*ft_get_data_by_nb(t_stack *head, int n);
 void				ft_push_stack(t_stack **head, t_stack *tail);
 t_stack				*ft_new_stack(char *s);
 int					ft_len_stack(t_stack *head);
+void				ft_grab(char **s, int i, int j);
 
 #endif
