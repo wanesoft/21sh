@@ -30,6 +30,7 @@ static int	take_command(char **str, char **command)
 {
 	int		i;
 	int		j;
+    char    *back;
 	
 	j = 0;
 	while ((*str)[j] && (*str)[j] == ' ')
@@ -38,6 +39,9 @@ static int	take_command(char **str, char **command)
 	while ((*str)[i] && (*str)[i] != ' ')
 		++i;
 	*command = ft_strndup(&(*str)[j], i - j);
+    back = *command;
+    *command = ft_ungrab(*command, 0);
+    ft_strdel(&back);
 	ft_strtolower(*command);
 	return (i);
 }

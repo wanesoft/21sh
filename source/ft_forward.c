@@ -27,6 +27,7 @@ static void	ft_help(void)
 int			ft_forward(char *str, t_vector **env)
 {
 	char	*command;
+    char    *back;
 	int		i;
 	int		ans;
 
@@ -35,6 +36,8 @@ int			ft_forward(char *str, t_vector **env)
 	while (str[i] && str[i] != ' ')
 		++i;
 	command = ft_strndup(str, i);
+    back = command;
+    command = ft_ungrab(command, 0);
 	ft_strtolower(command);
 	if (ft_strequ(command, "cd"))
 		ft_cd(str, env);
@@ -54,6 +57,7 @@ int			ft_forward(char *str, t_vector **env)
 		ft_env(env, str + 3);
 	else
 		ans = EXEC_FAIL;
+    ft_strdel(&back);
 	ft_strdel(&command);
 	return (ans);
 }
