@@ -23,7 +23,7 @@ void		ft_prossesing(char **str, t_vector **env)
 	}
 	
 	/* DEMO FOR MISHA ->>>>> DEL WHEN POJMESH' */
-	//*str = ft_strdup("echo \"e\" \"r\" \"asdafdsf\" \"\" \"\" \"\" \"\" \"\" \"\" \"\" \"\" \"\"");
+	//*str = ft_strdup("echo \"e\" \"r\" \"asdafdsf\" \"\" \"\" \"\" \"\" \"\" \"\" \"\" \"\" \"ZZZ\"");
 	ft_printf("****** DEMO FOR MISHA ->>>>> DEL WHEN POJMESH' *******\n");
 	ft_printf("PRISHLO: %s\n", *str);
 	ft_grab(str, 0, 0);
@@ -31,6 +31,8 @@ void		ft_prossesing(char **str, t_vector **env)
 	t_stack *t = (ft_get_mygv(NULL))->grab;
 	for (int i = 1; t; t = t->next, ++i)
 		ft_printf("SPIZDIL %s POD NOMEROM %d\n", t->data, i);
+	char *sam_razbirajsja_s_mallocom_blo = ft_ungrab(*str, 0);
+	ft_printf("/// A TEPER' NAZAD --------- %s\n", sam_razbirajsja_s_mallocom_blo);
 	ft_printf("****** DEMO IS END    ->>>>> DEL WHEN POJMESH' *******\n");
 	/* DEMO FOR MISHA ->>>>> DEL WHEN POJMESH' */
 	

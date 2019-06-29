@@ -58,6 +58,7 @@ SRC :=	ft_autocompl.c\
 		ft_exec.c\
 		ft_work_stack.c\
 		ft_grab.c\
+		ft_ungrab.c\
 
 SRC := $(addprefix $(SRC_DIR), $(SRC))
 

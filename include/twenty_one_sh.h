@@ -177,10 +177,11 @@ void				ft_foo_2(t_mygv *mygv);
 void				ft_foo_3(t_mygv *mygv);
 int					ft_get_max_line(char *str);
 
-t_stack				*ft_get_data_by_nb(t_stack *head, int n);
 void				ft_push_stack(t_stack **head, t_stack *tail);
+t_stack				*ft_imap_stack(t_stack *head, int n);
 t_stack				*ft_new_stack(char *s);
 int					ft_len_stack(t_stack *head);
 void				ft_grab(char **s, int i, int j);
+char				*ft_ungrab(char *s, int i);
 
 #endif

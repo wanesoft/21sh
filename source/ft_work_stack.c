@@ -30,10 +30,15 @@ t_stack			*ft_imap_stack(t_stack *head, int n)
 {
 	int			i;
 	
-	i = 0;
-	while (i != n && head)
+	i = 1;
+	while (i < n && head && head->next)
+	{
 		head = head->next;
+		++i;
+	}
 	if (i == n)
+		return (head);
+	if (head->next == NULL)
 		return (head);
 	return (NULL);
 }

@@ -1,6 +1,18 @@
 
 #include "../include/twenty_one_sh.h"
 
+static void		ft_grab_4(char **tmp2)
+{
+	char		*tmp;
+	char		c[2];
+	
+	c[0] = -50;
+	c[1] = 0;
+	tmp = ft_strjoin(*tmp2, (char *)&c);
+	free(*tmp2);
+	*tmp2 = tmp;
+}
+
 static void		ft_grab_3(char **s, int i, int j, int len)
 {
 	char		*tmp;
@@ -10,6 +22,7 @@ static void		ft_grab_3(char **s, int i, int j, int len)
 	
 	tmp = ft_strndup(*s, i);
 	tmp2 = ft_itoa(len);
+	ft_grab_4(&tmp2);
 	tmp3 = ft_strjoin(tmp, tmp2);
 	tmp4 = ft_strjoin(tmp3, &(*s)[j]);
 	free(*s);
