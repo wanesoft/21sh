@@ -37,7 +37,7 @@ static void		ft_put_equ(char ***equ, char *str, char **arr, int len)
 
 static void		ft_print_equ(char **equ, int stage)
 {
-	printf("\n");
+	ft_printf("\n");
 	while (*equ)
 	{
 		ft_printf("%s ", *equ);
@@ -45,15 +45,14 @@ static void		ft_print_equ(char **equ, int stage)
 	}
 	while (stage)
 	{
-		printf("\n");
+		ft_printf("\n");
 		--stage;
 	}
-	printf("\n");
+	ft_printf("\n");
 }
 
 static void		ft_put_last(t_mygv *mygv, char **arr, int len)
 {
-	//--len;
 	while (arr[0][len])
 	{
 		ft_put_letter(arr[0][len], mygv);

@@ -96,6 +96,7 @@ typedef struct      s_mygv
 	unsigned		g_n_his;
 	int				g_c_his;
     t_stack         *grab;
+	char			*heredoc;
 }                   t_mygv;
 
 t_var_env			*ft_take_info(char *str);

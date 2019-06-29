@@ -44,6 +44,7 @@ int					ft_heredoc(t_mygv *mygv)
 	target = ft_get_target(iter);
 	arr = ft_strsplit(iter, '\n');
 	res = ft_heredoc_solver(target, arr);
+	mygv->heredoc = target;
 	ft_del_arr(&arr);
 	return (!res);
 }

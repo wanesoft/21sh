@@ -12,8 +12,6 @@
 
 #include "../include/twenty_one_sh.h"
 
-t_vector		**g_env;
-
 void			ft_restart(int sign)
 {
 	write(1, "CTRL+C\n", 7);
@@ -45,20 +43,30 @@ static void		ft_put_history(t_mygv *mygv)
 	write(mygv->g_fd_w, ":", 1);
 }
 
+static void		ft_remove_heredoc(t_mygv *mygv)
+{
+	char		*iter;
+	
+	iter = ft_strstr(mygv->g_str, "<<");
+	if (iter)
+		iter += 2;
+	
+	free(mygv->heredoc);
+}
+
 void			begin(t_vector **env)
 {
 	char		*tmp;
 	char		**arr_str;
-	
 	int			i;
 	t_mygv		*mygv;
 
 	mygv = ft_get_mygv(NULL);
 	signal(SIGINT, ft_restart);
 	signal(SIGTSTP, ft_restart);
-	g_env = env;
 	ft_input();
 	ft_put_history(mygv);
+	ft_remove_heredoc(mygv);
 	arr_str = ft_strsplit(mygv->g_str, ';');
 	i = 0;
 	while (arr_str[i])

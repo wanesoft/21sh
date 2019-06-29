@@ -12,6 +12,8 @@
 
 #include "../include/twenty_one_sh.h"
 
+
+
 void		ft_prossesing(char **str, t_vector **env)
 {
 	char	*prep_pipes;
@@ -21,7 +23,6 @@ void		ft_prossesing(char **str, t_vector **env)
 		ft_error(REDICTFAIL, "");
 		return ;
 	}
-	
 	/* DEMO FOR MISHA ->>>>> DEL WHEN POJMESH' */
 	//*str = ft_strdup("echo \"111\" \"222\" \"333\" \"sdfsdgf\" \"\" \"\" \"\" \"\" \"\" \"\" \"\" \"ZZZ\"");
 	ft_printf("****** DEMO FOR MISHA ->>>>> DEL WHEN POJMESH' *******\n");
