@@ -96,7 +96,8 @@ typedef struct      s_mygv
 	unsigned		g_n_his;
 	int				g_c_his;
     t_stack         *grab;
-	char			*heredoc;
+	t_stack			*heredoc;
+	int				cur_her;
 }                   t_mygv;
 
 t_var_env			*ft_take_info(char *str);
@@ -185,6 +186,6 @@ t_stack				*ft_new_stack(char *s);
 int					ft_len_stack(t_stack *head);
 void				ft_grab(char **s, int i, int j);
 char				*ft_ungrab(char *s, int i);
-int					ft_heredoc(t_mygv *mygv);
+int					ft_pre_heredoc(t_mygv *mygv);
 
 #endif

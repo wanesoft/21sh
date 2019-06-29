@@ -47,7 +47,7 @@ static int	ft_check_quotes(t_mygv *mygv)
 
 int			ft_i_enter(t_mygv *mygv)
 {
-	if (ft_check_quotes(mygv) || ft_heredoc(mygv))
+	if (ft_check_quotes(mygv) || ft_pre_heredoc(mygv))
 	{
 		ft_put_letter('\n', mygv);
 		++mygv->g_stage;
