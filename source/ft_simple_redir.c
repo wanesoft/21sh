@@ -42,8 +42,8 @@ static int	simple_out(char ***arr_string, int i,
 	char	*file;
 	
 	file = (*arr_string)[i + 2];
-	if (!file ||
-		(!access(file, F_OK) && file_check(file, BIN, W_OK, file) == 0))
+	if (!file || (!access(file, F_OK) &&
+                  file_check(file, BIN, W_OK, file) == 0))
 		return (EXEC_FAIL);
 	if (check == 2)
 	{

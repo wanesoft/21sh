@@ -36,7 +36,9 @@ static int	ft_adv_out(int std, t_stream *stream, char ***arr_string, int i)
 	char	*file;
 	
 	file = (*arr_string)[i + 2];
-	if (!file ||
+	if (ft_strequ(file, "-"))
+		file = "/dev/null";
+	else if (!file ||
 		(!access(file, F_OK) && file_check(file, BIN, W_OK, file) == 0))
 		return (EXEC_FAIL);
 	if ((fd = open(file, O_CREAT | O_WRONLY | O_TRUNC,
