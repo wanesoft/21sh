@@ -111,6 +111,11 @@ int					ft_pre_heredoc(t_mygv *mygv)
 				{
 					mygv->cur_her += 2;
 					mygv->g_j = mygv->cur_her;
+//					while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] == ' ')
+//						++mygv->g_j;
+//					++mygv->g_j;
+//					while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] != ' ' && mygv->g_str[mygv->g_j] != '|' && mygv->g_str[mygv->g_j] != '<' && mygv->g_str[mygv->g_j] != ';')
+//						++mygv->g_j;
 					while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] != '<')
 						++mygv->g_j;
 					while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] == '<')
