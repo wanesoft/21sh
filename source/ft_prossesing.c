@@ -23,7 +23,7 @@ void		ft_prossesing(char **str, t_vector **env)
 	}
 	
 	/* DEMO FOR MISHA ->>>>> DEL WHEN POJMESH' */
-	//*str = ft_strdup("echo \"e\" \"r\" \"asdafdsf\" \"\" \"\" \"\" \"\" \"\" \"\" \"\" \"\" \"ZZZ\"");
+	//*str = ft_strdup("echo \"111\" \"222\" \"333\" \"sdfsdgf\" \"\" \"\" \"\" \"\" \"\" \"\" \"\" \"ZZZ\"");
 	ft_printf("****** DEMO FOR MISHA ->>>>> DEL WHEN POJMESH' *******\n");
 	ft_printf("PRISHLO: %s\n", *str);
 	ft_grab(str, 0, 0);

@@ -5,6 +5,7 @@ static int		ft_add_to_str(char **s, int i, int n)
 {
 	char		*tmp;
 	char		*tmp2;
+	char		*tmp3;
 	
 	tmp = ft_strndup(*s, i);
 	t_mygv *m = ft_get_mygv(NULL);
@@ -14,10 +15,11 @@ static int		ft_add_to_str(char **s, int i, int n)
 	while ((*s)[i] != -50)
 		++i;
 	++i;
-	free(*s);
-	*s = ft_strjoin(tmp2, &(*s)[i]);
+	tmp3 = ft_strjoin(tmp2, &(*s)[i]);
 	free(tmp);
 	free(tmp2);
+	free(*s);
+	*s = tmp3;
 	return (i);
 }
 
@@ -30,7 +32,7 @@ char			*ft_ungrab(char *s, int i)
 	{
 		if (ss[i] == -50)
 		{
-			ft_add_to_str(&ss, i, ft_atoi(&s[i + 1]));
+			ft_add_to_str(&ss, i, ft_atoi(&ss[i + 1]));
 			ft_printf("KSAJDK _______________ %s\n", ss);
 		}
 		++i;
