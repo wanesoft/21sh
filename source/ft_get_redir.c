@@ -52,7 +52,7 @@ int				ft_get_redir(char **string, t_stream *stream)
 		if (arr_string[i + 1])
 		{
 			check = ft_check(arr_string[i + 1]);
-			if (ft_check(arr_string[i + 2]) != -1)
+			if (check != -1 && ft_check(arr_string[i + 2]) != -1)
 				return (EXEC_FAIL);
 			if (check >= 6)
 				res = ft_difficult_redir(&arr_string, i, stream, check);

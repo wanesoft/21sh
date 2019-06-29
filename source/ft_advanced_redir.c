@@ -25,7 +25,7 @@ static int  ft_check(char *numb)
 		++i;
 	}
 	ans = ft_atoi(numb);
-	if (ans != 1 || ans != 2)
+	if (ans != 1 && ans != 2)
 		return (EXEC_FAIL);
 	return (EXEC_SUCC);
 }
