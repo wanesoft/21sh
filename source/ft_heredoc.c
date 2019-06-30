@@ -78,22 +78,35 @@ static int			ft_heredoc(char *iter)
 //	}
 //}
 
+int					ft_is_delim(char c)
+{
+	if (c == ';' || c == '|' || c == '<' || c == ' ')
+		return (1);
+	return (0);
+}
+
+static void			ft_should_go(t_mygv *mygv)
+{
+	mygv->g_j = mygv->cur_her + 2;
+	while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] == ' ')
+		++mygv->g_j;
+	while (mygv->g_str[mygv->g_j] && !ft_is_delim(mygv->g_str[mygv->g_j]))
+		++mygv->g_j;
+}
+
 int					ft_pre_heredoc(t_mygv *mygv)
 {
 	int				tmp;
 	
-	//ft_prep_2(mygv);
 	while (mygv->g_str[mygv->cur_her])
 	{
 		if (mygv->g_str[mygv->cur_her] == '<')
 		{
 			if (mygv->g_str[mygv->cur_her + 1] == '<')
 			{
-				mygv->g_j = mygv->cur_her + 2;
-				while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] != '<')
-					++mygv->g_j;
+				ft_should_go(mygv);
 				tmp = ft_heredoc(&(mygv->g_str[mygv->cur_her]));
-//
+
 				int fd = open("log.txt", O_CREAT | O_RDWR | O_TRUNC, S_IRWXU);
 				write(fd, ft_itoa(tmp), ft_strlen(ft_itoa(tmp)));
 				write(fd, " ", 1);
@@ -101,27 +114,13 @@ int					ft_pre_heredoc(t_mygv *mygv)
 				write(fd, " ", 1);
 				write(fd, ft_itoa(mygv->cur_her), ft_strlen(ft_itoa(mygv->cur_her)));
 				write(fd, "\n", 1);
-			
-//				while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] == ' ')
-//					++mygv->g_j;
-//				while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] != '\n' && mygv->g_str[mygv->g_j] != ' ')
-//					++mygv->g_str[mygv->g_j];
-//				--mygv->g_str[mygv->g_j];
+
 				if (!tmp)
 				{
 					mygv->cur_her += 2;
-					mygv->g_j = mygv->cur_her;
-//					while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] == ' ')
-//						++mygv->g_j;
-//					++mygv->g_j;
-//					while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] != ' ' && mygv->g_str[mygv->g_j] != '|' && mygv->g_str[mygv->g_j] != '<' && mygv->g_str[mygv->g_j] != ';')
-//						++mygv->g_j;
 					while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] != '<')
 						++mygv->g_j;
-					while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] == '<')
-						++mygv->g_j;
-					while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] != '<')
-						++mygv->g_j;
+					ft_should_go(mygv);
 					return ((int)(ft_strstr(&mygv->g_str[mygv->cur_her], "<<")));
 				}
 				return (tmp);
