@@ -43,9 +43,12 @@ static int			ft_heredoc(char *iter)
 	
 	char			*tmp;
 	int				i = 0;
-	while (iter[i] && iter[i] != '<')
+	while (iter[i] && iter[i] != '<' && iter[i] != '|' && iter[i] != ';')
 		++i;
 	tmp = ft_strndup(iter, i);
+	int len = (int)ft_strlen(tmp);
+	if (len > 0 && tmp[len - 1] == ' ')
+		tmp[len - 1] = '\n';
 	
 	arr = ft_strsplit(tmp, '\n');
 	res = ft_heredoc_solver(target, arr);
