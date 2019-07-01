@@ -20,9 +20,9 @@
 # include <sys/uio.h>
 
 # define BUFF_SIZE 1024
-# define ONLY_FIRST 0
-# define ONLY_SECOND 1
-# define BOTH 2
+# define ONLY_FIRST 1
+# define ONLY_SECOND 2
+# define BOTH 3
 
 
 typedef struct			s_list
