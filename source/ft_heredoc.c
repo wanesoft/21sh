@@ -83,7 +83,7 @@ static int			ft_heredoc(char *iter)
 
 int					ft_is_delim(char c)
 {
-	if (c == ';' || c == '|' || c == '<' || c == ' ')
+	if (c == ';' || c == '|' || c == '<')
 		return (1);
 	return (0);
 }
