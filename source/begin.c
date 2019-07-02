@@ -43,16 +43,16 @@ static void		ft_put_history(t_mygv *mygv)
 	write(mygv->g_fd_w, ":", 1);
 }
 
-static void		ft_remove_heredoc(t_mygv *mygv)
-{
-	char		*iter;
-	
-	iter = ft_strstr(mygv->g_str, "<<");
-	if (iter)
-		iter += 2;
-	
-	free(mygv->heredoc);
-}
+//static void		ft_remove_heredoc(t_mygv *mygv)
+//{
+//	char		*iter;
+//
+//	iter = ft_strstr(mygv->g_str, "<<");
+//	if (iter)
+//		iter += 2;
+//
+////	free(mygv->heredoc);
+//}
 
 void			begin(t_vector **env)
 {
@@ -66,7 +66,7 @@ void			begin(t_vector **env)
 	signal(SIGTSTP, ft_restart);
 	ft_input();
 	ft_put_history(mygv);
-	ft_remove_heredoc(mygv);
+	//ft_remove_heredoc(mygv);
 	arr_str = ft_strsplit(mygv->g_str, ';');
 	i = 0;
 	while (arr_str[i])

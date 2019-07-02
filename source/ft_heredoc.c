@@ -52,7 +52,17 @@ static int			ft_heredoc(char *iter)
 	
 	arr = ft_strsplit(tmp, '\n');
 	res = ft_heredoc_solver(target, arr);
-	free(target);
+	
+//	if (res == 1)
+//	{
+//		t_mygv *mygv = ft_get_mygv(NULL);
+//		char *find = ft_strstr(mygv->g_str, "<<");
+//		*find = '"';
+//		++find;
+//		*find = ' ';
+//	}
+	ft_get_mygv(NULL)->target = target;
+//	free(target);
 	ft_del_arr(&arr);
 	return (!res);
 }
@@ -81,9 +91,9 @@ static int			ft_heredoc(char *iter)
 //	}
 //}
 
-int					ft_is_delim(char c)
+int					ft_is_delim(char c, char d)
 {
-	if (c == ';' || c == '|' || c == '<')
+	if (c == ';' || c == '|' || (c == '<' && d == '<'))
 		return (1);
 	return (0);
 }
@@ -91,16 +101,36 @@ int					ft_is_delim(char c)
 static void			ft_should_go(t_mygv *mygv)
 {
 	mygv->g_j = mygv->cur_her + 2;
-	while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] == ' ')
+	while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] != '<')
 		++mygv->g_j;
-	while (mygv->g_str[mygv->g_j] && !ft_is_delim(mygv->g_str[mygv->g_j]))
-		++mygv->g_j;
+//	while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] == ' ')
+//		++mygv->g_j;
+//	while (mygv->g_str[mygv->g_j] && !ft_is_delim(mygv->g_str[mygv->g_j], mygv->g_str[mygv->g_j + 1]))
+//		++mygv->g_j;
+}
+
+void ft_change_heredoc(t_mygv *mygv) {
+	char *iter = ft_strstr(mygv->g_str, "<<");
+	ft_memmove(iter, iter + 2, ft_strlen(iter) + 1);
+//	iter = ft_strstr(mygv->g_str, mygv->target);
+	while (*iter == ' ')
+		ft_memmove(iter, iter + 1, ft_strlen(iter) + 1);
+	ft_memmove(iter, iter + (int)ft_strlen(mygv->target), ft_strlen(mygv->g_str) + 1);
+	*(iter) = '"';
+	iter = ft_strstr(mygv->g_str, mygv->target);
+	*(iter) = '"';
+	++iter;
+	ft_memmove(iter, iter + (int)ft_strlen(mygv->target) - 1, ft_strlen(iter) + 1);
+//	iter = ft_strstr(mygv->g_str, mygv->target);
+//	ft_memmove(iter, iter + (int)ft_strlen(mygv->target), ft_strlen(mygv->target));
+	ft_strdel(&mygv->target);
 }
 
 int					ft_pre_heredoc(t_mygv *mygv)
 {
 	int				tmp;
 	
+	mygv->cur_her = 0;
 	while (mygv->g_str[mygv->cur_her])
 	{
 		if (mygv->g_str[mygv->cur_her] == '<')
@@ -123,7 +153,9 @@ int					ft_pre_heredoc(t_mygv *mygv)
 					mygv->cur_her += 2;
 					while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] != '<')
 						++mygv->g_j;
+					ft_change_heredoc(mygv);
 					ft_should_go(mygv);
+					
 					return ((int)(ft_strstr(&mygv->g_str[mygv->cur_her], "<<")));
 				}
 				return (tmp);
