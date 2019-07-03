@@ -20,7 +20,7 @@ void			ft_clear_mygv(t_mygv *mygv)
 	mygv->g_stage = 0;
 	mygv->g_y_pos = 0;
 	mygv->g_c_his = 0;
-	mygv->heredoc = NULL;
 	mygv->grab = NULL;
 	mygv->cur_her = 0;
+	mygv->g_kos = 0;
 }
