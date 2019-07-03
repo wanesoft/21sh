@@ -101,12 +101,12 @@ int					ft_is_delim(char c, char d)
 static void			ft_should_go(t_mygv *mygv)
 {
 	mygv->g_j = mygv->cur_her + 2;
-	while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] != '<')
-		++mygv->g_j;
+//	while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] != '<')
+//		++mygv->g_j;
 //	while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] == ' ')
 //		++mygv->g_j;
-//	while (mygv->g_str[mygv->g_j] && !ft_is_delim(mygv->g_str[mygv->g_j], mygv->g_str[mygv->g_j + 1]))
-//		++mygv->g_j;
+	while (mygv->g_str[mygv->g_j] && !ft_is_delim(mygv->g_str[mygv->g_j], mygv->g_str[mygv->g_j + 1]))
+		++mygv->g_j;
 }
 
 void ft_change_heredoc(t_mygv *mygv) {
@@ -116,11 +116,19 @@ void ft_change_heredoc(t_mygv *mygv) {
 	while (*iter == ' ')
 		ft_memmove(iter, iter + 1, ft_strlen(iter) + 1);
 	ft_memmove(iter, iter + (int)ft_strlen(mygv->target), ft_strlen(mygv->g_str) + 1);
+	mygv->g_stage += 10;
 	*(iter) = '"';
-	iter = ft_strstr(mygv->g_str, mygv->target);
+	//iter = ft_strstr(mygv->g_str, mygv->target);
+
+	
+	char *tmp = ft_strjoin("\n", mygv->target);
+	//char *tmp2 = ft_strjoin(tmp, "<<");
+	
+	iter = ft_strstr(mygv->g_str, tmp);
+	mygv->g_stage += 10;
 	*(iter) = '"';
 	++iter;
-	ft_memmove(iter, iter + (int)ft_strlen(mygv->target) - 1, ft_strlen(iter) + 1);
+	ft_memmove(iter, iter + (int)ft_strlen(mygv->target), ft_strlen(iter) + 1);
 //	iter = ft_strstr(mygv->g_str, mygv->target);
 //	ft_memmove(iter, iter + (int)ft_strlen(mygv->target), ft_strlen(mygv->target));
 	ft_strdel(&mygv->target);
@@ -151,11 +159,12 @@ int					ft_pre_heredoc(t_mygv *mygv)
 				if (!tmp)
 				{
 					mygv->cur_her += 2;
-					while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] != '<')
-						++mygv->g_j;
+//					while (mygv->g_str[mygv->g_j] && mygv->g_str[mygv->g_j] != '<')
+//					while (mygv->g_str[mygv->g_j] && !ft_is_delim(mygv->g_str[mygv->g_j], mygv->g_str[mygv->g_j + 1]))
+//						++mygv->g_j;
 					ft_change_heredoc(mygv);
 					ft_should_go(mygv);
-					
+					//ft_put_letter('\n', mygv);
 					return ((int)(ft_strstr(&mygv->g_str[mygv->cur_her], "<<")));
 				}
 				return (tmp);

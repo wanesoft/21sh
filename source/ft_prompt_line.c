@@ -42,17 +42,17 @@ static void		ft_test_width(t_mygv *mygv)
 
 	line_test = ft_get_max_line(mygv->g_str) + 11;
 	ft_get_tty_col_ros();
-	if (line_test > mygv->col)
-	{
-		mygv->g_stage = line_test / (mygv->col);
-	}
+//	if (line_test > mygv->col)
+//	{
+//		mygv->g_stage = line_test / (mygv->col);
+//	}
 }
 
 void			ft_prompt_line(t_mygv *mygv)
 {
 	int			y;
 	
-	ft_test_width(mygv);
+	//ft_test_width(mygv);
 	y = mygv->g_stage;
 	while (y >= 0)
 	{
