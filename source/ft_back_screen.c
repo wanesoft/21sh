@@ -15,6 +15,7 @@ void				ft_foo_2(t_mygv *mygv)
 		++ii;
 	}
 	mygv->g_stage = j;
+	mygv->g_stage += mygv->g_kos;
 }
 
 void				ft_foo_3(t_mygv *mygv)

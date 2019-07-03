@@ -98,6 +98,7 @@ typedef struct      s_mygv
     t_stack         *grab;
     char            *target;
 	int				cur_her;
+    int             g_kos;
 }                   t_mygv;
 
 t_var_env			*ft_take_info(char *str);
