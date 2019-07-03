@@ -76,10 +76,11 @@ static void			ft_should_go(t_mygv *mygv, int mode)
 }
 
 void ft_change_heredoc(t_mygv *mygv) {
-	char *iter = ft_strstr(mygv->g_str, "<<");
-	ft_memmove(iter, iter + 2, ft_strlen(iter) + 1);
-	while (*iter == ' ')
-		ft_memmove(iter, iter + 1, ft_strlen(iter) + 1);
+	char *iter = ft_strstr(&mygv->g_str[mygv->cur_her], "<<");
+//	ft_memmove(iter, iter + 2, ft_strlen(iter) + 1);
+	iter += 2;
+//	while (*iter == ' ')
+//		ft_memmove(iter, iter + 1, ft_strlen(iter) + 1);
 	ft_memmove(iter, iter + (int)ft_strlen(mygv->target), ft_strlen(mygv->g_str) + 1);
 	if (*iter == '\n')
 		mygv->g_kos++;
@@ -100,7 +101,7 @@ int					ft_pre_heredoc(t_mygv *mygv)
 {
 	int				tmp;
 
-	mygv->cur_her = 0;
+//	mygv->cur_her = 0;
 	mygv->g_kos = 0;
 	while (mygv->g_str[mygv->cur_her])
 	{
@@ -113,8 +114,9 @@ int					ft_pre_heredoc(t_mygv *mygv)
 				if (!tmp)
 				{
 					ft_change_heredoc(mygv);
+					++mygv->cur_her;
 					ft_should_go(mygv, 1);
-					return ((int)(ft_strstr(mygv->g_str, "<<")));
+					return ((int)(ft_strstr(&mygv->g_str[mygv->cur_her], "<<")));
 				}
 				return (tmp);
 			}
