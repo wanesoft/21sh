@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 19:14:59 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/10 14:35:47 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/04 14:08:01 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,25 @@ static void	ft_change_dir(char *path, t_vector **env)
 
 	pwd = 0;
 	new_pwd = 0;
-	if (*path &&
-		(pwd = ft_memalloc(STDMES)) && (new_pwd = ft_memalloc(STDMES)))
+	if (*path && (pwd = ft_memalloc(STDMES))
+			&& (new_pwd = ft_memalloc(STDMES)))
 	{
-			if (file_check(path, FOLD, X_OK, path))
+		if (file_check(path, FOLD, X_OK, path))
+		{
+			if (!(pwd = getcwd(pwd, STDMES)))
+				return ;
+			ft_change_var_env(env, "OLDPWD", pwd);
+			chdir(path);
+			if (!(new_pwd = getcwd(new_pwd, STDMES)))
 			{
-				if (!(pwd = getcwd(pwd, STDMES)))
-					return ;
-				ft_change_var_env(env, "OLDPWD", pwd);
-				chdir(path);
-				if (!(new_pwd = getcwd(new_pwd, STDMES)))
-				{
-					ft_strdel(&pwd);
-					return ;
-				}
-				ft_change_var_env(env, "PWD", new_pwd);
+				ft_strdel(&pwd);
+				return ;
 			}
+			ft_change_var_env(env, "PWD", new_pwd);
+		}
 	}
-		ft_strdel(&pwd);
-		ft_strdel(&new_pwd);
+	ft_strdel(&pwd);
+	ft_strdel(&new_pwd);
 }
 
 void		ft_cd(char *param, t_vector **env)

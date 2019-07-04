@@ -6,7 +6,7 @@
 /*   By: draynor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/15 15:07:09 by draynor           #+#    #+#             */
-/*   Updated: 2019/06/15 15:07:11 by draynor          ###   ########.fr       */
+/*   Updated: 2019/07/04 13:57:06 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ static char		**ft_autocompl_path(t_mygv *mygv)
 	char		**arr;
 	t_vector	*tmp;
 	char		**ret;
-	
+
 	tmp = mygv->env;
 	while (tmp)
 	{
 		if (ft_strequ(((t_var_env *)tmp->content)->key, "PATH"))
-			break;
+			break ;
 		tmp = tmp->next;
 	}
 	if (!tmp)
@@ -36,7 +36,7 @@ static char		**ft_autocompl_path(t_mygv *mygv)
 static int		ft_number_of_word(char *s, int cur)
 {
 	int			vol;
-	
+
 	vol = 0;
 	--cur;
 	while (cur >= 0)
@@ -51,7 +51,7 @@ static int		ft_number_of_word(char *s, int cur)
 void			ft_autocompl(t_mygv *mygv)
 {
 	char		**arr;
-	
+
 	arr = NULL;
 	if (ft_number_of_word(mygv->g_str, mygv->g_j))
 		arr = ft_autocompl_dir();

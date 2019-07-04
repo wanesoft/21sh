@@ -144,6 +144,7 @@ int					ft_difficult_redir(char ***arr_string, int i,
 void				ft_exec(char *str, char **arr_env,
 							char **old_result, t_stream *stream);
 
+void				my_reopen(int *fd, int new_fd);
 void				destroy_t_stream(t_stream **tmp);
 t_stream			*ft_create_stream(int all_pipe);
 void				ft_get_back(t_stream *tmp);

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_back_screen.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/04 14:01:55 by udraugr-          #+#    #+#             */
+/*   Updated: 2019/07/04 14:02:19 by udraugr-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/twenty_one_sh.h"
 
@@ -43,7 +54,7 @@ void				ft_foo_3(t_mygv *mygv)
 void				ft_back_screen(void)
 {
 	t_mygv			*mygv;
-	
+
 	mygv = ft_get_mygv(NULL);
 	tcsetattr(STDIN_FILENO, TCSANOW, &mygv->old);
 	ft_putstr_fd(tgetstr("ve", NULL), STDIN_FILENO);
