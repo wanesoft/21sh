@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 12:53:36 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/04 15:13:28 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/04 19:41:05 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int	path_bins(char **str, t_vector **env)
 	else if (!ft_strchr(command, '/') && ft_search(env, command, &path))
 	{
 		ans = EXEC_SUCC;
-        tmp = ft_strjoin_pro(path, &(*str)[i], ONLY_FIRST);
+		tmp = ft_strjoin_pro(path, &(*str)[i], ONLY_FIRST);
 		ft_strdel(str);
 		*str = tmp;
 	}
