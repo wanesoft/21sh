@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_prompt_line.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/04 15:13:57 by udraugr-          #+#    #+#             */
+/*   Updated: 2019/07/04 15:14:42 by udraugr-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/twenty_one_sh.h"
 
@@ -11,7 +22,7 @@ static void		ft_prompt_line_2(t_mygv *mygv)
 {
 	int			stage;
 	int			i;
-	
+
 	i = 0;
 	stage = 0;
 	while (mygv->g_str[i])
@@ -29,7 +40,7 @@ static void		ft_prompt_line_2(t_mygv *mygv)
 //            ft_printf("\033[33m[line_");
 //            (stage > 9) ? 0 : write(1, "0", 1);
 //            ft_printf("%d]> \033[0m", stage);
-            ft_printf("\033[33m[line_%02d]> \033[0m", stage);
+			ft_printf("\033[33m[line_%02d]> \033[0m", stage);
 			++stage;
 		}
 		++i;
@@ -51,7 +62,7 @@ static void		ft_prompt_line_2(t_mygv *mygv)
 void			ft_prompt_line(t_mygv *mygv)
 {
 	int			y;
-	
+
 	//ft_test_width(mygv);
 	y = mygv->g_stage;
 	while (y >= 0)

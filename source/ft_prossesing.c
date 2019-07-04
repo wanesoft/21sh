@@ -6,18 +6,16 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:09:32 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/22 15:41:57 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/04 15:15:50 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/twenty_one_sh.h"
 
-
-
 void		ft_prossesing(char **str, t_vector **env)
 {
 	char	*prep_pipes;
-	
+
 	if ((*str)[ft_strlen(*str) - 1] == '|')
 	{
 		ft_error(REDICTFAIL, "");
@@ -36,7 +34,7 @@ void		ft_prossesing(char **str, t_vector **env)
 	ft_printf("/// A TEPER' NAZAD --------- %s\n", sam_razbirajsja_s_mallocom_blo);
 	ft_printf("****** DEMO IS END    ->>>>> DEL WHEN POJMESH' *******\n");
 	/* DEMO FOR MISHA ->>>>> DEL WHEN POJMESH' */
-	
+
 	//ft_grab(*str); <<----- vklyuchaet vora kavychek
 	ft_space_for_redirs(str);
 	ft_replacment(str, env);
