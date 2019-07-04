@@ -55,6 +55,13 @@ void			begin(t_vector **env)
 	signal(SIGTSTP, ft_restart);
 	ft_input();
 	ft_put_history(mygv);
+	
+	/* *** */
+	
+//	ft_printf("\n\n\n\nVOT ITOG --> %s\n\n", mygv->g_str);
+	
+	/* *** */
+	
 	arr_str = ft_strsplit(mygv->g_str, ';');
 	i = 0;
 	while (arr_str[i])

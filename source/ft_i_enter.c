@@ -56,6 +56,7 @@ int			ft_i_enter(t_mygv *mygv)
 	}
 	else
 	{
+		mygv->g_kos = 0;
 		mygv->g_y_pos = 1;
 		ft_prompt_line(mygv);
 		write(STDOUT_FILENO, "\n", 1);

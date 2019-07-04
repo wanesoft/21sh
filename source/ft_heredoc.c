@@ -79,11 +79,11 @@ void ft_change_heredoc(t_mygv *mygv) {
 	char *iter = ft_strstr(&mygv->g_str[mygv->cur_her], "<<");
 //	ft_memmove(iter, iter + 2, ft_strlen(iter) + 1);
 	iter += 2;
-//	while (*iter == ' ')
-//		ft_memmove(iter, iter + 1, ft_strlen(iter) + 1);
+	while (*iter == ' ')
+		++iter;
 	ft_memmove(iter, iter + (int)ft_strlen(mygv->target), ft_strlen(mygv->g_str) + 1);
-	if (*iter == '\n')
-		mygv->g_kos++;
+//	if (*iter == '\n')
+//		mygv->g_kos++;
 	*iter = '"';
 
 	char *tmp = ft_strjoin("\n", mygv->target);
@@ -94,10 +94,10 @@ void ft_change_heredoc(t_mygv *mygv) {
 	if (!iter)
 		iter = ft_strstr(mygv->g_str, mygv->target);
 	//iter = ft_strstr(mygv->g_str, tmp);
-	if (*iter == '\n')
-	{
-		mygv->g_kos++;
-	}
+//	if (*iter == '\n')
+//	{
+//		mygv->g_kos++;
+//	}
 	while (*iter == '\n')
 		ft_memmove(iter, iter + 1, ft_strlen(iter) + 1);
 	*(iter) = '"';
