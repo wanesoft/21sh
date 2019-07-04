@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/14 12:53:36 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/22 15:45:38 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/04 15:13:28 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static int	take_command(char **str, char **command)
 {
 	int		i;
 	int		j;
-    char    *back;
-	
+	char	*back;
+
 	j = 0;
 	while ((*str)[j] && (*str)[j] == ' ')
 		++j;
@@ -39,16 +39,15 @@ static int	take_command(char **str, char **command)
 	while ((*str)[i] && (*str)[i] != ' ')
 		++i;
 	*command = ft_strndup(&(*str)[j], i - j);
-    back = *command;
-    *command = ft_ungrab(*command, 0);
-    ft_strdel(&back);
+	back = *command;
+	*command = ft_ungrab(*command, 0);
+	ft_strdel(&back);
 	ft_strtolower(*command);
 	return (i);
 }
 
 static int	path_bins(char **str, t_vector **env)
 {
-
 	int		ans;
 	char	*command;
 	char	*path;
@@ -62,7 +61,8 @@ static int	path_bins(char **str, t_vector **env)
 	if (ft_strlen(command) == 1 && command[0] == '.')
 		write(1, ".: usage: ./path [arguments]\n", 29);
 	else if (check_builts(command) == EXEC_SUCC ||
-			(ft_strchr(command, '/') && file_check(command, BIN, X_OK, command)))
+			(ft_strchr(command, '/') &&
+			file_check(command, BIN, X_OK, command)))
 		ans = EXEC_SUCC;
 	else if (!ft_strchr(command, '/') && ft_search(env, command, &path))
 	{

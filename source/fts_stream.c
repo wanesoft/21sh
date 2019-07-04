@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 15:30:32 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/20 15:30:57 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/04 15:24:07 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void		ft_fill_save(t_stream *tmp)
 t_stream		*ft_create_stream(int all_pipe)
 {
 	t_stream	*tmp;
-	
+
 	if (!(tmp = (t_stream *)malloc(sizeof(t_stream))))
 		return (0);
 	ft_fill_save(tmp);
@@ -46,17 +46,17 @@ void			ft_get_back(t_stream *tmp)
 	if (tmp->std_now[0] != -1)
 	{
 		my_reopen(&(tmp->std_now[0]), -1);
-        dup2(tmp->save_std[0], 0);
+		dup2(tmp->save_std[0], 0);
 	}
 	if (tmp->std_now[1] != -1)
 	{
 		my_reopen(&(tmp->std_now[1]), -1);
-        dup2(tmp->save_std[1], 1);
+		dup2(tmp->save_std[1], 1);
 	}
 	if (tmp->std_now[2] != -1)
 	{
 		my_reopen(&(tmp->std_now[2]), -1);
-        dup2(tmp->save_std[2], 2);
+		dup2(tmp->save_std[2], 2);
 	}
 	++tmp->now_pipe;
 }

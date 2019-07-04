@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_gnl_pro.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/04 15:01:25 by udraugr-          #+#    #+#             */
+/*   Updated: 2019/07/04 15:01:38 by udraugr-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/twenty_one_sh.h"
 
@@ -14,7 +25,7 @@ static int		ft_out(char **big, char **line, int ans, char ch)
 	int			len;
 	char		*tmp;
 	char		*tmp1;
-	
+
 	if (!ans && !(*big))
 		return (0);
 	i = 0;
@@ -35,7 +46,7 @@ int				ft_gnl_pro(const int fd, char **line, char ch)
 	char		str[BUFF_SIZE + 1];
 	char		*tmp;
 	int			ans;
-	
+
 	if (!line || fd < 0 || BUFF_SIZE < 0)
 		return (-1);
 	while ((ans = (int)read(fd, str, BUFF_SIZE)) > 0)

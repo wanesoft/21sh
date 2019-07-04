@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_ungrab.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/04 15:22:20 by udraugr-          #+#    #+#             */
+/*   Updated: 2019/07/04 15:22:29 by udraugr-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/twenty_one_sh.h"
 
@@ -8,7 +19,7 @@ static int		ft_add_to_str(char **s, int i, int n)
 	char		*tmp3;
 	t_mygv		*m;
 	t_stack		*st;
-	
+
 	tmp = ft_strndup(*s, i);
 	m = ft_get_mygv(NULL);
 	st = ft_imap_stack(m->grab, n);
@@ -28,7 +39,7 @@ static int		ft_add_to_str(char **s, int i, int n)
 char			*ft_ungrab(char *s, int i)
 {
 	char		*ss;
-	
+
 	ss = ft_strdup(s);
 	while (ss[i])
 	{

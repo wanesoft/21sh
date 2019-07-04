@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_i_pgup_pgdown.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/04 15:05:45 by udraugr-          #+#    #+#             */
+/*   Updated: 2019/07/04 15:06:10 by udraugr-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/twenty_one_sh.h"
 
@@ -5,13 +16,13 @@ static void		ft_put_his_g_str(t_mygv *mygv, int find)
 {
 	char		*tmp;
 	char		**arr;
-	
+
 	tmp = (char *)malloc(sizeof(char) * BUF_G_STR);
 	while (ft_gnl_pro(mygv->g_fd_r, &tmp, '\t') > 0)
 	{
 		arr = ft_strsplit(tmp, ':');
 		if (!arr || !arr[0] || !arr[1])
-			break;
+			break ;
 		if (ft_atoi(arr[0]) == find)
 		{
 			ft_bzero(mygv->g_str, BUF_G_STR);
@@ -44,7 +55,7 @@ void			ft_for_misha(t_mygv *mygv)
 {
 	int			count;
 	int			i;
-	
+
 	i = 0;
 	count = 0;
 	while (mygv->g_str[i])
@@ -66,7 +77,7 @@ void			ft_i_pgup_pgdown(unsigned i, t_mygv *mygv)
 {
 	int			find;
 	char		*tmp;
-	
+
 	ft_muli(i, mygv);
 	if (mygv->g_c_his < 1)
 	{

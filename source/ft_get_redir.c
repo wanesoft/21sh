@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 11:21:30 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/18 14:21:33 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/04 15:00:46 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int		ft_check(char *str_tmp)
 {
 	char		*redirs[9];
 	int			i;
-	
+
 	redirs[0] = "<";
 	redirs[1] = "<<";
 	redirs[2] = ">";
@@ -43,7 +43,7 @@ int				ft_get_redir(char **string, t_stream *stream)
 	char		*ans;
 	int			check;
 	int			res;
-	
+
 	arr_string = ft_strsplit(*string, ' ');
 	i = -1;
 	while (arr_string[++i])

@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 15:33:51 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/18 12:32:05 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/04 14:56:24 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,8 @@ static void	ft_help(void)
 	ft_printf("echo     - вывести текст\n");
 }
 
-int			ft_forward(char *str, t_vector **env)
+static int	ft_distribution(char *command, char *str, t_vector **env)
 {
-	char	*command;
-    char    *back;
-	int		i;
-	int		ans;
-
-	i = 0;
-	ans = EXEC_SUCC;
-	while (str[i] && str[i] != ' ')
-		++i;
-	command = ft_strndup(str, i);
-    back = command;
-    command = ft_ungrab(command, 0);
-	ft_strtolower(command);
 	if (ft_strequ(command, "cd"))
 		ft_cd(str, env);
 	else if (ft_strequ(command, "setenv"))
@@ -56,8 +43,26 @@ int			ft_forward(char *str, t_vector **env)
 	else if (ft_strequ(command, "env"))
 		ft_env(env, str + 3);
 	else
-		ans = EXEC_FAIL;
-    ft_strdel(&back);
+		return (EXEC_FAIL);
+	return (EXEC_SUCC);
+}
+
+int			ft_forward(char *str, t_vector **env)
+{
+	char	*command;
+	char	*back;
+	int		i;
+	int		ans;
+
+	i = 0;
+	while (str[i] && str[i] != ' ')
+		++i;
+	command = ft_strndup(str, i);
+	back = command;
+	command = ft_ungrab(command, 0);
+	ft_strtolower(command);
+	ans = ft_distribution(command, str, env);
+	ft_strdel(&back);
 	ft_strdel(&command);
 	return (ans);
 }

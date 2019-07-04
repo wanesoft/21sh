@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 13:59:46 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/10 14:37:43 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/04 15:06:37 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void					ft_get_tty_col_ros(void)
 {
 	struct winsize		w;
 	t_mygv				*mygv;
-	
+
 	mygv = ft_get_mygv(NULL);
 	ioctl(STDERR_FILENO, TIOCGWINSZ, &w);
 	if (w.ws_col == 0 || w.ws_row == 0)
@@ -34,7 +34,7 @@ void					ft_get_tty_col_ros(void)
 static void				ft_init_history_2(t_mygv *mygv, char *str)
 {
 	char				**arr;
-	
+
 	arr = ft_strsplit(str, ':');
 	if (arr && arr[0])
 		mygv->g_n_his = ft_atoi(arr[0]);
@@ -72,7 +72,7 @@ void					ft_init_screen(void)
 {
 	struct termios		new;
 	t_mygv				*mygv;
-	
+
 	mygv = ft_get_mygv(NULL);
 	tcgetattr(STDIN_FILENO, &new);
 	new.c_lflag &= ~(ICANON);
