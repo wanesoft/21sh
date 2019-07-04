@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 15:09:32 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/04 15:15:50 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/04 15:45:46 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void		ft_prossesing(char **str, t_vector **env)
 		return ;
 	}
 	ft_grab(str, 0, 0);
-	char *sam_razbirajsja_s_mallocom_blo = ft_ungrab(*str, 0);
 	ft_space_for_redirs(str);
 	ft_replacment(str, env);
 	prep_pipes = 0;
