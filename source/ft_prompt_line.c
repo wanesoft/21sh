@@ -68,7 +68,7 @@ void			ft_prompt_line(t_mygv *mygv)
 	while (y >= 0)
 	{
 		if (y)
-			ft_putstr_fd(tgetstr("up", NULL), STDOUT_FILENO);
+//			ft_putstr_fd(tgetstr("up", NULL), STDOUT_FILENO);
 		ft_putstr_fd(tgetstr("dl", NULL), STDOUT_FILENO);
 		ft_putstr_fd(tgetstr("cr", NULL), STDOUT_FILENO);
 		--y;
