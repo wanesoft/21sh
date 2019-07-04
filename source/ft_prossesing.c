@@ -23,14 +23,6 @@ void		ft_prossesing(char **str, t_vector **env)
 	}
 	ft_grab(str, 0, 0);
 	char *sam_razbirajsja_s_mallocom_blo = ft_ungrab(*str, 0);
-<<<<<<< HEAD
-=======
-	ft_printf("/// A TEPER' NAZAD --------- %s\n", sam_razbirajsja_s_mallocom_blo);
-	ft_printf("****** DEMO IS END    ->>>>> DEL WHEN POJMESH' *******\n");
-	/* DEMO FOR MISHA ->>>>> DEL WHEN POJMESH' */
-
-	//ft_grab(*str); <<----- vklyuchaet vora kavychek
->>>>>>> 282dc2b17369d8d66daf8f6b165ca7a95d98460d
 	ft_space_for_redirs(str);
 	ft_replacment(str, env);
 	prep_pipes = 0;
