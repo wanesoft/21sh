@@ -48,6 +48,7 @@ int					main(int argc, char **argv, char **env)
 	{
 		mygv->env = env_copy;
 		begin(&env_copy);
+		write(1, "\n", 1);
 	}
 	return (0);
 }
