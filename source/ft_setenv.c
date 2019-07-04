@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 17:25:16 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/04 15:37:24 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/04 15:47:56 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		ft_setenv(char *param, t_vector **env)
 	char		**arr;
 
 	tmp = *env;
-	ft_strsplit(param, ' ');
+	arr = ft_strsplit(param, ' ');
 	if (!arr[0])
 		return ;
 	new = ft_take_info(arr[0]);
