@@ -58,7 +58,7 @@ void			begin(t_vector **env)
 	
 	/* *** */
 	
-//	ft_printf("\n\n\n\nVOT ITOG --> %s\n\n", mygv->g_str);
+//	ft_printf("VOT ITOG --> %s\n", mygv->g_str);
 	
 	/* *** */
 	
