@@ -87,13 +87,22 @@ void ft_change_heredoc(t_mygv *mygv) {
 	*iter = '"';
 
 	char *tmp = ft_strjoin("\n", mygv->target);
-
-	iter = ft_strstr(mygv->g_str, tmp);
+	char *tmp2 = ft_strjoin(tmp, "\n");
+	iter = ft_strstr(mygv->g_str, tmp2);
+	if (!iter)
+		iter = ft_strstr(mygv->g_str, tmp);
+	if (!iter)
+		iter = ft_strstr(mygv->g_str, mygv->target);
+	//iter = ft_strstr(mygv->g_str, tmp);
 	if (*iter == '\n')
+	{
 		mygv->g_kos++;
+	}
+	while (*iter == '\n')
+		ft_memmove(iter, iter + 1, ft_strlen(iter) + 1);
 	*(iter) = '"';
 	++iter;
-	ft_memmove(iter, iter + (int)ft_strlen(mygv->target), ft_strlen(iter) + 1);
+	ft_memmove(iter, iter + (int)ft_strlen(mygv->target) - 1, ft_strlen(iter) + 1);
 	ft_strdel(&mygv->target);
 }
 
