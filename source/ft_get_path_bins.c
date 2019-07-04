@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_get_path_bins.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/04 14:59:47 by udraugr-          #+#    #+#             */
+/*   Updated: 2019/07/04 15:00:03 by udraugr-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/twenty_one_sh.h"
 
@@ -7,7 +18,7 @@ static int			ft_count_files(char **dirs)
 	int				count;
 	DIR				*d1;
 	struct dirent	*f1;
-	
+
 	i = 0;
 	count = 0;
 	while (dirs[i])
@@ -30,7 +41,7 @@ char				**ft_get_path_bins(char **arr)
 	DIR				*d1;
 	struct dirent	*f1;
 	char			**ret;
-	
+
 	if (!arr || !arr[0])
 		return (NULL);
 	i = 0;

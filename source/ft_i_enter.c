@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 16:58:03 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/10 16:58:06 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/04 15:05:21 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ft_check_quotes(t_mygv *mygv)
 	int		fl;
 	char	cur_q;
 	int		i;
-	
+
 	fl = 0;
 	cur_q = 0;
 	i = 0;

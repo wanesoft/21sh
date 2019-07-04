@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 14:01:20 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/10 16:58:30 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/04 15:08:43 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@
 
 */
 
-
 static void		ft_put_ctrl_v(char *buf, t_mygv *mygv)
 {
 	int			i;
-	
+
 	i = 0;
 	while (buf[i])
 	{
@@ -41,8 +40,8 @@ static int		ft_input_proc(unsigned i, char *buf, t_mygv *mygv)
 		return (ft_i_enter(mygv));
 	else if (i == K_DEL || i == K_BACKSP)
 		ft_del_letter(i, mygv);
-    else if (i == K_TAB)
-        ft_autocompl(mygv);
+	else if (i == K_TAB)
+		ft_autocompl(mygv);
 	else if (i == K_ESC)
 		exit(1); //ft_clear_mygv(&mygv);
 	else if (i == K_LEFT || i == K_RIGHT)
@@ -72,7 +71,7 @@ char			*ft_input(void)
 		read(STDIN_FILENO, buf, BUF_G_STR);
 		temp = (unsigned int*)buf;
 		if (ft_input_proc(*temp, buf, mygv))
-			break;
+			break ;
 	}
 	return (NULL);
 }

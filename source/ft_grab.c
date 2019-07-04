@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_grab.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/04 15:02:07 by udraugr-          #+#    #+#             */
+/*   Updated: 2019/07/04 15:02:38 by udraugr-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/twenty_one_sh.h"
 
@@ -5,7 +16,7 @@ static void		ft_grab_4(char **tmp2)
 {
 	char		*tmp;
 	char		c[2];
-	
+
 	c[0] = -50;
 	c[1] = 0;
 	tmp = ft_strjoin(*tmp2, (char *)&c);
@@ -19,7 +30,7 @@ static void		ft_grab_3(char **s, int i, int j, int len)
 	char		*tmp2;
 	char		*tmp3;
 	char		*tmp4;
-	
+
 	tmp = ft_strndup(*s, i);
 	tmp2 = ft_itoa(len);
 	ft_grab_4(&tmp2);
@@ -37,7 +48,7 @@ static void		ft_grab_2(char **s, int i, int j)
 	t_mygv		*mygv;
 	char		*tmp;
 	int			len;
-	
+
 	mygv = ft_get_mygv(NULL);
 	tmp = ft_strndup(&(*s)[i + 1], j - i - 2);
 	if ((*s)[i] == '"')
@@ -65,6 +76,6 @@ void			ft_grab(char **s, int i, int j)
 		ft_grab_2(s, i, j);
 	}
 	else
-		return;
+		return ;
 	ft_grab(s, 0, j);
 }
