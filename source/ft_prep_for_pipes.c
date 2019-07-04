@@ -67,7 +67,7 @@ static int	path_bins(char **str, t_vector **env)
 	else if (!ft_strchr(command, '/') && ft_search(env, command, &path))
 	{
 		ans = EXEC_SUCC;
-		tmp = ft_strjoin_pro(path, &(*str)[i], ONLY_FIRST);
+        tmp = ft_strjoin_pro(path, &(*str)[i], ONLY_FIRST);
 		ft_strdel(str);
 		*str = tmp;
 	}

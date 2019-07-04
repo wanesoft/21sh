@@ -6,15 +6,16 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/01 15:47:38 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/01 15:50:56 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/04 18:01:50 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <unistd.h>
 
 int main()
 {
 	int a = 0;
-	printf("%02d", a);
+	write(1, "hello world!", 12);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 16:19:53 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/04 16:20:54 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/04 18:46:35 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,14 @@ void			ft_exec(char *str, char **arr_env,
 	else
 	{
 		wait(0);
-		*old_result = ft_strdup("");
+		*old_result = ft_strdup("");	
 		if (stream->now_pipe != stream->all_pipe)
 			out(pipefd[0], old_result, stream);
 		close(stream->pipefd[1]);
 		close(stream->pipefd[0]);
 	}
+	//if (stream->std_now[1] == -1 && *old_result[ft_strlen(*old_result) - 1] != '\n')
+	//	write(1, "%\n", 2);
 //	tmp2 = ft_strsplit("/bin/rm /goinfre/.tmp", ' ');
 //	father = fork();
 //	if (!father)

@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 11:21:30 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/04 16:30:18 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/04 18:25:06 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,52 +36,38 @@ static int		ft_check(char *str_tmp)
 	return (-1);
 }
 
-//static int        ft_fill_redirs(char **arr_string, int i,
-//                                t_stream *stream)
-//{
-//    int            check;
-//    int            res;
-//
-//    res = EXEC_SUCC;
-//    check = ft_check(arr_string[i + 1]);
-//    if (check != -1 && ft_check(arr_string[i + 2]) != -1)
-//        return (EXEC_FAIL);
-//    if (check == 6)
-//        res = ft_difficult_redir(&arr_string, i, stream, check);
-//    else if (check == 5)
-//        res = ft_advanced_redir(&arr_string, i, stream, check);
-//    else if (check >= 0)
-//        res = ft_simple_redir(&arr_string, i, stream, check);
-//    return (res);
-//}
+static int		ft_fill_redirs(char **arr_string, int i,
+									t_stream *stream)
+{
+	int			check;
+	int			res;
+
+	res = EXEC_SUCC;
+	check = ft_check(arr_string[i + 1]);
+	if (check != -1 && ft_check(arr_string[i + 2]) != -1)
+		return (EXEC_FAIL);
+	if (check == 6)
+		res = ft_difficult_redir(&arr_string, i, stream, check);
+	else if (check == 5)
+		res = ft_advanced_redir(&arr_string, i, stream, check);
+	else if (check >= 0)
+		res = ft_simple_redir(&arr_string, i, stream, check);
+	return (res);
+}
 
 int				ft_get_redir(char **string, t_stream *stream)
 {
 	char		**arr_string;
 	int			i;
 	char		*ans;
-	int			check;
-	int			res;
 
 	arr_string = ft_strsplit(*string, ' ');
 	i = -1;
 	while (arr_string[++i])
 	{
-		res = EXEC_SUCC;
 		if (arr_string[i + 1])
-		{
-			check = ft_check(arr_string[i + 1]);
-			if (check != -1 && ft_check(arr_string[i + 2]) != -1)
+			if (ft_fill_redirs(arr_string, i, stream) == EXEC_FAIL)
 				return (EXEC_FAIL);
-			if (check == 6)
-				res = ft_difficult_redir(&arr_string, i, stream, check);
-			else if (check == 5)
-				res = ft_advanced_redir(&arr_string, i, stream, check);
-			else if (check >= 0)
-				res = ft_simple_redir(&arr_string, i, stream, check);
-			if (res == EXEC_FAIL)
-				return (EXEC_FAIL);
-		}
 	}
 	ans = ft_strdup("");
 	i = -1;
