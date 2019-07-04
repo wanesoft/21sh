@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 16:19:53 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/04 14:22:08 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/04 16:20:54 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,11 @@ static void		out(int fd, char **old_result, t_stream *stream)
 	}
 }
 
-void			ft_exec(char *str, char **arr_env,
-					char **old_result, t_stream *stream)
+static void		ft_ungrab_arr(char **param)
 {
-	char		**param;
-	int			pipefd[2];
-	pid_t		father;
-	char		*back;
 	int			i;
+	char		*back;
 
-	param = ft_strsplit(str, ' ');
 	i = -1;
 	while (param[++i])
 	{
@@ -43,6 +38,17 @@ void			ft_exec(char *str, char **arr_env,
 		param[i] = ft_ungrab(param[i], 0);
 		ft_strdel(&back);
 	}
+}
+
+void			ft_exec(char *str, char **arr_env,
+					char **old_result, t_stream *stream)
+{
+	char		**param;
+	int			pipefd[2];
+	pid_t		father;
+
+	param = ft_strsplit(str, ' ');
+	ft_ungrab_arr(param);
 	father = fork();
 	if (!father)
 	{
