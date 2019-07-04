@@ -44,7 +44,7 @@ void				ft_foo_3(t_mygv *mygv)
 	}
 	while (j)
 	{
-//		ft_putstr_fd(tgetstr("up", NULL), STDOUT_FILENO);
+		ft_putstr_fd(tgetstr("up", NULL), STDOUT_FILENO);
 		ft_putstr_fd(tgetstr("dl", NULL), STDOUT_FILENO);
 		ft_putstr_fd(tgetstr("cr", NULL), STDOUT_FILENO);
 		--j;
