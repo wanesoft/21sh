@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 11:55:35 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/04 15:38:56 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/04 15:41:37 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void			ft_env(t_vector **env, char *str)
 	char		**arr;
 	char		**arr_tmp;
 
-	arr_tmp = ft_strplit(str, ' ');
+	arr_tmp = ft_strsplit(str, ' ');
 	if (arr_tmp[0] && ft_strequ(arr_tmp[0], "-s"))
 	{
 		arr = ft_vector_to_arr(env);

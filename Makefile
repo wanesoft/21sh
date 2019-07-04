@@ -73,7 +73,7 @@ $(NAME): $(OBJ)
 	gcc $(FLAGS) -I $(INC) -L$(LIB) -lftprintf  -lreadline -ltermcap $(OBJ) -o $(NAME)
 
 %.o: %.c
-	gcc -c $< -o $@
+	gcc -Wall -Werror -c $< -o $@
 
 clean:
 	@/bin/rm -f $(OBJ)
