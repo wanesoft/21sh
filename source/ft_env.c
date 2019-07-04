@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 11:55:35 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/10 14:36:37 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/04 15:38:56 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,10 @@ void			ft_env(t_vector **env, char *str)
 {
 	t_vector	*tmp;
 	char		**arr;
+	char		**arr_tmp;
 
-	while (*str &&
-			(*str == ' ' || *str == '\t' || *str == '\n'))
-		++str;
-	if (ft_strequ(str, "-s"))
+	arr_tmp = ft_strplit(str, ' ');
+	if (arr_tmp[0] && ft_strequ(arr_tmp[0], "-s"))
 	{
 		arr = ft_vector_to_arr(env);
 		ft_sort_and_print_arr(arr);
@@ -66,4 +65,5 @@ void			ft_env(t_vector **env, char *str)
 			tmp = tmp->next;
 		}
 	}
+	ft_del_arr(&arr_tmp);
 }

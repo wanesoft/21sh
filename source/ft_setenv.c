@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 17:25:16 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/18 12:33:32 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/04 15:37:24 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,13 @@ void		ft_setenv(char *param, t_vector **env)
 {
 	t_vector	*tmp;
 	t_var_env	*new;
+	char		**arr;
 
 	tmp = *env;
-	while (*param &&
-			(*param == ' ' || *param == '\t' || *param == '\n'))
-		++param;
-	if (!*param)
+	ft_strsplit(param, ' ');
+	if (!arr[0])
 		return ;
-	new = ft_take_info(param);
+	new = ft_take_info(arr[0]);
 	while (tmp)
 	{
 		if (tmp->content &&
@@ -38,4 +37,5 @@ void		ft_setenv(char *param, t_vector **env)
 	}
 	if (!tmp)
 		*env = ft_add_vector(*env, new);
+	ft_del_arr(&arr);
 }

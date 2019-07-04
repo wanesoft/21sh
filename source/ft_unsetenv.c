@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 14:43:44 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/18 13:08:36 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/04 15:33:48 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,15 @@
 void	ft_unsetenv(char *param, t_vector **env)
 {
 	t_vector	*tmp;
+	char		**arr;
 
 	tmp = *env;
-	while (*param &&
-			(*param == ' ' || *param == '\t' || *param == '\n'))
-		++param;
-	if (!*param)
+	arr = ft_strsplit(param, ' ');
+	if (!arr[0])
 		return ;
 	while (tmp)
 	{
-		if (ft_strequ(((t_var_env *)tmp->content)->key, param))
+		if (ft_strequ(((t_var_env *)tmp->content)->key, arr[0]))
 		{
 			if (*env == tmp)
 				*env = (*env)->next;
@@ -34,4 +33,5 @@ void	ft_unsetenv(char *param, t_vector **env)
 		}
 		tmp = tmp->next;
 	}
+	ft_del_arr(&arr);
 }
