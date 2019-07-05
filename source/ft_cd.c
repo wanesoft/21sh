@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 19:14:59 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/04 14:08:01 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/05 17:21:46 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void		ft_cd(char *param, t_vector **env)
 	int			numb_par;
 
 	arr_param = ft_strsplit(param, ' ');
+	ft_ungrab_arr(arr_param);
 	if ((numb_par = ft_arrlen(arr_param)) < 3)
 	{
 		if (numb_par == 1)

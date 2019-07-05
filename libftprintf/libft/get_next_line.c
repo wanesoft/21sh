@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 14:39:30 by udraugr-          #+#    #+#             */
-/*   Updated: 2018/12/05 14:35:55 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/05 17:53:42 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int		ft_out(char **big, char **line, int ans)
 	int			len;
 	char		*tmp;
 	char		*tmp1;
-	
+
 	if (!ans && !(*big))
 		return (0);
 	i = 0;
@@ -46,7 +46,7 @@ int				get_next_line(const int fd, char **line)
 	char		str[BUFF_SIZE + 1];
 	char		*tmp;
 	int			ans;
-	
+
 	if (!line || fd < 0 || BUFF_SIZE < 0)
 		return (-1);
 	while ((ans = read(fd, str, BUFF_SIZE)) > 0)

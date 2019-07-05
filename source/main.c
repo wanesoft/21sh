@@ -48,7 +48,7 @@ int					main(int argc, char **argv, char **env)
 	{
 		mygv->env = env_copy;
 		begin(&env_copy);
-		
+
 		//char cmd[]="\033[6n";
 		char buf[1024];
 		ft_bzero(buf, 1024);

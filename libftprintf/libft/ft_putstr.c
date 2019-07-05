@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 15:49:21 by udraugr-          #+#    #+#             */
-/*   Updated: 2018/11/28 14:08:38 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/05 17:54:29 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ void	ft_putstr(char const *s)
 {
 	if (!s)
 		return ;
-    write(1, s, ft_strlen(s));
+	write(1, s, ft_strlen(s));
 }

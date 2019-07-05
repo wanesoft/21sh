@@ -2,16 +2,16 @@ Norme: ./begin.c
 Error (line 33, col 2): missing space after return
 Error (line 36): line has 88 characters
 Error (line 42): line has 84 characters
-Error (line 46): function begin has 32 lines
-Error (line 58): spaces at the end of line
-Error (line 59): comment not well placed
-Error (line 59): comment not well formatted
-Error (line 60): spaces at the end of line
-Error (line 61): C++ comment
-Error (line 62): spaces at the end of line
-Error (line 63): comment not well placed
-Error (line 63): comment not well formatted
-Error (line 64): spaces at the end of line
+Error (line 46): function begin has 34 lines
+Error (line 59): spaces at the end of line
+Error (line 60): comment not well placed
+Error (line 60): comment not well formatted
+Error (line 61): spaces at the end of line
+Error (line 62): C++ comment
+Error (line 63): spaces at the end of line
+Error (line 64): comment not well placed
+Error (line 64): comment not well formatted
+Error (line 65): spaces at the end of line
 Norme: ./file_check.c
 Norme: ./ft_autocompl.c
 Norme: ./ft_autocompl_3.c
@@ -21,69 +21,33 @@ Norme: ./ft_addenv.c
 Norme: ./ft_bye.c
 Error (line 46): C++ comment
 Norme: ./ft_back_screen.c
-Error (line 47): C++ comment
 Error (line 62): C++ comment
 Norme: ./ft_autocompl_2.c
 Error (line 75): function ft_autocompl_2 has 28 lines
 Norme: ./ft_clear_mygv.c
 Norme: ./ft_del_letter.c
 Norme: ./ft_echo.c
-Norme: ./ft_divide.c
 Norme: ./ft_cd.c
 Norme: ./ft_error.c
+Norme: ./ft_divide.c
 Norme: ./ft_env.c
 Norme: ./ft_diff_redir.c
-Error (line 49): function ft_difficult_redir has 29 lines
-Error (line 61): must begin only by tabulations
 Norme: ./ft_get_mygv.c
 Norme: ./ft_exec.c
-Error (line 43): function ft_exec has 33 lines
-Error (line 61): spaces at the end of line
-Error (line 61, col 29): bad character after ;
-Error (line 67): C++ comment
-Error (line 67): line has 87 characters
-Error (line 68): C++ comment
-Error (line 69): C++ comment
-Error (line 70): C++ comment
-Error (line 71): C++ comment
-Error (line 72): C++ comment
-Error (line 73): C++ comment
-Error (line 74): C++ comment
-Error (line 75): C++ comment
-Error (line 76): C++ comment
-Error (line 77): C++ comment
-Norme: ./ft_forward.c
 Norme: ./ft_get_path_bins.c
-Norme: ./ft_execute.c
-Norme: ./ft_gnl_pro.c
+Norme: ./ft_forward.c
 Norme: ./ft_get_redir.c
+Norme: ./ft_gnl_pro.c
+Norme: ./ft_execute.c
 Norme: ./ft_i_arrow_l_r.c
 Norme: ./ft_grab.c
-Norme: ./ft_i_enter.c
 Norme: ./ft_i_arrow_u_d.c
 Norme: ./ft_i_pgup_pgdown.c
-Norme: ./ft_init_screen.c
+Norme: ./ft_i_enter.c
 Norme: ./ft_input.c
 Error (line 15): comment not well formatted
 Error (line 46): C++ comment
-Norme: ./ft_prompt_line.c
-Error (line 40): C++ comment
-Error (line 41): C++ comment
-Error (line 42): C++ comment
-Error (line 50): C++ comment
-Error (line 51): C++ comment
-Error (line 52): C++ comment
-Error (line 53): C++ comment
-Error (line 54): C++ comment
-Error (line 55): C++ comment
-Error (line 56): C++ comment
-Error (line 57): C++ comment
-Error (line 58): C++ comment
-Error (line 59): C++ comment
-Error (line 60): C++ comment
-Error (line 66): C++ comment
-Error (line 71): C++ comment
-Error (line 72): bad indentation
+Norme: ./ft_init_screen.c
 Norme: ./ft_prossesing.c
 Norme: ./ft_put_letter.c
 Norme: ./ft_heredoc.c
@@ -101,39 +65,66 @@ Error (line 52): Empty line
 Error (line 55): Empty line
 Error (line 73): line has 107 characters
 Error (line 78): Space before function name
-Error (line 78): function ft_change_heredoc has 28 lines
+Error (line 78): function ft_change_heredoc has 26 lines
 Error (line 78): declarations in ft_change_heredoc must be at the top of the function
 Error (line 78): declarations must be followed by one empty line in ft_change_heredoc
 Error (line 78, col 37): no newline before block
 Error (line 79, col 7): iter is instanciated during declaration
 Error (line 80): C++ comment
 Error (line 84): line has 87 characters
-Error (line 85): C++ comment
-Error (line 86): C++ comment
 Error (line 89, col 7): tmp is instanciated during declaration
 Error (line 90, col 7): tmp2 is instanciated during declaration
 Error (line 96): bad indentation
 Error (line 96): C++ comment
-Error (line 97): C++ comment
-Error (line 98): C++ comment
-Error (line 99): C++ comment
-Error (line 100): C++ comment
-Error (line 105): line has 84 characters
-Error (line 109): declarations must be followed by one empty line in ft_pre_heredoc
-Error (line 113): C++ comment
-Error (line 128): line has 82 characters
-Norme: ./ft_setenv.c
-Norme: ./ft_replacment.c
+Error (line 103): line has 84 characters
+Error (line 107): declarations must be followed by one empty line in ft_pre_heredoc
+Error (line 111): C++ comment
+Error (line 126): line has 82 characters
 Norme: ./ft_search.c
-Norme: ./ft_take_value_env.c
-Norme: ./ft_ungrab.c
-Norme: ./ft_space_for_redirs.c
-Norme: ./ft_unsetenv.c
-Norme: ./ft_vector_to_arr.c
+Norme: ./ft_replacment.c
+Norme: ./ft_setenv.c
 Norme: ./ft_prep_for_pipes.c
+Norme: ./ft_take_value_env.c
+Norme: ./ft_prompt_line.c
+Error (line 40): C++ comment
+Error (line 41): C++ comment
+Error (line 42): C++ comment
+Error (line 50): C++ comment
+Error (line 51): C++ comment
+Error (line 52): C++ comment
+Error (line 53): C++ comment
+Error (line 54): C++ comment
+Error (line 55): C++ comment
+Error (line 56): C++ comment
+Error (line 57): C++ comment
+Error (line 58): C++ comment
+Error (line 59): C++ comment
+Error (line 60): C++ comment
+Error (line 66): C++ comment
+Norme: ./ft_ungrab.c
+Norme: ./ft_ungrab_arr.c
+Norme: ./ft_space_for_redirs.c
+Norme: ./ft_vector_to_arr.c
+Norme: ./ft_unsetenv.c
 Norme: ./ft_work_stack.c
 Norme: ./fts_var_env.c
 Norme: ./main.c
-Norme: ./ft_simple_redir.c
-Error (line 15): function simple_in has 26 lines
+Error (line 30): function main has 36 lines
+Error (line 51): spaces at the end of line
+Error (line 52): C++ comment
+Error (line 53): C++ comment
+Error (line 54): C++ comment
+Error (line 55): C++ comment
+Error (line 56): C++ comment
+Error (line 57): C++ comment
+Error (line 58): C++ comment
+Error (line 59): C++ comment
+Error (line 60): C++ comment
+Error (line 61): C++ comment
+Error (line 62): C++ comment
+Error (line 63): C++ comment
+Error (line 64): C++ comment
+Error (line 65): C++ comment
+Error (line 66, col 1): no empty line before block
 Norme: ./fts_stream.c
+Norme: ./ft_simple_redir.c

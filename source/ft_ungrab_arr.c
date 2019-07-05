@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_ungrab_arr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/21 14:37:38 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/05 17:54:22 by udraugr-         ###   ########.fr       */
+/*   Created: 2019/07/05 16:23:32 by udraugr-          #+#    #+#             */
+/*   Updated: 2019/07/05 16:24:28 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/twenty_one_sh.h"
 
-void	ft_putstr_fd(char const *s, int fd)
+void			ft_ungrab_arr(char **param)
 {
-	if (!s)
-		return ;
-	write(fd, s, ft_strlen(s));
+	int			i;
+	char		*back;
+
+	i = -1;
+	while (param[++i])
+	{
+		back = param[i];
+		param[i] = ft_ungrab(param[i], 0);
+		ft_strdel(&back);
+	}
 }

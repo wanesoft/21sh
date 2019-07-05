@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 16:02:51 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/18 12:31:08 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/05 15:58:03 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 static int	check(char c)
 {
-	if (c == '>' ||
-			c == '<' ||
-			c == '&')
+	if (c == '>' || c == '<' || c == '&')
 		return (EXEC_SUCC);
 	return (EXEC_FAIL);
 }
@@ -55,8 +53,9 @@ void		ft_space_for_redirs(char **str)
 	int		i_old;
 	int		i_new;
 
-	if (!(tmp_str = ft_memalloc(ft_strlen(*str) * 3 + 1)))
+	if (!(tmp_str = (char *)malloc((sizeof(char) * ft_strlen(*str)) * 3 + 1)))
 		return ;
+	bzero(tmp_str, ft_strlen(*str) * 3 + 1);
 	i_old = 0;
 	i_new = 0;
 	while ((*str)[i_old])

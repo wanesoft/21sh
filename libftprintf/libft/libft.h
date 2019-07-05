@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 19:17:06 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/22 14:44:44 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/05 17:53:53 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # define ONLY_FIRST 1
 # define ONLY_SECOND 2
 # define BOTH 3
-
 
 typedef struct			s_list
 {
