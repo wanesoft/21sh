@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 14:01:32 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/20 19:40:01 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/05 15:17:59 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void			begin(t_vector **env)
 	char		*tmp;
 	char		**arr_str;
 	int			i;
+	int			j;
 	t_mygv		*mygv;
 
 	mygv = ft_get_mygv(NULL);
@@ -64,7 +65,8 @@ void			begin(t_vector **env)
 	
 	arr_str = ft_strsplit(mygv->g_str, ';');
 	i = 0;
-	while (arr_str[i])
+	j = ft_arrlen(arr_str);
+	while (i < j)
 	{
 		tmp = ft_strjoin("_=", arr_str[i]);
 		ft_setenv(tmp, env);

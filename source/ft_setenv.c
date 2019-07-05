@@ -17,7 +17,7 @@ void		ft_setenv(char *param, t_vector **env)
 	t_vector	*tmp;
 	t_var_env	*new;
 	char		**arr;
-
+	
 	tmp = *env;
 	arr = ft_strsplit(param, ' ');
 	if (!arr[0])
