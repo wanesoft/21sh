@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 14:43:18 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/05 16:25:26 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/05 17:31:50 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,39 +67,39 @@ typedef struct		s_var_env
 
 typedef struct		s_stream
 {
-    int				save_std[3];
-    int				std_now[3];
-    int             all_pipe;
-    int             now_pipe;
+	int				save_std[3];
+	int				std_now[3];
+	int				all_pipe;
+	int				now_pipe;
 	int				pipefd[2];
-}                   t_stream;
+}					t_stream;
 
-typedef struct      s_stack
+typedef struct		s_stack
 {
-    char            *data;
-    struct s_stack  *next;
-}                   t_stack;
+	char			*data;
+	struct s_stack	*next;
+}					t_stack;
 
-typedef struct      s_mygv
+typedef struct		s_mygv
 {
-    struct termios  old;
-    t_vector        *env;
-    int             col;
-    int             row;
-    char            g_str[BUF_G_STR];
-    int             g_j;
-    int             g_stage;
-    int             g_y_pos;
-    int             g_x_pos;
+	struct termios	old;
+	t_vector		*env;
+	int				col;
+	int				row;
+	char			g_str[BUF_G_STR];
+	int				g_j;
+	int				g_stage;
+	int				g_y_pos;
+	int				g_x_pos;
 	int				g_fd_r;
-    int             g_fd_w;
+	int				g_fd_w;
 	unsigned		g_n_his;
 	int				g_c_his;
-    t_stack         *grab;
-    char            *target;
+	t_stack			*grab;
+	char			*target;
 	int				cur_her;
-    int             g_kos;
-}                   t_mygv;
+	int				g_kos;
+}					t_mygv;
 
 t_var_env			*ft_take_info(char *str);
 void				ft_del_content_var_env(t_var_env *cur);
@@ -112,7 +112,8 @@ void				ft_space_for_redirs(char **str);
 int					ft_forward(char *str, t_vector **env);
 
 void				ft_replacment(char **str, t_vector **env);
-int					ft_prep_for_pipes(char *str, char **prep_pipes, t_vector **env);
+int					ft_prep_for_pipes(char *str, char **prep_pipes,
+												t_vector **env);
 
 char				*ft_take_value_env(char *key, t_vector **env);
 
@@ -135,11 +136,11 @@ void				ft_execute(char *str, t_vector **env);
 
 int					ft_get_redir(char **string, t_stream *stream);
 int					ft_simple_redir(char ***arr_string, int i,
-									t_stream *stream, int check);
+										t_stream *stream, int check);
 int					ft_advanced_redir(char ***arr_string, int i,
-									  t_stream *stream, int check);
+										t_stream *stream, int check);
 int					ft_difficult_redir(char ***arr_string, int i,
-									   t_stream *stream, int check);
+										t_stream *stream, int check);
 
 void				ft_exec(char *str, char **arr_env,
 							char **old_result, t_stream *stream);
@@ -168,16 +169,17 @@ char				*ft_input(void);
 void				ft_put_letter(unsigned i, t_mygv *mygv);
 int					ft_i_enter(t_mygv *mygv);
 void				ft_del_letter(unsigned i, t_mygv *mygv);
-void                ft_i_arrow_l_r(unsigned i, t_mygv *mygv);
-void                ft_i_arrow_u_d(unsigned i, t_mygv *mygv);
-void                ft_prompt_line(t_mygv *mygv);
-void                ft_back_screen(void);
-void                ft_get_tty_col_ros(void);
+void				ft_i_arrow_l_r(unsigned i, t_mygv *mygv);
+void				ft_i_arrow_u_d(unsigned i, t_mygv *mygv);
+void				ft_prompt_line(t_mygv *mygv);
+void				ft_back_screen(void);
+void				ft_get_tty_col_ros(void);
 void				ft_autocompl(t_mygv *mygv);
 char				**ft_get_path_bins(char **arr);
 void				ft_autocompl_2(char **arr, t_mygv *mygv);
-void				ft_autocompl_3(char **arr, t_mygv *mygv, char *str, int len);
-char                **ft_autocompl_dir(void);
+void				ft_autocompl_3(char **arr, t_mygv *mygv,
+									char *str, int len);
+char				**ft_autocompl_dir(void);
 void				ft_i_pgup_pgdown(unsigned i, t_mygv *mygv);
 int					ft_gnl_pro(const int fd, char **line, char ch);
 void				ft_foo_2(t_mygv *mygv);
