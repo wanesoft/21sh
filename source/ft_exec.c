@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 16:19:53 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/05 15:21:36 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/05 16:19:40 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void		ft_ungrab_arr(char **param)
 }
 
 void			ft_exec(char *str, char **arr_env,
-					char **old_result, t_stream *stream)
+						char **old_result, t_stream *stream)
 {
 	char		**param;
 	int			pipefd[2];
@@ -58,20 +58,11 @@ void			ft_exec(char *str, char **arr_env,
 	else
 	{
 		wait(0);
-		*old_result = ft_strdup("");	
+		*old_result = ft_strdup("");
 		if (stream->now_pipe != stream->all_pipe)
 			out(pipefd[0], old_result, stream);
 		close(stream->pipefd[1]);
 		close(stream->pipefd[0]);
 	}
-//	tmp2 = ft_strsplit("/bin/rm /goinfre/.tmp", ' ');
-//	father = fork();
-//	if (!father)
-//		execve(tmp2[0], tmp2, arr_env);
-//	else
-//		wait(0);
-//	ft_del_arr(&tmp2);
-//	ft_get_back(stream);
-//	ft_printf("\n\n\n%s\n\n\n", *old_result);
 	ft_del_arr(&param);
 }

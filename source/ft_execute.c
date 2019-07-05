@@ -30,7 +30,7 @@ static void		prepare(t_stream *stream, char **old_res, int pipe_fd[2])
 		if ((fd = open("/goinfre/.tmp", O_CREAT | O_RDWR | O_TRUNC,
 						S_IRWXU)) == -1)
 			return ;
-		write(fd, *old_res, ft_strlen(*old_res));
+		(*old_res) ? write(fd, *old_res, ft_strlen(*old_res)) : 0;
 		close(fd);
 		if ((fd = open("/goinfre/.tmp", O_RDWR)) == -1)
 			return ;
