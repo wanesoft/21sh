@@ -48,22 +48,7 @@ int					main(int argc, char **argv, char **env)
 	{
 		mygv->env = env_copy;
 		begin(&env_copy);
-
-		//char cmd[]="\033[6n";
-		char buf[1024];
-		ft_bzero(buf, 1024);
-		//write(1, cmd, ft_strlen(cmd));
-		ft_putstr_fd("\033[6n", 1);
-		read(0, &buf, 1024);
-//		ft_printf("%d\n", res);
-		int i;
-		for (i = 0; buf[i] != ';' && buf[i]; ++i) {}
-		++i;
-		int pos = ft_atoi(&buf[i]);
-//		ft_printf("pos is %d\n", pos);
-		if (pos > 1) {
-			ft_putstr_fd("\033[31m %\033[0m\n", 1);
-		}
+		ft_clear_mygv(ft_get_mygv(NULL));
 	}
 	return (0);
 }

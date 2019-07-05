@@ -14,6 +14,7 @@
 
 int			ft_get_max_line(char *str)
 {
+	//str = "123456789\n1234\n123454697889\n34";
 	int		i;
 	int		count;
 	int		max;

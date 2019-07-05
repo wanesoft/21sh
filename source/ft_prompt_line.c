@@ -37,9 +37,6 @@ static void		ft_prompt_line_2(t_mygv *mygv)
 		write(STDOUT_FILENO, &mygv->g_str[i], 1);
 		if (mygv->g_str[i] == '\n')
 		{
-//            ft_printf("\033[33m[line_");
-//            (stage > 9) ? 0 : write(1, "0", 1);
-//            ft_printf("%d]> \033[0m", stage);
 			ft_printf("\033[33m[line_%02d]> \033[0m", stage);
 			++stage;
 		}
@@ -47,23 +44,23 @@ static void		ft_prompt_line_2(t_mygv *mygv)
 	}
 }
 
-//static void		ft_test_width(t_mygv *mygv)
-//{
-//	int			line_test;
-//
-//	line_test = ft_get_max_line(mygv->g_str) + 11;
-//	ft_get_tty_col_ros();
-////	if (line_test > mygv->col)
-////	{
-////		mygv->g_stage = line_test / (mygv->col);
-////	}
-//}
+static void		ft_test_width(t_mygv *mygv)
+{
+	int			line_test;
+	double		d;
+
+	d = 0;
+	line_test = ft_get_max_line(mygv->g_str) + 11;
+	ft_get_tty_col_ros();
+	d = (double)line_test / (double)(mygv->col);
+	mygv->g_kos = (int)d;
+}
 
 void			ft_prompt_line(t_mygv *mygv)
 {
 	int			y;
 
-	//ft_test_width(mygv);
+	ft_test_width(mygv);
 	y = mygv->g_stage;
 	while (y >= 0)
 	{

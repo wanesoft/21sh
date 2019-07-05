@@ -14,17 +14,22 @@
 
 void			ft_restart(int sign)
 {
-	write(1, "CTRL+C\n", 7);
 	if (sign == SIGINT)
 	{
+		write(1, "CTRL+C\n", 7);
 		ft_clear_mygv(ft_get_mygv(NULL));
 		ft_prompt_line(ft_get_mygv(NULL));
 		signal(SIGINT, ft_restart);
 	}
 	if (sign == SIGTSTP)
 	{
-		exit(EXIT_SUCCESS);
+		write(1, "CTRL+D\n", 7);
+		ft_clear_mygv(ft_get_mygv(NULL));
+		ft_prompt_line(ft_get_mygv(NULL));
+		signal(SIGINT, ft_restart);
 	}
+	if (sign == SIGABRT || sign == SIGSTOP || sign == SIGKILL || sign == SIGQUIT)
+		ft_back_screen();
 }
 
 static void		ft_put_history(t_mygv *mygv)
@@ -43,30 +48,48 @@ static void		ft_put_history(t_mygv *mygv)
 	write(mygv->g_fd_w, ":", 1);
 }
 
+static void ft_handle_signal(void)
+{
+	signal(SIGINT, ft_restart);
+	signal(SIGTSTP, ft_restart);
+	signal(SIGTSTP, ft_restart);
+	signal(SIGCONT, ft_restart);
+	signal(SIGWINCH, ft_restart);
+	signal(SIGABRT, ft_restart);
+	signal(SIGSTOP, ft_restart);
+	signal(SIGKILL, ft_restart);
+	signal(SIGQUIT, ft_restart);
+}
+
+static void ft_check_n(void)
+{
+	char buf[1024];
+	ft_bzero(buf, 1024);
+	ft_putstr_fd("\033[6n", 1);
+	read(0, &buf, 1024);
+	int i;
+	for (i = 0; buf[i] != ';' && buf[i]; ++i) {}
+	++i;
+	int pos = ft_atoi(&buf[i]);
+	if (pos > 1) {
+		ft_putstr_fd("\033[31;1;7m%\033[0m\n", 1);
+	}
+}
+
 void			begin(t_vector **env)
 {
 	char		*tmp;
 	char		**arr_str;
 	int			i;
-	int			j;
 	t_mygv		*mygv;
 
 	mygv = ft_get_mygv(NULL);
-	signal(SIGINT, ft_restart);
-	signal(SIGTSTP, ft_restart);
+	ft_handle_signal();
 	ft_input();
 	ft_put_history(mygv);
-	
-	/* *** */
-	
-//	ft_printf("VOT ITOG --> %s\n", mygv->g_str);
-	
-	/* *** */
-	
 	arr_str = ft_strsplit(mygv->g_str, ';');
 	i = 0;
-	j = ft_arrlen(arr_str);
-	while (i < j)
+	while (i < ft_arrlen(arr_str))
 	{
 		tmp = ft_strjoin("_=", arr_str[i]);
 		ft_setenv(tmp, env);
@@ -75,8 +98,8 @@ void			begin(t_vector **env)
 		arr_str[i] = ft_strtrim(arr_str[i]);
 		ft_strdel(&tmp);
 		ft_prossesing(&arr_str[i], env);
+		ft_check_n();
 		++i;
 	}
 	ft_del_arr(&arr_str);
-	ft_clear_mygv(ft_get_mygv(NULL));
 }

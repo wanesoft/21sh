@@ -36,7 +36,9 @@ static void		ft_put_ctrl_v(char *buf, t_mygv *mygv)
 
 static int		ft_input_proc(unsigned i, char *buf, t_mygv *mygv)
 {
-	if (i == K_ENTER)
+	if (i == 4)
+		ft_printf("CTRL+D\n");
+	else if (i == K_ENTER)
 		return (ft_i_enter(mygv));
 	else if (i == K_DEL || i == K_BACKSP)
 		ft_del_letter(i, mygv);
@@ -62,6 +64,7 @@ char			*ft_input(void)
 	char		buf[BUF_G_STR];
 	unsigned	*temp;
 	t_mygv		*mygv;
+	
 
 	mygv = ft_get_mygv(NULL);
 	while (1)
