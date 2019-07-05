@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 14:43:18 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/06/24 18:50:49 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/05 16:25:26 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,8 @@ int					ft_difficult_redir(char ***arr_string, int i,
 
 void				ft_exec(char *str, char **arr_env,
 							char **old_result, t_stream *stream);
+
+void				ft_ungrab_arr(char **param);
 
 void				my_reopen(int *fd, int new_fd);
 void				destroy_t_stream(t_stream **tmp);

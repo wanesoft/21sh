@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 16:19:53 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/05 16:19:40 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/05 16:24:13 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,6 @@ static void		out(int fd, char **old_result, t_stream *stream)
 		bits = read(stream->pipefd[0], buff, STDMES - 1);
 		buff[bits] = 0;
 		*old_result = ft_strjoin_pro(*old_result, buff, ONLY_FIRST);
-	}
-}
-
-static void		ft_ungrab_arr(char **param)
-{
-	int			i;
-	char		*back;
-
-	i = -1;
-	while (param[++i])
-	{
-		back = param[i];
-		param[i] = ft_ungrab(param[i], 0);
-		ft_strdel(&back);
 	}
 }
 
