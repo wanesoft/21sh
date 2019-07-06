@@ -40,18 +40,24 @@ void			ft_restart(int sign)
 
 static void		ft_put_history(t_mygv *mygv)
 {
+	char		*tmp;
+
 	if (mygv->g_str[0] == '\0')
-		return;
+		return ;
 	if (mygv->g_n_his == 0)
 	{
-		write(mygv->g_fd_w, ft_itoa(mygv->g_n_his), ft_strlen(ft_itoa(mygv->g_n_his)));
+		tmp = ft_itoa(mygv->g_n_his);
+		write(mygv->g_fd_w, tmp, ft_strlen(tmp));
 		write(mygv->g_fd_w, ":", 1);
+		ft_strdel(&tmp);
 	}
 	write(mygv->g_fd_w, mygv->g_str, ft_strlen(mygv->g_str));
 	write(mygv->g_fd_w, "\t", 1);
 	++mygv->g_n_his;
-	write(mygv->g_fd_w, ft_itoa(mygv->g_n_his), ft_strlen(ft_itoa(mygv->g_n_his)));
+	tmp = ft_itoa(mygv->g_n_his);
+	write(mygv->g_fd_w, tmp, ft_strlen(tmp));
 	write(mygv->g_fd_w, ":", 1);
+	ft_strdel(&tmp);
 }
 
 static void ft_handle_signal(void)

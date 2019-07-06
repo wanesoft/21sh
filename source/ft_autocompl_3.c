@@ -12,7 +12,7 @@
 
 #include "../include/twenty_one_sh.h"
 
-void			ft_autocompl_3(char **arr, t_mygv *mygv, char *str, int len)
+void			ft_autocompl_3(char **arr, t_mygv *mygv, int len)
 {
 	int			i;
 	int			fl;

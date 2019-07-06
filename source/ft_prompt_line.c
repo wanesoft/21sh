@@ -14,7 +14,7 @@
 
 static void		ft_prompt_line_3(t_mygv *mygv)
 {
-	if (mygv->g_j == ft_strlen(mygv->g_str) && !mygv->g_y_pos)
+	if (mygv->g_j == (int)ft_strlen(mygv->g_str) && !mygv->g_y_pos)
 		ft_putstr_fd("\033[7m \033[0m", STDIN_FILENO);
 }
 

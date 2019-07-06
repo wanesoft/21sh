@@ -54,8 +54,7 @@ static int	ft_adv_out(int std, t_stream *stream, char ***arr_string, int i)
 	return (EXEC_SUCC);
 }
 
-int			ft_advanced_redir(char ***arr_string, int i,
-							t_stream *stream, int check)
+int			ft_advanced_redir(char ***arr_string, int i, t_stream *stream)
 {
 	int		ans;
 	int		std;

@@ -47,9 +47,9 @@ static int		ft_fill_redirs(char **arr_string, int i,
 	if (check != -1 && ft_check(arr_string[i + 2]) != -1)
 		return (EXEC_FAIL);
 	if (check == 6)
-		res = ft_difficult_redir(&arr_string, i, stream, check);
+		res = ft_difficult_redir(&arr_string, i, stream);
 	else if (check == 5)
-		res = ft_advanced_redir(&arr_string, i, stream, check);
+		res = ft_advanced_redir(&arr_string, i, stream);
 	else if (check >= 0)
 		res = ft_simple_redir(&arr_string, i, stream, check);
 	return (res);

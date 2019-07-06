@@ -6,7 +6,7 @@ LIB := ./libftprintf/
 
 SRC_DIR := ./source/
 
-FLAGS := -Wall -Wector -Werror
+FLAGS := -Wall -Wextra -Werror
 
 VPATH := source
 
@@ -72,10 +72,10 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@/bin/rm -f ./libftprintf/libftprintf.a
 	@make -C ./libftprintf
-	gcc $(FLAGS) -I $(INC) -L$(LIB) -lftprintf  -lreadline -ltermcap $(OBJ) -o $(NAME)
+	gcc $(FLAGS) -I $(INC) -L$(LIB) -lftprintf -ltermcap $(OBJ) -o $(NAME)
 
 %.o: %.c
-	gcc -Wall -Werror -c $< -o $@
+	gcc $(FLAGS) -c $< -o $@
 
 clean:
 	@/bin/rm -f $(OBJ)

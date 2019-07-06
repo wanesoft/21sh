@@ -45,26 +45,26 @@ static void				ft_init_history_2(t_mygv *mygv, char *str)
 
 static void				ft_init_history(t_mygv *mygv)
 {
-	char				*tmp;
 	char				*tmp2;
 	char				*tmp3;
 
-	tmp2 = (char *)malloc(sizeof(char) * BUF_G_STR);
+	tmp2 = 0;
 	tmp3 = (char *)malloc(sizeof(char) * BUF_G_STR);
-	tmp = ft_strjoin(getenv("HOME"), "/Desktop/21sh_history.txt");
-	mygv->g_fd_w = open(tmp, O_WRONLY | O_APPEND | O_CREAT, S_IRWXU);
-	mygv->g_fd_r = open(tmp, O_RDONLY | O_CREAT, S_IRWXU);
+	mygv->g_fd_w = open("/goinfre/.21sh", O_WRONLY | O_APPEND | O_CREAT, S_IRWXU);
+	mygv->g_fd_r = open("/goinfre/.21sh", O_RDONLY | O_CREAT, S_IRWXU);
 	if (mygv->g_fd_w < 0 || mygv->g_fd_r < 0)
 	{
-		ft_printf("Error open/create %s\n", tmp);
+		ft_printf("Error open/create %s\n", "/goinfre/.21sh");
 		exit(EXIT_FAILURE);
 	}
 	while (ft_gnl_pro(mygv->g_fd_r, &tmp2, '\t') > 0)
+	{
 		ft_memcpy(tmp3, tmp2, ft_strlen(tmp2));
+		ft_strdel(&tmp2);
+	}
 	ft_init_history_2(mygv, tmp3);
 	close(mygv->g_fd_r);
-	free(tmp);
-	free(tmp2);
+	ft_strdel(&tmp2);
 	free(tmp3);
 }
 

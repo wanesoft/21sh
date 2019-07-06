@@ -12,7 +12,7 @@
 
 #include "../include/twenty_one_sh.h"
 
-static void		out(int fd, char **old_result, t_stream *stream)
+static void		out(char **old_result, t_stream *stream)
 {
 	ssize_t			bits;
 	char			buff[STDMES];
@@ -30,7 +30,6 @@ void			ft_exec(char *str, char **arr_env,
 						char **old_result, t_stream *stream)
 {
 	char		**param;
-	int			pipefd[2];
 	pid_t		father;
 
 	param = ft_strsplit(str, ' ');
@@ -46,7 +45,7 @@ void			ft_exec(char *str, char **arr_env,
 		wait(0);
 		*old_result = ft_strdup("");
 		if (stream->now_pipe != stream->all_pipe)
-			out(pipefd[0], old_result, stream);
+			out(old_result, stream);
 		close(stream->pipefd[1]);
 		close(stream->pipefd[0]);
 	}

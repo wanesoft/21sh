@@ -28,7 +28,7 @@ static void		ft_strlen_pro(int *arr, int j, char *str, int flag)
 	}
 }
 
-static void		ft_up(unsigned i, t_mygv *mygv)
+static void		ft_up(t_mygv *mygv)
 {
 	int			arr[2];
 
@@ -44,7 +44,7 @@ static void		ft_up(unsigned i, t_mygv *mygv)
 	return ;
 }
 
-static void		ft_down(unsigned i, t_mygv *mygv)
+static void		ft_down(t_mygv *mygv)
 {
 	int			arr[2];
 
@@ -66,9 +66,9 @@ void			ft_i_arrow_u_d(unsigned i, t_mygv *mygv)
 {
 	ft_foo_2(mygv);
 	if (i == K_UP)
-		ft_up(i, mygv);
+		ft_up(mygv);
 	else if (i == K_DOWN)
-		ft_down(i, mygv);
+		ft_down(mygv);
 	else if (i == K_HOME)
 	{
 		while (mygv->g_j > 0 && mygv->g_str[mygv->g_j - 1] != '\n')
@@ -81,6 +81,6 @@ void			ft_i_arrow_u_d(unsigned i, t_mygv *mygv)
 	}
 	if (mygv->g_j < 0)
 		mygv->g_j = 0;
-	if (mygv->g_j > ft_strlen(mygv->g_str))
+	if (mygv->g_j > (int)ft_strlen(mygv->g_str))
 		mygv->g_j = (int)ft_strlen(mygv->g_str);
 }

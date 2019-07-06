@@ -86,6 +86,7 @@ char			**ft_strsplit(char const *s, char c)
 
 	i = 0;
 	tmp = 0;
+    arr = 0;
 	if (!s)
 		return (NULL);
 	while (*s && *s == c)

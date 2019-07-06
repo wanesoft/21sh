@@ -17,7 +17,7 @@ static void		ft_put_his_g_str(t_mygv *mygv, int find)
 	char		*tmp;
 	char		**arr;
 
-	tmp = (char *)malloc(sizeof(char) * BUF_G_STR);
+	tmp = 0;
 	while (ft_gnl_pro(mygv->g_fd_r, &tmp, '\t') > 0)
 	{
 		arr = ft_strsplit(tmp, ':');
@@ -29,14 +29,15 @@ static void		ft_put_his_g_str(t_mygv *mygv, int find)
 			ft_memcpy(mygv->g_str, arr[1], ft_strlen(arr[1]));
 			mygv->g_j = (int)ft_strlen(arr[1]);
 		}
+		ft_strdel(&tmp);
 		ft_del_arr(&arr);
 	}
-	free(tmp);
+	ft_strdel(&tmp);
 }
 
 static int		ft_foo(int bar, unsigned max)
 {
-	if (bar > max)
+	if (bar > (int)max)
 		return (max);
 	else if (bar <= 1)
 		return (1);
@@ -76,7 +77,6 @@ void			ft_for_misha(t_mygv *mygv)
 void			ft_i_pgup_pgdown(unsigned i, t_mygv *mygv)
 {
 	int			find;
-	char		*tmp;
 
 	ft_muli(i, mygv);
 	if (mygv->g_c_his < 1)
@@ -90,14 +90,12 @@ void			ft_i_pgup_pgdown(unsigned i, t_mygv *mygv)
 	ft_for_misha(mygv);
 	mygv->g_c_his = ft_foo(mygv->g_c_his, mygv->g_n_his);
 	find = mygv->g_n_his - mygv->g_c_his;
-	tmp = ft_strjoin(getenv("HOME"), "/Desktop/21sh_history.txt");
-	mygv->g_fd_r = open(tmp, O_RDONLY | O_CREAT, S_IRWXU);
+	mygv->g_fd_r = open("/goinfre/.21sh", O_RDONLY | O_CREAT, S_IRWXU);
 	if (mygv->g_fd_r < 0)
 	{
-		ft_printf("Error open/create !!IN THE INPUT!! %s\n", tmp);
+		ft_printf("Error open/create !!IN THE INPUT!! %s\n", "/goinfre/.21sh");
 		exit(EXIT_FAILURE);
 	}
 	ft_put_his_g_str(mygv, find);
-	free(tmp);
 	close(mygv->g_fd_r);
 }

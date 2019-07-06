@@ -56,8 +56,7 @@ static void		ft_del_str_from_array(char ***arr_string, int i)
 	(*arr_string)[i + 2] = ft_strdup("");
 }
 
-int				ft_difficult_redir(char ***arr_string, int i,
-									t_stream *stream, int check)
+int				ft_difficult_redir(char ***arr_string, int i, t_stream *stream)
 {
 	int			ans;
 	int			std_beg;

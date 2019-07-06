@@ -137,10 +137,8 @@ void				ft_execute(char *str, t_vector **env);
 int					ft_get_redir(char **string, t_stream *stream);
 int					ft_simple_redir(char ***arr_string, int i,
 										t_stream *stream, int check);
-int					ft_advanced_redir(char ***arr_string, int i,
-										t_stream *stream, int check);
-int					ft_difficult_redir(char ***arr_string, int i,
-										t_stream *stream, int check);
+int					ft_advanced_redir(char ***arr_string, int i, t_stream *stream);
+int					ft_difficult_redir(char ***arr_string, int i, t_stream *stream);
 
 void				ft_exec(char *str, char **arr_env,
 							char **old_result, t_stream *stream);
@@ -177,8 +175,7 @@ void				ft_get_tty_col_ros(void);
 void				ft_autocompl(t_mygv *mygv);
 char				**ft_get_path_bins(char **arr);
 void				ft_autocompl_2(char **arr, t_mygv *mygv);
-void				ft_autocompl_3(char **arr, t_mygv *mygv,
-									char *str, int len);
+void				ft_autocompl_3(char **arr, t_mygv *mygv, int len);
 char				**ft_autocompl_dir(void);
 void				ft_i_pgup_pgdown(unsigned i, t_mygv *mygv);
 int					ft_gnl_pro(const int fd, char **line, char ch);

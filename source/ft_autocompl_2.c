@@ -97,7 +97,7 @@ void			ft_autocompl_2(char **arr, t_mygv *mygv)
 		++i;
 	else
 	{
-		ft_autocompl_3(equ, mygv, str, count);
+		ft_autocompl_3(equ, mygv, count);
 		ft_print_equ(equ, mygv->g_stage);
 	}
 	ft_del_arr(&equ);
