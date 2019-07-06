@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 18:31:12 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/04 18:46:26 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/06 20:40:10 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,23 @@ static int		ft_prep_for_execute(char **turn_str, t_stream *stream,
 									char **old_result, t_vector **env)
 {
 	char		**arr_env;
+	pid_t		main;
 
-	arr_env = ft_vector_to_arr(env);
 	if (ft_get_redir(turn_str, stream) == EXEC_FAIL)
 		return (EXEC_FAIL);
-	pipe(stream->pipefd);
-	prepare(stream, old_result, stream->pipefd);
-	ft_change_std(stream);
-	if (ft_forward(*turn_str, env) == EXEC_FAIL)
-		ft_exec(*turn_str, arr_env, old_result, stream);
-	ft_del_arr(&arr_env);
+	if ((main = fork()) == -1)
+		return (EXEC_FAIL);
+	if (!main)
+	{
+		arr_env = ft_vector_to_arr(env);
+		pipe(stream->pipefd);
+		prepare(stream, old_result, stream->pipefd);
+		ft_change_std(stream);
+		if (ft_forward(*turn_str, env) == EXEC_FAIL)
+			ft_exec(*turn_str, arr_env, old_result, stream);
+		ft_del_arr(&arr_env);
+		exit(0);
+	}
 	return (EXEC_SUCC);
 }
 
