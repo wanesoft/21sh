@@ -172,7 +172,7 @@ void				ft_del_letter(unsigned i, t_mygv *mygv);
 void				ft_i_arrow_l_r(unsigned i, t_mygv *mygv);
 void				ft_i_arrow_u_d(unsigned i, t_mygv *mygv);
 void				ft_prompt_line(t_mygv *mygv);
-void				ft_back_screen(void);
+void				ft_back_screen(int signo);
 void				ft_get_tty_col_ros(void);
 void				ft_autocompl(t_mygv *mygv);
 char				**ft_get_path_bins(char **arr);
@@ -193,5 +193,7 @@ int					ft_len_stack(t_stack *head);
 void				ft_grab(char **s, int i, int j);
 char				*ft_ungrab(char *s, int i);
 int					ft_pre_heredoc(t_mygv *mygv);
+void				ft_del_stack(t_stack **head);
+void				ft_change_heredoc(t_mygv *mygv);
 
 #endif

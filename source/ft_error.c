@@ -28,5 +28,4 @@ void	ft_error(int error, char *str)
 		write(2, ": Not a directory\n", 18);
 	else if (error == REDICTFAIL)
 		write(2, "Fail with redirection or pipe\n", 30);
-	write(1, "\n", 1);
 }

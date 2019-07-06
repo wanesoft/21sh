@@ -48,12 +48,22 @@ static void		ft_test_width(t_mygv *mygv)
 {
 	int			line_test;
 	double		d;
-
-	d = 0;
-	line_test = ft_get_max_line(mygv->g_str) + 11;
-	ft_get_tty_col_ros();
-	d = (double)line_test / (double)(mygv->col);
-	mygv->g_kos = (int)d;
+	char		**arr;
+	int			i;
+	
+	i = 0;
+	mygv->g_kos = 0;
+	arr = ft_strsplit(mygv->g_str, '\n');
+	while (arr[i])
+	{
+		d = 0;
+		line_test = ft_get_max_line(arr[i]) + 11;
+		ft_get_tty_col_ros();
+		d = (double)line_test / (double)(mygv->col);
+		mygv->g_kos += (int)d;
+		++i;
+	}
+	ft_del_arr(&arr);
 }
 
 void			ft_prompt_line(t_mygv *mygv)

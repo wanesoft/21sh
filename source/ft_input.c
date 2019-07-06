@@ -25,10 +25,14 @@
 static void		ft_put_ctrl_v(char *buf, t_mygv *mygv)
 {
 	int			i;
+	int			ck;
 
+	ck = (int)ft_strlen(mygv->g_str);
 	i = 0;
 	while (buf[i])
 	{
+		if ((i + ck) == BUF_G_STR - 1)
+			return ;
 		ft_put_letter(buf[i], mygv);
 		++i;
 	}
@@ -37,7 +41,10 @@ static void		ft_put_ctrl_v(char *buf, t_mygv *mygv)
 static int		ft_input_proc(unsigned i, char *buf, t_mygv *mygv)
 {
 	if (i == 4)
+	{
 		ft_printf("CTRL+D\n");
+		ft_clear_mygv(mygv);
+	}
 	else if (i == K_ENTER)
 		return (ft_i_enter(mygv));
 	else if (i == K_DEL || i == K_BACKSP)
@@ -45,7 +52,10 @@ static int		ft_input_proc(unsigned i, char *buf, t_mygv *mygv)
 	else if (i == K_TAB)
 		ft_autocompl(mygv);
 	else if (i == K_ESC)
-		exit(1); //ft_clear_mygv(&mygv);
+	{
+		write(STDOUT_FILENO, "\n", 1);
+		ft_bye(&(mygv->env));
+	}
 	else if (i == K_LEFT || i == K_RIGHT)
 		ft_i_arrow_l_r(i, mygv);
 	else if (i == K_UP || i == K_DOWN || i == K_HOME || i == K_END)

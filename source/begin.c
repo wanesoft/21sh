@@ -23,13 +23,19 @@ void			ft_restart(int sign)
 	}
 	if (sign == SIGTSTP)
 	{
-		write(1, "CTRL+D\n", 7);
-		ft_clear_mygv(ft_get_mygv(NULL));
+		write(1, "CTRL+Z\n", 7);
+		ft_back_screen(sign);
+		signal(SIGTSTP, SIG_DFL);
+		ioctl(STDERR_FILENO, TIOCSTI, "\x1A");
+	}
+	if (sign == SIGCONT)
+	{
+		ft_init_screen();
 		ft_prompt_line(ft_get_mygv(NULL));
-		signal(SIGINT, ft_restart);
+		signal(SIGCONT, ft_restart);
 	}
 	if (sign == SIGABRT || sign == SIGSTOP || sign == SIGKILL || sign == SIGQUIT)
-		ft_back_screen();
+		ft_back_screen(0);
 }
 
 static void		ft_put_history(t_mygv *mygv)
@@ -51,7 +57,6 @@ static void		ft_put_history(t_mygv *mygv)
 static void ft_handle_signal(void)
 {
 	signal(SIGINT, ft_restart);
-	signal(SIGTSTP, ft_restart);
 	signal(SIGTSTP, ft_restart);
 	signal(SIGCONT, ft_restart);
 	signal(SIGWINCH, ft_restart);

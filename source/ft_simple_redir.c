@@ -33,6 +33,7 @@ static int	simple_in(char ***arr_string, int i,
 						S_IRWXU)) == -1)
 			return (EXEC_FAIL);
 		write(fd, tmp, ft_strlen(tmp));
+//		write(fd, "\n", 1);
 		ft_strdel(&tmp);
 		close(fd);
 		if ((fd = open("/goinfre/.tmp", O_RDONLY)) == -1)

@@ -14,7 +14,6 @@
 
 void			ft_i_arrow_l_r(unsigned i, t_mygv *mygv)
 {
-	mygv->g_kos = 0;
 	ft_foo_2(mygv);
 	if (i == K_RIGHT && mygv->g_j < ft_strlen(mygv->g_str))
 	{

@@ -40,6 +40,7 @@ int					main(int argc, char **argv, char **env)
 	env_copy = ft_arr_to_vector(env);
 	if (!(mygv = (t_mygv *)malloc(sizeof(t_mygv))))
 		exit(EXIT_FAILURE);
+	mygv->grab = NULL;
 	tcgetattr(STDIN_FILENO, &(mygv->old));
 	ft_clear_mygv(mygv);
 	ft_get_mygv(mygv);

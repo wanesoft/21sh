@@ -40,6 +40,8 @@ int			ft_get_max_line(char *str)
 
 void		ft_put_letter(unsigned i, t_mygv *mygv)
 {
+	if (mygv->g_j > BUF_G_STR - 1)
+		return;
 	ft_foo_2(mygv);
 	ft_memmove(&mygv->g_str[mygv->g_j + 1],
 				&mygv->g_str[mygv->g_j],

@@ -15,9 +15,9 @@ static char			*ft_get_target(char *iter)
 	return (res);
 }
 
-static int			ft_heredoc_solver(char *target, char **arr)
+static int			ft_heredoc_solver(char *target, char **arr, int mode)
 {
-	if (*arr)
+	if (*arr && mode == 1)
 		++arr;
 	while (*arr)
 	{
@@ -33,6 +33,7 @@ static int			ft_heredoc(char *iter)
 	char			**arr;
 	int				res;
 	char			*target;
+	char			*tmp;
 
 	res = 1;
 	if (iter)
@@ -40,19 +41,12 @@ static int			ft_heredoc(char *iter)
 	else
 		return (0);
 	target = ft_get_target(iter);
-
-	char			*tmp;
 	int				i = 0;
-	while (iter[i] && iter[i] != '<' && iter[i] != '|' && iter[i] != ';')
+	while (iter[i] && iter[i] != '<' && iter[i] != '|' && iter[i] != ';' && iter[i] != '>' && iter[i] != '&')
 		++i;
 	tmp = ft_strndup(iter, i);
-	int len = (int)ft_strlen(tmp);
-	if (len > 0 && tmp[len - 1] == ' ')
-		tmp[len - 1] = '\n';
-
 	arr = ft_strsplit(tmp, '\n');
-	res = ft_heredoc_solver(target, arr);
-
+	res = ft_heredoc_solver(target, arr, 1);
 	ft_get_mygv(NULL)->target = target;
 	ft_del_arr(&arr);
 	return (!res);
@@ -60,7 +54,7 @@ static int			ft_heredoc(char *iter)
 
 int					ft_is_delim(char c, char d)
 {
-	if (c == ';' || c == '|' || (c == '<' && d == '<'))
+	if (c == ';' || c == '|' || (c == '<' && d == '<') || c == '>')
 		return (1);
 	return (0);
 }
@@ -75,40 +69,10 @@ static void			ft_should_go(t_mygv *mygv, int mode)
 	}
 }
 
-void ft_change_heredoc(t_mygv *mygv) {
-	char *iter = ft_strstr(&mygv->g_str[mygv->cur_her], "<<");
-//	ft_memmove(iter, iter + 2, ft_strlen(iter) + 1);
-	iter += 2;
-	while (*iter == ' ')
-		++iter;
-	ft_memmove(iter, iter + (int)ft_strlen(mygv->target), ft_strlen(mygv->g_str) + 1);
-	if (*iter == '\n')
-		mygv->g_kos++;
-	*iter = '"';
-
-	char *tmp = ft_strjoin("\n", mygv->target);
-	char *tmp2 = ft_strjoin(tmp, "\n");
-	iter = ft_strstr(mygv->g_str, tmp2);
-	if (!iter)
-		iter = ft_strstr(mygv->g_str, tmp);
-	if (!iter)
-		iter = ft_strstr(mygv->g_str, mygv->target);
-	//iter = ft_strstr(mygv->g_str, tmp);
-	if (*iter == '\n')
-		mygv->g_kos++;
-	while (*iter == '\n')
-		ft_memmove(iter, iter + 1, ft_strlen(iter) + 1);
-	*(iter) = '"';
-	++iter;
-	ft_memmove(iter, iter + (int)ft_strlen(mygv->target) - 1, ft_strlen(iter) + 1);
-	ft_strdel(&mygv->target);
-}
-
 int					ft_pre_heredoc(t_mygv *mygv)
 {
 	int				tmp;
 
-//	mygv->cur_her = 0;
 	mygv->g_kos = 0;
 	while (mygv->g_str[mygv->cur_her])
 	{
@@ -121,7 +85,7 @@ int					ft_pre_heredoc(t_mygv *mygv)
 				if (!tmp)
 				{
 					ft_change_heredoc(mygv);
-					++mygv->cur_her;
+					mygv->cur_her++;
 					ft_should_go(mygv, 1);
 					return ((int)(ft_strstr(&mygv->g_str[mygv->cur_her], "<<")));
 				}

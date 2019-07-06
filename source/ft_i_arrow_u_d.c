@@ -64,7 +64,6 @@ static void		ft_down(unsigned i, t_mygv *mygv)
 
 void			ft_i_arrow_u_d(unsigned i, t_mygv *mygv)
 {
-	mygv->g_kos = 0;
 	ft_foo_2(mygv);
 	if (i == K_UP)
 		ft_up(i, mygv);

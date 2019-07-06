@@ -51,14 +51,20 @@ void				ft_foo_3(t_mygv *mygv)
 	}
 }
 
-void				ft_back_screen(void)
+void				ft_back_screen(int signo)
 {
 	t_mygv			*mygv;
 
 	mygv = ft_get_mygv(NULL);
+	ft_del_stack(&mygv->grab);
 	tcsetattr(STDIN_FILENO, TCSANOW, &mygv->old);
 	ft_putstr_fd(tgetstr("ve", NULL), STDIN_FILENO);
 	ft_putstr_fd("\033[0m", STDIN_FILENO);
 	close(mygv->g_fd_w); //zakryl!
-	//del mygv
+	free(mygv);
+	if (signo == SIGTSTP)
+	{
+		signal(SIGTSTP, SIG_DFL);
+		ioctl(STDERR_FILENO, TIOCSTI, "\x1A");
+	}
 }
