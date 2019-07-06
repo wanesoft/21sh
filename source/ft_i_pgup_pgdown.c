@@ -22,7 +22,10 @@ static void		ft_put_his_g_str(t_mygv *mygv, int find)
 	{
 		arr = ft_strsplit(tmp, ':');
 		if (!arr || !arr[0] || !arr[1])
+		{
+			ft_del_arr(&arr);
 			break ;
+		}
 		if (ft_atoi(arr[0]) == find)
 		{
 			ft_bzero(mygv->g_str, BUF_G_STR);

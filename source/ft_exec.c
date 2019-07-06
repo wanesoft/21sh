@@ -49,5 +49,6 @@ void			ft_exec(char *str, char **arr_env,
 		(stream->pipefd[1] != -1) ? close(stream->pipefd[1]) : 0;
 		(stream->pipefd[0] != -1) ? close(stream->pipefd[0]) : 0;
 	}
+	ft_putstr_fd(tgetstr("vi", NULL), STDIN_FILENO);
 	ft_del_arr(&param);
 }

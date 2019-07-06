@@ -12,6 +12,13 @@
 
 #include "../include/twenty_one_sh.h"
 
+int					ft_is_delim(char c, char d)
+{
+	if (c == ';' || c == '|' || (c == '<' && d == '<') || c == '>')
+		return (1);
+	return (0);
+}
+
 static void			ft_change_heredoc_2(t_mygv *mygv)
 {
 	char			*iter;

@@ -44,7 +44,10 @@ char			*ft_ungrab(char *s, int i)
 	while (ss[i])
 	{
 		if (ss[i] == -50)
+		{
 			ft_add_to_str(&ss, i, ft_atoi(&ss[i + 1]));
+			i = -1;
+		}
 		++i;
 	}
 	return (ss);
