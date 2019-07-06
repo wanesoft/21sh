@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_heredoc.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: draynor <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/06 17:05:12 by draynor           #+#    #+#             */
+/*   Updated: 2019/07/06 17:05:14 by draynor          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/twenty_one_sh.h"
 
@@ -34,6 +45,7 @@ static int			ft_heredoc(char *iter)
 	int				res;
 	char			*target;
 	char			*tmp;
+	int				i;
 
 	res = 1;
 	if (iter)
@@ -41,7 +53,7 @@ static int			ft_heredoc(char *iter)
 	else
 		return (0);
 	target = ft_get_target(iter);
-	int				i = 0;
+	i = 0;
 	while (iter[i] && iter[i] != '<' && iter[i] != '|' && iter[i] != ';' && iter[i] != '>' && iter[i] != '&')
 		++i;
 	tmp = ft_strndup(iter, i);
@@ -50,13 +62,6 @@ static int			ft_heredoc(char *iter)
 	ft_get_mygv(NULL)->target = target;
 	ft_del_arr(&arr);
 	return (!res);
-}
-
-int					ft_is_delim(char c, char d)
-{
-	if (c == ';' || c == '|' || (c == '<' && d == '<') || c == '>')
-		return (1);
-	return (0);
 }
 
 static void			ft_should_go(t_mygv *mygv, int mode)

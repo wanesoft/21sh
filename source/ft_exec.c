@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/24 16:19:53 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/06 19:00:25 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/06 20:42:20 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ void			ft_exec(char *str, char **arr_env,
 		(stream->pipefd[1] != -1) ? close(stream->pipefd[1]) : 0;
 		(stream->pipefd[0] != -1) ? close(stream->pipefd[0]) : 0;
 	}
+	ft_putstr_fd(tgetstr("vi", NULL), STDIN_FILENO);
 	ft_del_arr(&param);
 }

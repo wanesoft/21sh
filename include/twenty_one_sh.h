@@ -192,5 +192,6 @@ char				*ft_ungrab(char *s, int i);
 int					ft_pre_heredoc(t_mygv *mygv);
 void				ft_del_stack(t_stack **head);
 void				ft_change_heredoc(t_mygv *mygv);
+int					ft_is_delim(char c, char d);
 
 #endif

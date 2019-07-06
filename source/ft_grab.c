@@ -57,6 +57,7 @@ static void		ft_grab_2(char **s, int i, int j)
 	(*s)[i] = -50;
 	len = ft_len_stack(mygv->grab);
 	++i;
+	ft_strdel(&tmp);
 	ft_grab_3(s, i, j, len);
 }
 

@@ -55,7 +55,7 @@ void		ft_space_for_redirs(char **str)
 
 	if (!(tmp_str = (char *)malloc((sizeof(char) * ft_strlen(*str)) * 3 + 1)))
 		return ;
-	bzero(tmp_str, ft_strlen(*str) * 3 + 1);
+	ft_bzero(tmp_str, ft_strlen(*str) * 3 + 1);
 	i_old = 0;
 	i_new = 0;
 	while ((*str)[i_old])
