@@ -15,13 +15,16 @@
 int					file_check(char *path, int type, int rights, char *command)
 {
 	struct stat		buf;
+	struct stat		buf2;
 
 	if (!access(path, F_OK))
 	{
 		lstat(path, &buf);
-		if ((type == BIN &&
-					(S_ISREG(buf.st_mode) || S_ISLNK(buf.st_mode))) ||
-			(type == FOLD && S_ISDIR(buf.st_mode)))
+		stat(path, &buf2);
+		if ((type == BIN && (S_ISREG(buf.st_mode) ||
+							(S_ISLNK(buf.st_mode) && S_ISREG(buf2.st_mode)))) ||
+			(type == FOLD && (S_ISDIR(buf.st_mode) ||
+							(S_ISLNK(buf.st_mode) && S_ISDIR(buf2.st_mode)))))
 		{
 			if (!access(path, rights))
 				return (1);

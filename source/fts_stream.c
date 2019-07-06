@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 15:30:32 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/04 15:24:07 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/06 17:05:36 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_stream		*ft_create_stream(int all_pipe)
 
 void			my_reopen(int *fd, int new_fd)
 {
-	if (*fd == -1)
+	if (*fd != -1)
 		close(*fd);
 	*fd = new_fd;
 }
