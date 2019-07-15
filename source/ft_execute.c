@@ -50,7 +50,7 @@ static int		ft_prep_for_execute(char **turn_str, char **arr_env,
 //		close(ft_get_mygv(NULL)->g_fd_w);
 		if (ft_forward(*turn_str, arr_env) == EXEC_FAIL)
 			ft_exec(arr_env, *param);
-		exit(EXEC_SUCC);
+		exit(EXEC_FAIL);
 	}
 	((t_stream *)tmp->content)->proc = main;
 	return (EXEC_SUCC);
