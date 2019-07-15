@@ -17,7 +17,7 @@ void			ft_check_n(void)
 	char		buf[1024];
 	int			i;
 	int			pos;
-	
+
 	i = 0;
 	ft_bzero(buf, 1024);
 	ft_putstr_fd("\033[6n", 1);

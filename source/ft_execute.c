@@ -43,11 +43,8 @@ static int		ft_prep_for_execute(char **turn_str, char **arr_env,
 		return (EXEC_FAIL);
 	if (!main)
 	{
-//		ft_back_screen(0);
 		ft_change_std((t_stream *)tmp->content);
 		ft_close_std(ft_get_myproc(0, 0));
-//		close(ft_get_mygv(NULL)->g_fd_r);
-//		close(ft_get_mygv(NULL)->g_fd_w);
 		if (ft_forward(*turn_str, arr_env) == EXEC_FAIL)
 			ft_exec(arr_env, *param);
 		exit(EXEC_FAIL);
@@ -56,14 +53,33 @@ static int		ft_prep_for_execute(char **turn_str, char **arr_env,
 	return (EXEC_SUCC);
 }
 
+void			ft_del_vector2(t_vector **chain)
+{
+	if (!chain || !(*chain))
+		return ;
+	if ((*chain)->previous)
+		((*chain)->previous)->next = (*chain)->next;
+	if ((*chain)->next)
+		((*chain)->next)->previous = (*chain)->previous;
+	(*chain)->next = 0;
+	(*chain)->previous = 0;
+	if ((*chain)->content != 0)
+	{
+		free((*chain)->content);
+		(*chain)->content = 0;
+	}
+	free(*chain);
+	*chain = 0;
+}
+
 static void		ft_wait(int	left_proc)
 {
 	pid_t		tmp;
 	t_vector	*my_proc;
 	t_vector	*my_proc_to_beg;
-	//t_stream	**ok;
-	//t_vector	*tmp_v;
-	
+	t_stream	**ok;
+	t_vector	*tmp_v;
+
 	while (left_proc > 0)
 	{
 		my_proc = ft_get_myproc(0, 0);
@@ -79,11 +95,11 @@ static void		ft_wait(int	left_proc)
 					tmp = waitpid(((t_stream *)my_proc_to_beg->content)->proc, 0, WNOHANG);
 					if (!tmp)
 						kill(((t_stream *)my_proc_to_beg->content)->proc, SIGKILL);
-					//ok = (t_stream **)(&my_proc_to_beg->content);
-					//ft_destroy_t_stream(ok);
-					//tmp_v = my_proc_to_beg;
+					ok = (t_stream **)(&my_proc_to_beg->content);
+					ft_destroy_t_stream(ok);
+					tmp_v = my_proc_to_beg;
 					my_proc_to_beg = my_proc_to_beg->previous;
-					//ft_del_vector(&tmp_v);
+					ft_del_vector2(&tmp_v);
 					--left_proc;
 				}
 				ft_get_myproc(my_proc, 1);

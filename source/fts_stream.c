@@ -56,6 +56,6 @@ void			ft_destroy_t_stream(t_stream **stream)
 	(*stream)->std_now[2] = 0;
 	free((*stream)->std_now);
 	(*stream)->std_now = 0;
-	free(stream);
-	stream = 0;
+	free(*stream);
+	*stream = 0;
 }

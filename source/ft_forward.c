@@ -32,8 +32,6 @@ static int		ft_distribution(char *command, char *str, t_vector **env)
 		ft_setenv(str + 6, env);
 	else if (ft_strequ(command, "unsetenv"))
 		ft_unsetenv(str + 8, env);
-	else if (ft_strequ(command, "exit"))
-		return (EXEC_SUCC);
 	else if (ft_strequ(command, "--help"))
 		ft_help();
 	else if (ft_strequ(command, "addenv"))
