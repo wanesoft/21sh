@@ -76,10 +76,10 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@/bin/rm -f ./libftprintf/libftprintf.a
 	@make -C ./libftprintf
-	gcc $(FLAGS) -I $(INC) -L$(LIB) -lftprintf -ltermcap $(OBJ) -o $(NAME) -g
+	gcc $(FLAGS) -I $(INC) -L$(LIB) -lftprintf -ltermcap $(OBJ) -o $(NAME)
 
 %.o: %.c
-	gcc $(FLAGS) -c $< -o $@ -g
+	gcc $(FLAGS) -c $< -o $@
 
 clean:
 	@/bin/rm -f $(OBJ)

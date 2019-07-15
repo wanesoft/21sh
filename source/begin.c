@@ -73,27 +73,30 @@ static void ft_handle_signal(void)
 	signal(SIGQUIT, ft_restart);
 }
 
-static void ft_check_n(void)
+static void		ft_pre_begin(char **arr_str, t_vector **env, int i)
 {
-	char buf[1024];
-	ft_bzero(buf, 1024);
-	ft_putstr_fd("\033[6n", 1);
-	read(0, &buf, 1024);
-	int i;
-	for (i = 0; buf[i] != ';' && buf[i]; ++i) {}
-	++i;
-	int pos = ft_atoi(&buf[i]);
-	if (pos > 1) {
-		ft_putstr_fd("\033[31;1;7m%\033[0m\n", 1);
-	}
+	char		*tmp;
+	t_mygv		*mygv;
+	
+	mygv = ft_get_mygv(NULL);
+	tmp = ft_strjoin("_=", arr_str[i]);
+	ft_setenv(tmp, env);
+	ft_strdel(&tmp);
+	tmp = arr_str[i];
+	arr_str[i] = ft_strtrim(arr_str[i]);
+	ft_strdel(&tmp);
+	ft_prossesing(&arr_str[i], env);
+	ft_clear_mygv(mygv);
+	ft_init_screen();
+	ft_check_n();
 }
 
 void			begin(t_vector **env)
 {
-	char		*tmp;
 	char		**arr_str;
 	int			i;
 	t_mygv		*mygv;
+	char		*tmp;
 
 	mygv = ft_get_mygv(NULL);
 	ft_handle_signal();
@@ -103,16 +106,15 @@ void			begin(t_vector **env)
 	i = 0;
 	while (i < ft_arrlen(arr_str))
 	{
-		tmp = ft_strjoin("_=", arr_str[i]);
-		ft_setenv(tmp, env);
-		ft_strdel(&tmp);
 		tmp = arr_str[i];
 		arr_str[i] = ft_strtrim(arr_str[i]);
 		ft_strdel(&tmp);
-		ft_prossesing(&arr_str[i], env);
-		ft_clear_mygv(mygv);
-		ft_init_screen();
-		ft_check_n();
+		if (ft_strequ(arr_str[i], "exit"))
+		{
+			ft_del_arr(&arr_str);
+			ft_bye(env);
+		}
+		ft_pre_begin(arr_str, env, i);
 		++i;
 	}
 	ft_clear_mygv(mygv);
