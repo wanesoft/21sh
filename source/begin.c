@@ -26,6 +26,7 @@ void			ft_restart(int sign)
 		write(1, "CTRL+Z\n", 7);
 		ft_back_screen(sign);
 		signal(SIGTSTP, SIG_DFL);
+		exit(EXIT_FAILURE);
 		ioctl(STDERR_FILENO, TIOCSTI, "\x1A");
 	}
 	if (sign == SIGCONT)
@@ -109,8 +110,12 @@ void			begin(t_vector **env)
 		arr_str[i] = ft_strtrim(arr_str[i]);
 		ft_strdel(&tmp);
 		ft_prossesing(&arr_str[i], env);
+		ft_clear_mygv(mygv);
+		ft_init_screen();
 		ft_check_n();
 		++i;
 	}
+	ft_clear_mygv(mygv);
+	ft_init_screen();
 	ft_del_arr(&arr_str);
 }
