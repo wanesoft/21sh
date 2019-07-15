@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 14:43:18 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/05 17:31:50 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/08 14:58:13 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,10 @@ typedef struct		s_var_env
 
 typedef struct		s_stream
 {
-	int				save_std[3];
-	int				std_now[3];
+	int				*std_now;
 	int				all_pipe;
 	int				now_pipe;
-	int				pipefd[2];
+	pid_t			proc;
 }					t_stream;
 
 typedef struct		s_stack
@@ -109,7 +108,9 @@ void				ft_prossesing(char **str, t_vector **env);
 
 void				ft_space_for_redirs(char **str);
 
-int					ft_forward(char *str, t_vector **env);
+t_vector			*ft_arr_to_vector(char **arr_env);
+
+int					ft_forward(char *str, char **arr_env);
 
 void				ft_replacment(char **str, t_vector **env);
 int					ft_prep_for_pipes(char *str, char **prep_pipes,
@@ -134,21 +135,27 @@ void				ft_error(int error, char *str);
 
 void				ft_execute(char *str, t_vector **env);
 
+
+t_vector			*create_vect_for_pipes(int arr_len);
+
 int					ft_get_redir(char **string, t_stream *stream);
 int					ft_simple_redir(char ***arr_string, int i,
 										t_stream *stream, int check);
 int					ft_advanced_redir(char ***arr_string, int i, t_stream *stream);
 int					ft_difficult_redir(char ***arr_string, int i, t_stream *stream);
 
-void				ft_exec(char *str, char **arr_env,
-							char **old_result, t_stream *stream);
+t_vector			*ft_get_myproc(t_vector *my_vect, int mode);
+
+void				ft_change_std(t_stream *stream);
+void				ft_close_std(t_vector *beg);
+
+void				ft_exec(char **arr_env, char **param);
 
 void				ft_ungrab_arr(char **param);
 
 void				my_reopen(int *fd, int new_fd);
-void				destroy_t_stream(t_stream **tmp);
-t_stream			*ft_create_stream(int all_pipe);
-void				ft_get_back(t_stream *tmp);
+void				ft_destroy_t_stream(t_stream **stream);
+t_stream			*ft_create_t_stream(int now_pipe, int all_pipe);
 
 char				**ft_vector_to_arr(t_vector **env);
 

@@ -62,6 +62,10 @@ SRC :=	ft_autocompl.c\
 		ft_heredoc.c\
 		ft_ungrab_arr.c\
 		ft_change_heredoc.c\
+		ft_get_myproc.c\
+		prep_vect_for_pipes.c\
+		std_operations.c\
+		helen_and_friends.c
 
 SRC := $(addprefix $(SRC_DIR), $(SRC))
 

@@ -6,13 +6,13 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 15:33:51 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/04 14:56:24 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/07 10:11:15 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/twenty_one_sh.h"
 
-static void	ft_help(void)
+static void		ft_help(void)
 {
 	ft_printf("setenv   - установить переменную окружения\n");
 	ft_printf("unsetenv - удалить переменную окружения\n");
@@ -24,7 +24,7 @@ static void	ft_help(void)
 	ft_printf("echo     - вывести текст\n");
 }
 
-static int	ft_distribution(char *command, char *str, t_vector **env)
+static int		ft_distribution(char *command, char *str, t_vector **env)
 {
 	if (ft_strequ(command, "cd"))
 		ft_cd(str, env);
@@ -47,12 +47,13 @@ static int	ft_distribution(char *command, char *str, t_vector **env)
 	return (EXEC_SUCC);
 }
 
-int			ft_forward(char *str, t_vector **env)
+int				ft_forward(char *str, char **arr_env)
 {
-	char	*command;
-	char	*back;
-	int		i;
-	int		ans;
+	char		*command;
+	char		*back;
+	int			i;
+	int			ans;
+	t_vector	*env;
 
 	i = 0;
 	while (str[i] && str[i] != ' ')
@@ -61,8 +62,10 @@ int			ft_forward(char *str, t_vector **env)
 	back = command;
 	command = ft_ungrab(command, 0);
 	ft_strtolower(command);
-	ans = ft_distribution(command, str, env);
+	env = ft_arr_to_vector(arr_env);
+	ans = ft_distribution(command, str, &env);
 	ft_strdel(&back);
 	ft_strdel(&command);
+	ft_delall_vector(&env);
 	return (ans);
 }

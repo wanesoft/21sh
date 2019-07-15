@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exec.c                                          :+:      :+:    :+:   */
+/*   ft_get_myproc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/24 16:19:53 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/07 10:21:23 by udraugr-         ###   ########.fr       */
+/*   Created: 2019/07/06 19:55:26 by udraugr-          #+#    #+#             */
+/*   Updated: 2019/07/07 11:59:06 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/twenty_one_sh.h"
 
-
-void			ft_exec(/*char *str, */char **arr_env, char **param/*,
-						char **old_result, t_stream *stream*/)
+t_vector				*ft_get_myproc(t_vector *my_vect, int mode)
 {
-	ft_back_screen(0);
-	if ((execve(param[0], param, arr_env) == -1))
-		exit(EXEC_FAIL);
-}
+	static t_vector		*my_vector_here = 0;
 
+	if (!mode)
+		return (my_vector_here);
+	else
+		my_vector_here = my_vect;
+	return (0);
+}
