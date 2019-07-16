@@ -44,7 +44,7 @@ int					main(int argc, char **argv, char **env)
 	tcgetattr(STDIN_FILENO, &(mygv->old));
 	ft_clear_mygv(mygv);
 	ft_get_mygv(mygv);
-	ft_init_screen();
+	ft_init_screen(1);
 	while (1)
 	{
 		mygv->env = env_copy;

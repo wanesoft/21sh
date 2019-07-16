@@ -169,7 +169,7 @@ void				ft_bye(t_vector **env);
 
 t_mygv				*ft_get_mygv(t_mygv *mygv);
 void				ft_clear_mygv(t_mygv *mygv);
-void				ft_init_screen(void);
+void				ft_init_screen(int mode);
 char				*ft_input(void);
 void				ft_put_letter(unsigned i, t_mygv *mygv);
 int					ft_i_enter(t_mygv *mygv);

@@ -68,7 +68,7 @@ static void				ft_init_history(t_mygv *mygv)
 	free(tmp3);
 }
 
-void					ft_init_screen(void)
+void					ft_init_screen(int mode)
 {
 	struct termios		new;
 	t_mygv				*mygv;
@@ -87,5 +87,6 @@ void					ft_init_screen(void)
 		exit(EXIT_FAILURE);
 	}
 	ft_putstr_fd(tgetstr("vi", NULL), STDIN_FILENO);
-	ft_init_history(mygv);
+	if (mode == 1)
+		ft_init_history(mygv);
 }

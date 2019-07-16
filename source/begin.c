@@ -31,7 +31,7 @@ void			ft_restart(int sign)
 	}
 	if (sign == SIGCONT)
 	{
-		ft_init_screen();
+		ft_init_screen(2);
 		ft_prompt_line(ft_get_mygv(NULL));
 		signal(SIGCONT, ft_restart);
 	}
@@ -87,7 +87,7 @@ static void		ft_pre_begin(char **arr_str, t_vector **env, int i)
 	ft_strdel(&tmp);
 	ft_prossesing(&arr_str[i], env);
 	ft_clear_mygv(mygv);
-	ft_init_screen();
+	ft_init_screen(2);
 	ft_check_n();
 }
 
@@ -108,7 +108,7 @@ void			begin(t_vector **env)
 	for ( ; ii < 5000; ++ii) {
 		char *dup = ft_strdup("foo");
 		arr_str = ft_strsplit(dup, ';');
-		if (ii == 1000) {
+		if (ii == 2500) {
 			dup = ft_strdup("exit");
 			arr_str = ft_strsplit(dup, ';');
 		}
@@ -118,7 +118,7 @@ void			begin(t_vector **env)
 		mygv->g_str[0] = 't';
 		mygv->g_str[1] = 'e';
 		mygv->g_str[2] = 's';
-		mygv->g_str[3] = 't';
+		mygv->g_str[3] = 'X';
 		ft_put_history(mygv);
 		while (i < ft_arrlen(arr_str))
 		{
@@ -134,7 +134,7 @@ void			begin(t_vector **env)
 			++i;
 		}
 		ft_clear_mygv(mygv);
-		ft_init_screen();
+		ft_init_screen(2);
 		ft_del_arr(&arr_str);
 	}
 }
