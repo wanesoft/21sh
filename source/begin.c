@@ -100,24 +100,41 @@ void			begin(t_vector **env)
 
 	mygv = ft_get_mygv(NULL);
 	ft_handle_signal();
-	ft_input();
-	ft_put_history(mygv);
-	arr_str = ft_strsplit(mygv->g_str, ';');
-	i = 0;
-	while (i < ft_arrlen(arr_str))
-	{
-		tmp = arr_str[i];
-		arr_str[i] = ft_strtrim(arr_str[i]);
-		ft_strdel(&tmp);
-		if (ft_strequ(arr_str[i], "exit"))
-		{
-			ft_del_arr(&arr_str);
-			ft_bye(env);
+	//ft_input();
+//	ft_put_history(mygv);
+	//arr_str = ft_strsplit(mygv->g_str, ';');
+	
+	static int ii = 0;
+	for ( ; ii < 5000; ++ii) {
+		char *dup = ft_strdup("foo");
+		arr_str = ft_strsplit(dup, ';');
+		if (ii == 1000) {
+			dup = ft_strdup("exit");
+			arr_str = ft_strsplit(dup, ';');
 		}
-		ft_pre_begin(arr_str, env, i);
-		++i;
+		ft_strdel(&dup);
+		ft_printf("STAGE - %d\n", ii);
+		i = 0;
+		mygv->g_str[0] = 't';
+		mygv->g_str[1] = 'e';
+		mygv->g_str[2] = 's';
+		mygv->g_str[3] = 't';
+		ft_put_history(mygv);
+		while (i < ft_arrlen(arr_str))
+		{
+			tmp = arr_str[i];
+			arr_str[i] = ft_strtrim(arr_str[i]);
+			ft_strdel(&tmp);
+			if (ft_strequ(arr_str[i], "exit"))
+			{
+				ft_del_arr(&arr_str);
+				ft_bye(env);
+			}
+			ft_pre_begin(arr_str, env, i);
+			++i;
+		}
+		ft_clear_mygv(mygv);
+		ft_init_screen();
+		ft_del_arr(&arr_str);
 	}
-	ft_clear_mygv(mygv);
-	ft_init_screen();
-	ft_del_arr(&arr_str);
 }
