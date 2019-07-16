@@ -104,16 +104,77 @@ void			begin(t_vector **env)
 //	ft_put_history(mygv);
 	//arr_str = ft_strsplit(mygv->g_str, ';');
 	
+	int DEBUGG = 1;
+	int RUNN = 1;
+	int STOPP = 0;
+	STOPP = 0;
+//	remove("/goinfre/.21sh");
+	
 	static int ii = 0;
-	for ( ; ii < 5000; ++ii) {
-		char *dup = ft_strdup("foo");
-		arr_str = ft_strsplit(dup, ';');
-		if (ii == 2500) {
-			dup = ft_strdup("exit");
-			arr_str = ft_strsplit(dup, ';');
+	for ( ; ii < 66666; ++ii) {
+		char *dup;
+		if (RUNN && ii < 1000) {
+			ft_printf("***||| _-_- STAGE - %d TEST - #1 -_-_\n", ii);
+			dup = ft_strdup("foo; /bin/ls; /bin/ls -laF; /bin/ls -l -a -F;");
+			if (ii == 999) {
+				printf("Press ENTER for next test\n");
+				DEBUGG ? scanf("GO?") : 0;
+			}
+		} else if (RUNN && ii > 1000 && ii < 2000) {
+			ft_printf("***||| _-_- STAGE - %d TEST - #2 -_-_\n", ii);
+			dup = ft_strdup("echo \"It work\"; echo It work without; cd /; pwd; cd etc; /bin/pwd; cd -; pwd; cd ~; cd /; cd; cd ~/Desktop; /bin/pwd;");
+			if (1 && ii == 1999) {
+				printf("Press ENTER for next test\n");
+				DEBUGG ? scanf("GO?") : 0;
+			}
+		} else if (RUNN && ii > 2000 && ii < 3000) {
+			ft_printf("***||| _-_- STAGE - %d TEST - #3 -_-_\n", ii);
+			dup = ft_strdup("env; setenv FOO=bar; env; /usr/bin/env; unsetenv FOO; env; unsetenv FOO; /usr/bin/env; env");
+			if (ii == 2999) {
+				printf("Press ENTER for next test\n");
+				DEBUGG ? scanf("GO?") : 0;
+			}
+		} else if (RUNN && ii > 3000 && ii < 4000) {
+			ft_printf("***||| _-_- STAGE - %d TEST - #4 -_-_\n", ii);
+			dup = ft_strdup("unsetenv PATH; setenv PATH=/bin:/usr/bin; ls; ps; unsetenv PATH; ls; /bin/ls;");
+			if (ii == 3999) {
+				printf("Press ENTER for next test\n");
+				DEBUGG ? scanf("GO?") : 0;
+			}
+		} else if (RUNN && ii > 4000 && ii < 5000) {
+			ft_printf("***||| _-_- STAGE - %d TEST - #5 -_-_\n", ii);
+			dup = ft_strdup("; ;        ; /bin/ls       -l -A;    ls    -l;");
+			if (ii == 4999) {
+				printf("Press ENTER for next test\n");
+				DEBUGG ? scanf("GO?") : 0;
+			}
+		} else if (RUNN && ii > 5000 && ii < 6000) {
+			ft_printf("***||| _-_- STAGE - %d TEST - #6 -_-_\n", ii);
+			dup = ft_strdup("ls | cat -e; ls | sort | cat -e; base64 /dev/urandom | head -c 1000 | grep 42 | wc -1");
+			if (ii == 5999) {
+				printf("Press ENTER for next test\n");
+				DEBUGG ? scanf("GO?") : 0;
+			}
+		} else if (RUNN && ii > 6000 && ii < 7000) {
+			ft_printf("***||| _-_- STAGE - %d TEST - #6 -_-_\n", ii);
+			dup = ft_strdup("echo $PATH > 1.txt; echo $PATH >> 1.txt; cat < 1.txt; ls >> 1.txt; wc -c < 1.txt; ");
+			if (ii == 6999) {
+				printf("Press ENTER for next test\n");
+				DEBUGG ? scanf("GO?") : 0;
+			}
 		}
+		
+		
+		
+		
+		else if (ii == 66665) {
+			ft_printf("_-_- STAGE - %d TEST - #LAST-EXIT -_-_\n", ii);
+			dup = ft_strdup("exit");
+		} else {
+			continue;
+		}
+		arr_str = ft_strsplit(dup, ';');
 		ft_strdel(&dup);
-		ft_printf("STAGE - %d\n", ii);
 		i = 0;
 		mygv->g_str[0] = 't';
 		mygv->g_str[1] = 'e';
