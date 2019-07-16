@@ -12,18 +12,27 @@
 
 #include "../include/twenty_one_sh.h"
 
-static int	check_builts(char *command)
+static int	check_builts(char *command, char **str, t_vector **env)
 {
-	if (ft_strequ("cd", command) ||
-			ft_strequ("setenv", command) ||
-			ft_strequ("unsetenv", command) ||
-			ft_strequ("exit", command) ||
+	if (ft_strequ("exit", command) ||
 			ft_strequ("--help", command) ||
-			ft_strequ("addenv", command) ||
 			ft_strequ("echo", command) ||
 			ft_strequ("env", command))
 		return (EXEC_SUCC);
-	return (EXEC_FAIL);
+	else
+	{
+    	if (ft_strequ("addenv", command))
+			ft_addenv(*str + 6, env);
+		else if (ft_strequ("cd", command))
+			ft_cd(*str, env);
+		else if (ft_strequ("setenv", command))
+			ft_setenv(*str + 6, env);
+		else if (ft_strequ("unsetenv", command))
+			ft_unsetenv(*str + 8, env);
+		else
+			return (EXEC_FAIL);
+		return (EXEC_SUCC);
+	}
 }
 
 static int	take_command(char **str, char **command)
@@ -60,7 +69,7 @@ static int	path_bins(char **str, t_vector **env)
 	ans = EXEC_FAIL;
 	if (ft_strlen(command) == 1 && command[0] == '.')
 		write(1, ".: usage: ./path [arguments]\n", 29);
-	else if (check_builts(command) == EXEC_SUCC ||
+	else if (check_builts(command, str, env) == EXEC_SUCC ||
 			(ft_strchr(command, '/') &&
 			file_check(command, BIN, X_OK, command)))
 		ans = EXEC_SUCC;

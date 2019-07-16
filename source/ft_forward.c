@@ -27,15 +27,17 @@ static void		ft_help(void)
 static int		ft_distribution(char *command, char *str, t_vector **env)
 {
 	if (ft_strequ(command, "cd"))
-		ft_cd(str, env);
+		return (EXEC_SUCC);
 	else if (ft_strequ(command, "setenv"))
-		ft_setenv(str + 6, env);
+		return (EXEC_SUCC);
 	else if (ft_strequ(command, "unsetenv"))
-		ft_unsetenv(str + 8, env);
+		return (EXEC_SUCC);
 	else if (ft_strequ(command, "--help"))
 		ft_help();
 	else if (ft_strequ(command, "addenv"))
-		ft_addenv(str + 6, env);
+		return (EXEC_SUCC);
+	else if (ft_strequ(command, "exit"))
+		return (EXEC_SUCC);
 	else if (ft_strequ(command, "echo"))
 		ft_echo(str);
 	else if (ft_strequ(command, "env"))

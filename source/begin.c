@@ -114,8 +114,6 @@ void			begin(t_vector **env)
 			ft_del_arr(&arr_str);
 			ft_bye(env);
 		}
-		char **name = ft_vector_to_arr(env);
-		ft_forward(arr_str[i], name);
 		ft_pre_begin(arr_str, env, i);
 		++i;
 	}
