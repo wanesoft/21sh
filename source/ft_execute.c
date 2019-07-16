@@ -47,6 +47,8 @@ static int		ft_prep_for_execute(char **turn_str, char **arr_env,
 		ft_close_std(ft_get_myproc(0, 0));
 		if (ft_forward(*turn_str, arr_env) == EXEC_FAIL)
 			ft_exec(arr_env, *param);
+		else
+			exit(EXEC_SUCC);
 		exit(EXEC_FAIL);
 	}
 	((t_stream *)tmp->content)->proc = main;
