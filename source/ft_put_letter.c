@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 14:03:36 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/04 15:16:32 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/17 13:59:54 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int			ft_get_max_line(char *str)
 void		ft_put_letter(unsigned i, t_mygv *mygv)
 {
 	if (mygv->g_j > BUF_G_STR - 1)
-		return;
+		return ;
 	ft_foo_2(mygv);
 	ft_memmove(&mygv->g_str[mygv->g_j + 1],
 				&mygv->g_str[mygv->g_j],

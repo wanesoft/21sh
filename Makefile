@@ -65,7 +65,8 @@ SRC :=	ft_autocompl.c\
 		ft_get_myproc.c\
 		prep_vect_for_pipes.c\
 		std_operations.c\
-		helen_and_friends.c
+		helen_and_friends.c\
+		ft_wait.c\
 
 SRC := $(addprefix $(SRC_DIR), $(SRC))
 

@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/20 19:01:50 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/06 17:05:18 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/17 12:31:36 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ static int	simple_in(char ***arr_string, int i,
 		if ((fd = open("/goinfre/.tmp", O_CREAT | O_WRONLY | O_TRUNC,
 						S_IRWXU)) == -1)
 			return (EXEC_FAIL);
-		write(fd, tmp, ft_strlen(tmp));
-		write(fd, "\n", 1);
+		ft_putendl_fd(tmp, fd);
 		ft_strdel(&tmp);
 		close(fd);
 		if ((fd = open("/goinfre/.tmp", O_RDONLY)) == -1)
