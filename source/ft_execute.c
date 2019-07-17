@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 18:31:12 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/17 14:44:54 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/17 15:44:07 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void			ft_abort(int sign)
 static int		ft_prep_for_execute(char **turn_str, char **arr_env,
 									int count)
 {
-	pid_t		main;
 	t_vector	*tmp;
 	char		**param;
 
@@ -40,9 +39,9 @@ static int		ft_prep_for_execute(char **turn_str, char **arr_env,
 		return (EXEC_FAIL);
 	param = ft_strsplit(*turn_str, ' ');
 	ft_ungrab_arr(param);
-	if ((main = fork()) == -1)
+	if ((((t_stream *)tmp->content)->proc = fork()) == -1)
 		return (EXEC_FAIL);
-	if (!main)
+	if (!((t_stream *)tmp->content)->proc)
 	{
 		ft_change_std((t_stream *)tmp->content);
 		ft_close_std(ft_get_myproc(0, 0));
@@ -53,7 +52,6 @@ static int		ft_prep_for_execute(char **turn_str, char **arr_env,
 		exit(EXEC_FAIL);
 	}
 	ft_del_arr(&param);
-	((t_stream *)tmp->content)->proc = main;
 	return (EXEC_SUCC);
 }
 
