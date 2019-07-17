@@ -17,7 +17,8 @@ static int	check_builts(char *command, char **str, t_vector **env)
 	if (ft_strequ("exit", command) ||
 			ft_strequ("--help", command) ||
 			ft_strequ("echo", command) ||
-			ft_strequ("env", command))
+			ft_strequ("env", command) ||
+			ft_strequ("hash", command))
 		return (EXEC_SUCC);
 	else
 	{

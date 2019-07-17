@@ -202,5 +202,6 @@ void				ft_del_stack(t_stack **head);
 void				ft_change_heredoc(t_mygv *mygv);
 int					ft_is_delim(char c, char d);
 void				ft_check_n(void);
+char				*ft_strtrim_norm(char const *s);
 
 #endif

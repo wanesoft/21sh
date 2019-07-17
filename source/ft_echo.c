@@ -14,12 +14,16 @@
 
 void		ft_echo(char *params)
 {
-	char	*tmp;
+	char	**tmp;
+	int		i;
 
-	tmp = ft_ungrab(params, 0);
-	if (ft_strlen(tmp) > 4)
-		write(1, tmp + 5, ft_strlen(tmp + 5));
+	tmp = ft_strsplit(params, ' ');
+//	tmp = ft_ungrab(params, 0);
+	ft_ungrab_arr(tmp);
+	i = 0;
+	while (tmp[++i])
+		write(1, tmp[i], ft_strlen(tmp[i]));
 	write(1, "\n", 1);
-	ft_strdel(&tmp);
+	ft_del_arr(&tmp);
 	return ;
 }

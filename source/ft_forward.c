@@ -24,7 +24,37 @@ static void		ft_help(void)
 	ft_printf("echo     - вывести текст\n");
 }
 
-static int		ft_distribution(char *command, char *str, t_vector **env)
+static void			ft_hash(t_vector **env)
+{
+	char			*tmp;
+	char			**arr;
+	int				i;
+	DIR				*d1;
+	struct dirent	*f1;
+	
+	i = 0;
+	tmp = ft_take_value_env("PATH", env);
+	if (tmp[0] != 0)
+	{
+		arr = ft_strsplit(tmp, ':');
+		while (arr && arr[i])
+		{
+			if ((d1 = opendir(arr[i])) != 0)
+			{
+				while ((f1 = readdir(d1)) != 0)
+				{
+					if (f1->d_name[0] != '.')
+						ft_printf("%s=%s/%s\n", f1->d_name, arr[i], f1->d_name);
+				}
+				closedir(d1);
+			}
+			++i;
+		}
+	}
+	ft_strdel(&tmp);
+}
+
+static int			ft_distribution(char *command, char *str, t_vector **env)
 {
 	if (ft_strequ(command, "cd"))
 		return (EXEC_SUCC);
@@ -40,6 +70,8 @@ static int		ft_distribution(char *command, char *str, t_vector **env)
 		return (EXEC_SUCC);
 	else if (ft_strequ(command, "echo"))
 		ft_echo(str);
+	else if (ft_strequ(command, "hash"))
+		ft_hash(env);
 	else if (ft_strequ(command, "env"))
 		ft_env(env, str + 3);
 	else
@@ -47,25 +79,27 @@ static int		ft_distribution(char *command, char *str, t_vector **env)
 	return (EXEC_SUCC);
 }
 
-int				ft_forward(char *str, char **arr_env)
+int					ft_forward(char *str, char **arr_env)
 {
-	char		*command;
-	char		*back;
-	int			i;
-	int			ans;
-	t_vector	*env;
+//	char			*command;
+	char			*back;
+//	int				i;
+	char			**arr;
+	int				ans;
+	t_vector		*env;
 
-	i = 0;
-	while (str[i] && str[i] != ' ')
-		++i;
-	command = ft_strndup(str, i);
-	back = command;
-	command = ft_ungrab(command, 0);
-	ft_strtolower(command);
+//	i = 0;
+//	while (str[i] && str[i] != ' ')
+//		++i;
+	arr = ft_strsplit(str, ' ');
+//	command = ft_strdup(arr[0]);
+	back = arr[0];//command;
+	arr[0] = ft_ungrab(arr[0], 0);
+	ft_strtolower(arr[0]);
 	env = ft_arr_to_vector(arr_env);
-	ans = ft_distribution(command, str, &env);
+	ans = ft_distribution(arr[0], str, &env);
 	ft_strdel(&back);
-	ft_strdel(&command);
+	ft_del_arr(&arr);
 	ft_delall_vector(&env);
 	return (ans);
 }

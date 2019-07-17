@@ -19,7 +19,8 @@ static int	simple_in(char ***arr_string, int i,
 	char	*file;
 	char	*tmp;
 
-	file = (*arr_string)[i + 2];
+	if (!(file = (*arr_string)[i + 2]))
+		return (EXEC_FAIL);
 	if (check == 0 || check == 4)
 	{
 		if ((file_check(file, BIN, R_OK, file) == 0) ||

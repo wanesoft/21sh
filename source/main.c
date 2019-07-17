@@ -33,6 +33,7 @@ int					main(int argc, char **argv, char **env)
 	t_mygv			*mygv;
 
 	remove("/goinfre/.21sh"); // ALLOOOOOOOOOO
+	remove("/goinfre/.tmp"); // ALLOOOOOOOOOO
 	
 	++argc;
 	++argv;

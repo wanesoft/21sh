@@ -38,13 +38,46 @@ static void		ft_put_ctrl_v(char *buf, t_mygv *mygv)
 	}
 }
 
+static int		ft_ctrl_d_2(char *iter)
+{
+	ft_printf("CTRL+D\n");
+	iter += 2;
+	while (*iter && *iter == ' ')
+		ft_memmove(iter, iter + 1, ft_strlen(iter) + 1);
+	while (*iter && *iter != '\n')
+		ft_memmove(iter, iter + 1, ft_strlen(iter) + 1);
+	if (*iter && *iter == '\n')
+		ft_memmove(iter, iter + 1, ft_strlen(iter) + 1);
+	while (*iter)
+		++iter;
+	--iter;
+	if (*iter && *iter == '\n')
+		ft_memmove(iter, iter + 1, ft_strlen(iter) + 1);
+	return (1);
+}
+
+static int		ft_ctrl_d(t_mygv *mygv)
+{
+	char		*iter;
+	
+	if (mygv->g_str[0] == 0)
+	{
+		write(STDOUT_FILENO, "\n", 1);
+		ft_bye(&mygv->env);
+	}
+	iter = ft_strstr(mygv->g_str, "<<");
+	if (!iter)
+		return (0);
+	if (ft_strchr(iter, '\n'))
+		return (ft_ctrl_d_2(iter));
+	else
+		return (0);
+}
+
 static int		ft_input_proc(unsigned i, char *buf, t_mygv *mygv)
 {
 	if (i == 4)
-	{
-		ft_printf("CTRL+D\n");
-		ft_clear_mygv(mygv);
-	}
+		return (ft_ctrl_d(mygv));
 	else if (i == K_ENTER)
 		return (ft_i_enter(mygv));
 	else if (i == K_DEL || i == K_BACKSP)
@@ -75,7 +108,6 @@ char			*ft_input(void)
 	unsigned	*temp;
 	t_mygv		*mygv;
 	
-
 	mygv = ft_get_mygv(NULL);
 	while (1)
 	{
