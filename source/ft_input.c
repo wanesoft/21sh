@@ -38,6 +38,17 @@ static void		ft_put_ctrl_v(char *buf, t_mygv *mygv)
 	}
 }
 
+static void		ft_ctrl_d_3(char *iter)
+{
+	while (iter && *iter && *iter != '<' && *iter != '|' && *iter != '>' && *iter != ';')
+		++iter;
+	if (iter && *iter)
+	{
+		ft_memmove(iter + 1, iter, ft_strlen(iter));
+		*iter = '"';
+	}
+}
+
 static int		ft_ctrl_d_2(char *iter)
 {
 	ft_printf("CTRL+D\n");
@@ -47,9 +58,17 @@ static int		ft_ctrl_d_2(char *iter)
 	while (*iter && *iter != '\n')
 		ft_memmove(iter, iter + 1, ft_strlen(iter) + 1);
 	if (*iter && *iter == '\n')
-		ft_memmove(iter, iter + 1, ft_strlen(iter) + 1);
+		*iter = '"';
+	else
+	{
+		++iter;
+		ft_memmove(iter + 1, iter, ft_strlen(iter));
+		*iter = '"';
+	}
+	ft_ctrl_d_3(iter);
 	while (*iter)
 		++iter;
+
 	--iter;
 	if (*iter && *iter == '\n')
 		ft_memmove(iter, iter + 1, ft_strlen(iter) + 1);

@@ -55,15 +55,17 @@ void				ft_change_heredoc(t_mygv *mygv)
 		++iter;
 	if (iter)
 		ft_memmove(iter, iter + (int)ft_strlen(mygv->target), ft_strlen(mygv->g_str) + 1);
+	while (iter && *iter == ' ')
+		ft_memmove(iter, iter + 1, ft_strlen(iter) + 1);
 	if (iter && *iter == '\n')
 		++mygv->g_kos;
 	if (iter)
 		*iter = '"';
 	++iter;
-	if (iter && *iter == '\n')
-	{
-		ft_memmove(iter, iter + 1, ft_strlen(iter + 1) + 1);
-		++mygv->g_kos;
-	}
+//	if (iter && *iter == '\n')
+//	{
+//		ft_memmove(iter, iter + 1, ft_strlen(iter + 1) + 1);
+//		++mygv->g_kos;
+//	}
 	ft_change_heredoc_2(mygv);
 }
