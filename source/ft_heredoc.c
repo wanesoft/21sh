@@ -59,6 +59,7 @@ static int			ft_heredoc(char *iter)
 	tmp = ft_strndup(iter, i);
 	arr = ft_strsplit(tmp, '\n');
 	res = ft_heredoc_solver(target, arr, 1);
+	ft_strdel(&tmp);
 	ft_get_mygv(NULL)->target = target;
 	ft_del_arr(&arr);
 	return (!res);
@@ -94,6 +95,7 @@ int					ft_pre_heredoc(t_mygv *mygv)
 					ft_should_go(mygv, 1);
 					return ((int)(ft_strstr(&mygv->g_str[mygv->cur_her], "<<")));
 				}
+				ft_strdel(&mygv->target);
 				return (tmp);
 			}
 		}

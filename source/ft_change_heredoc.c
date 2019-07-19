@@ -51,7 +51,7 @@ void				ft_change_heredoc(t_mygv *mygv)
 	iter = ft_strstr(&mygv->g_str[mygv->cur_her], "<<");
 	if (iter)
 		iter += 2;
-	while (iter && *iter == ' ')
+	while (iter && *iter && *iter == ' ')
 		++iter;
 	if (iter)
 		ft_memmove(iter, iter + (int)ft_strlen(mygv->target), ft_strlen(mygv->g_str) + 1);

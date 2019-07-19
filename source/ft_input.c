@@ -54,7 +54,6 @@ static void		ft_input_proc_2(unsigned i, char *buf, t_mygv *mygv)
 
 static int		ft_input_proc(unsigned i, char *buf, t_mygv *mygv)
 {
-//	ft_printf("%u\n\n", i);;
 	if (i == K_OPT_U || i == K_OPT_D || i == K_DEL)
 		return (0);
 	else if (i == 4)
