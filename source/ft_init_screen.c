@@ -35,6 +35,7 @@ static void				ft_init_history_2(t_mygv *mygv, char *str)
 {
 	char				**arr;
 
+    arr = NULL;
 	arr = ft_strsplit(str, ':');
 	if (arr && arr[0])
 		mygv->g_n_his = ft_atoi(arr[0]);
@@ -50,6 +51,7 @@ static void				ft_init_history(t_mygv *mygv)
 
 	tmp2 = 0;
 	tmp3 = (char *)malloc(sizeof(char) * BUF_G_STR);
+    ft_bzero(tmp3, BUF_G_STR);
 	mygv->g_fd_w = open("/goinfre/.21sh", O_WRONLY | O_APPEND | O_CREAT, S_IRWXU);
 	mygv->g_fd_r = open("/goinfre/.21sh", O_RDONLY | O_CREAT, S_IRWXU);
 	if (mygv->g_fd_w < 0 || mygv->g_fd_r < 0)
