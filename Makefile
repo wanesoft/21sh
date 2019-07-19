@@ -67,6 +67,7 @@ SRC :=	ft_autocompl.c\
 		std_operations.c\
 		helen_and_friends.c\
 		ft_wait.c\
+		ft_ctrl_d.c
 
 SRC := $(addprefix $(SRC_DIR), $(SRC))
 

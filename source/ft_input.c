@@ -38,68 +38,25 @@ static void		ft_put_ctrl_v(char *buf, t_mygv *mygv)
 	}
 }
 
-static void		ft_ctrl_d_3(char *iter)
+static void		ft_input_proc_2(unsigned i, char *buf, t_mygv *mygv)
 {
-	while (iter && *iter && *iter != '<' && *iter != '|' && *iter != '>' && *iter != ';')
-		++iter;
-	if (iter && *iter)
-	{
-		ft_memmove(iter + 1, iter, ft_strlen(iter));
-		*iter = '"';
-	}
-	else
-	{
-		*iter = '"';
-	}
-}
-
-static int		ft_ctrl_d_2(char *iter)
-{
-	ft_printf("CTRL+D\n");
-	iter += 2;
-	while (*iter && *iter == ' ')
-		ft_memmove(iter, iter + 1, ft_strlen(iter) + 1);
-	while (*iter && *iter != '\n')
-		ft_memmove(iter, iter + 1, ft_strlen(iter) + 1);
-	if (*iter && *iter == '\n')
-		*iter = '"';
-	else
-	{
-		++iter;
-		ft_memmove(iter + 1, iter, ft_strlen(iter));
-		*iter = '"';
-	}
-	ft_ctrl_d_3(iter);
-	while (*iter)
-		++iter;
-
-	--iter;
-	if (*iter && *iter == '\n')
-		ft_memmove(iter, iter + 1, ft_strlen(iter) + 1);
-	return (1);
-}
-
-static int		ft_ctrl_d(t_mygv *mygv)
-{
-	char		*iter;
-	
-	if (mygv->g_str[0] == 0)
-	{
-		write(STDOUT_FILENO, "\n", 1);
-		ft_bye(&mygv->env);
-	}
-	iter = ft_strstr(mygv->g_str, "<<");
-	if (!iter)
-		return (0);
-	if (ft_strchr(iter, '\n'))
-		return (ft_ctrl_d_2(iter));
-	else
-		return (0);
+	if (i == K_LEFT || i == K_RIGHT || i == K_OPT_L || i == K_OPT_R)
+		ft_i_arrow_l_r(i, mygv);
+	else if (i == K_UP || i == K_DOWN || i == K_HOME || i == K_END)
+		ft_i_arrow_u_d(i, mygv);
+	else if (i == K_PGUP || i == K_PGDOWN)
+		ft_i_pgup_pgdown(i, mygv);
+	else if (buf[1])
+		ft_put_ctrl_v(buf, mygv);
+	else if (ft_isprint(i))
+		ft_put_letter(i, mygv);
 }
 
 static int		ft_input_proc(unsigned i, char *buf, t_mygv *mygv)
 {
-	if (i == 4)
+	if (i == K_OPT_U || i == K_OPT_D)
+		return (0);
+	else if (i == 4)
 		return (ft_ctrl_d(mygv));
 	else if (i == K_ENTER)
 		return (ft_i_enter(mygv));
@@ -112,16 +69,7 @@ static int		ft_input_proc(unsigned i, char *buf, t_mygv *mygv)
 		write(STDOUT_FILENO, "\n", 1);
 		ft_bye(&(mygv->env));
 	}
-	else if (i == K_LEFT || i == K_RIGHT)
-		ft_i_arrow_l_r(i, mygv);
-	else if (i == K_UP || i == K_DOWN || i == K_HOME || i == K_END)
-		ft_i_arrow_u_d(i, mygv);
-	else if (i == K_PGUP || i == K_PGDOWN)
-		ft_i_pgup_pgdown(i, mygv);
-	else if (buf[1])
-		ft_put_ctrl_v(buf, mygv);
-	else if (ft_isprint(i))
-		ft_put_letter(i, mygv);
+	ft_input_proc_2(i, buf, mygv);
 	return (0);
 }
 

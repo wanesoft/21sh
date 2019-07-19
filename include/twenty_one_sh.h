@@ -57,6 +57,10 @@
 # define K_PGUP			2117425947
 # define K_PGDOWN		2117491483
 # define BUF_G_STR		8192
+# define K_OPT_L		1146821403
+# define K_OPT_R		1130044187
+# define K_OPT_U		1096489755
+# define K_OPT_D		1113266971
 
 typedef struct		s_var_env
 {
@@ -89,7 +93,6 @@ typedef struct		s_mygv
 	int				g_j;
 	int				g_stage;
 	int				g_y_pos;
-	int				g_x_pos;
 	int				g_fd_r;
 	int				g_fd_w;
 	unsigned		g_n_his;
@@ -203,5 +206,6 @@ void				ft_change_heredoc(t_mygv *mygv);
 int					ft_is_delim(char c, char d);
 void				ft_check_n(void);
 char				*ft_strtrim_norm(char const *s);
+int					ft_ctrl_d(t_mygv *mygv);
 
 #endif

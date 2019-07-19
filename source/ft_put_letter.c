@@ -47,5 +47,4 @@ void		ft_put_letter(unsigned i, t_mygv *mygv)
 				ft_strlen(&mygv->g_str[mygv->g_j]));
 	mygv->g_str[mygv->g_j] = (char)i;
 	++mygv->g_j;
-	++mygv->g_x_pos;
 }
