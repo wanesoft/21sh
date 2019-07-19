@@ -47,6 +47,10 @@ static void		ft_ctrl_d_3(char *iter)
 		ft_memmove(iter + 1, iter, ft_strlen(iter));
 		*iter = '"';
 	}
+	else
+	{
+		*iter = '"';
+	}
 }
 
 static int		ft_ctrl_d_2(char *iter)
