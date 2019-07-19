@@ -26,7 +26,6 @@ void			ft_restart(int sign)
 		write(1, "CTRL+Z\n", 7);
 		ft_back_screen(sign);
 		signal(SIGTSTP, SIG_DFL);
-		exit(EXIT_FAILURE);
 		ioctl(STDERR_FILENO, TIOCSTI, "\x1A");
 	}
 	if (sign == SIGCONT)
@@ -35,7 +34,8 @@ void			ft_restart(int sign)
 		ft_prompt_line(ft_get_mygv(NULL));
 		signal(SIGCONT, ft_restart);
 	}
-	if (sign == SIGABRT || sign == SIGSTOP || sign == SIGKILL || sign == SIGQUIT)
+	if (sign == SIGABRT || sign == SIGSTOP || sign == SIGKILL
+		|| sign == SIGQUIT)
 		ft_back_screen(0);
 }
 
@@ -61,7 +61,7 @@ static void		ft_put_history(t_mygv *mygv)
 	ft_strdel(&tmp);
 }
 
-static void ft_handle_signal(void)
+static void		ft_handle_signal(void)
 {
 	signal(SIGINT, ft_restart);
 	signal(SIGTSTP, ft_restart);
@@ -77,7 +77,12 @@ static void		ft_pre_begin(char **arr_str, t_vector **env, int i)
 {
 	char		*tmp;
 	t_mygv		*mygv;
-	
+
+	if (ft_strequ(arr_str[i], "exit"))
+	{
+		ft_del_arr(&arr_str);
+		ft_bye(env);
+	}
 	mygv = ft_get_mygv(NULL);
 	tmp = ft_strjoin("_=", arr_str[i]);
 	ft_setenv(tmp, env);
@@ -109,11 +114,6 @@ void			begin(t_vector **env)
 		tmp = arr_str[i];
 		arr_str[i] = ft_strtrim_norm(arr_str[i]);
 		ft_strdel(&tmp);
-		if (ft_strequ(arr_str[i], "exit"))
-		{
-			ft_del_arr(&arr_str);
-			ft_bye(env);
-		}
 		ft_pre_begin(arr_str, env, i);
 		++i;
 	}
@@ -121,222 +121,3 @@ void			begin(t_vector **env)
 	ft_init_screen(2);
 	ft_del_arr(&arr_str);
 }
-
-///* ************************************************************************** */
-///*                                                                            */
-///*                                                        :::      ::::::::   */
-///*   begin.c                                            :+:      :+:    :+:   */
-///*                                                    +:+ +:+         +:+     */
-///*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
-///*                                                +#+#+#+#+#+   +#+           */
-///*   Created: 2019/05/22 14:01:32 by udraugr-          #+#    #+#             */
-///*   Updated: 2019/07/05 15:17:59 by udraugr-         ###   ########.fr       */
-///*                                                                            */
-///* ************************************************************************** */
-//
-//#include "../include/twenty_one_sh.h"
-//
-//void			ft_restart(int sign)
-//{
-//	if (sign == SIGINT)
-//	{
-//		write(1, "CTRL+C\n", 7);
-//		ft_clear_mygv(ft_get_mygv(NULL));
-//		ft_prompt_line(ft_get_mygv(NULL));
-//		signal(SIGINT, ft_restart);
-//	}
-//	if (sign == SIGTSTP)
-//	{
-//		write(1, "CTRL+Z\n", 7);
-//		ft_back_screen(sign);
-//		signal(SIGTSTP, SIG_DFL);
-//		exit(EXIT_FAILURE);
-//		ioctl(STDERR_FILENO, TIOCSTI, "\x1A");
-//	}
-//	if (sign == SIGCONT)
-//	{
-//		ft_init_screen(2);
-//		ft_prompt_line(ft_get_mygv(NULL));
-//		signal(SIGCONT, ft_restart);
-//	}
-//	if (sign == SIGABRT || sign == SIGSTOP || sign == SIGKILL || sign == SIGQUIT)
-//		ft_back_screen(0);
-//}
-//
-//static void		ft_put_history(t_mygv *mygv)
-//{
-//	char		*tmp;
-//
-//	if (mygv->g_str[0] == '\0')
-//		return ;
-//	if (mygv->g_n_his == 0)
-//	{
-//		tmp = ft_itoa(mygv->g_n_his);
-//		write(mygv->g_fd_w, tmp, ft_strlen(tmp));
-//		write(mygv->g_fd_w, ":", 1);
-//		ft_strdel(&tmp);
-//	}
-//	write(mygv->g_fd_w, mygv->g_str, ft_strlen(mygv->g_str));
-//	write(mygv->g_fd_w, "\t", 1);
-//	++mygv->g_n_his;
-//	tmp = ft_itoa(mygv->g_n_his);
-//	write(mygv->g_fd_w, tmp, ft_strlen(tmp));
-//	write(mygv->g_fd_w, ":", 1);
-//	ft_strdel(&tmp);
-//}
-//
-//static void ft_handle_signal(void)
-//{
-//	signal(SIGINT, ft_restart);
-//	signal(SIGTSTP, ft_restart);
-//	signal(SIGCONT, ft_restart);
-//	signal(SIGWINCH, ft_restart);
-//	signal(SIGABRT, ft_restart);
-//	signal(SIGSTOP, ft_restart);
-//	signal(SIGKILL, ft_restart);
-//	signal(SIGQUIT, ft_restart);
-//}
-//
-//static void		ft_pre_begin(char **arr_str, t_vector **env, int i)
-//{
-//	char		*tmp;
-//	t_mygv		*mygv;
-//
-//	mygv = ft_get_mygv(NULL);
-//	tmp = ft_strjoin("_=", arr_str[i]);
-//	ft_setenv(tmp, env);
-//	ft_strdel(&tmp);
-//	tmp = arr_str[i];
-//	arr_str[i] = ft_strtrim_norm(arr_str[i]);
-//	ft_strdel(&tmp);
-//	ft_prossesing(&arr_str[i], env);
-//	ft_clear_mygv(mygv);
-//	ft_init_screen(2);
-//	ft_check_n();
-//}
-//
-//void			begin(t_vector **env)
-//{
-//	char		**arr_str;
-//	int			i;
-//	t_mygv		*mygv;
-//	char		*tmp;
-//
-//	mygv = ft_get_mygv(NULL);
-//	ft_handle_signal();
-//	//	ft_input();
-//	//	ft_put_history(mygv);
-//	//	arr_str = ft_strsplit(mygv->g_str, ';');
-//
-//	int DEBUGG = 0;
-//	int RUNN = 1;
-//	int STOPP = 0;
-//	STOPP = 0;
-//
-//	static int ii = 0;
-//	for ( ; ii < 66666; ++ii) {
-//		char *dup;
-//		if (STOPP && ii < 100) {
-//			ft_printf("***||| _-_- STAGE - %d TEST - #1 -_-_\n", ii);
-//			dup = ft_strdup("foo; /bin/ls; /bin/ls -laF; /bin/ls -l -a -F;");
-//			if (ii == 999) {
-//				printf("Press ENTER for next test\n");
-//				DEBUGG ? scanf("GO?") : 0;
-//			}
-//		} else if (STOPP && ii > 100 && ii < 200) {
-//			ft_printf("***||| _-_- STAGE - %d TEST - #2 -_-_\n", ii);
-//			dup = ft_strdup("echo \"It work\"; echo It work without; cd /; pwd; cd etc; /bin/pwd; cd -; pwd; cd ~; cd /; cd; cd ~/Desktop; /bin/pwd;");
-//			if (1 && ii == 1999) {
-//				printf("Press ENTER for next test\n");
-//				DEBUGG ? scanf("GO?") : 0;
-//			}
-//		} else if (STOPP && ii > 200 && ii < 300) {
-//			ft_printf("***||| _-_- STAGE - %d TEST - #3 -_-_\n", ii);
-//			dup = ft_strdup("env; setenv FOO=bar; env; /usr/bin/env; unsetenv FOO; env; unsetenv FOO; /usr/bin/env; env");
-//			if (ii == 2999) {
-//				printf("Press ENTER for next test\n");
-//				DEBUGG ? scanf("GO?") : 0;
-//			}
-//		} else if (STOPP && ii > 300 && ii < 400) {
-//			ft_printf("***||| _-_- STAGE - %d TEST - #4 -_-_\n", ii);
-//			dup = ft_strdup("unsetenv PATH; setenv PATH=/bin:/usr/bin; ls; ps; unsetenv PATH; ls; /bin/ls; setenv PATH=/Users/draynor/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Users/draynor/Applications/Visual Studio Code.app/Contents/Resources/app/bin");
-//			if (ii == 3999) {
-//				printf("Press ENTER for next test\n");
-//				DEBUGG ? scanf("GO?") : 0;
-//			}
-//		} else if (STOPP && ii > 400 && ii < 500) {
-//			ft_printf("***||| _-_- STAGE - %d TEST - #5 -_-_\n", ii);
-//			dup = ft_strdup("; ;        ; /bin/ls       -l -A;    ls    -l;");
-//			if (ii == 4999) {
-//				printf("Press ENTER for next test\n");
-//				DEBUGG ? scanf("GO?") : 0;
-//			}
-//		} else if (RUNN && ii > 500 && ii < 600) {
-//			ft_printf("***||| _-_- STAGE - %d TEST - #6 -_-_\n", ii);
-//			dup = ft_strdup("ls | cat -e; ls | sort | cat -e; base64 /dev/urandom | head -c 1000 | grep 42 | wc -l");
-//			if (ii == 5999) {
-//				printf("Press ENTER for next test\n");
-//				DEBUGG ? scanf("GO?") : 0;
-//			}
-//		} else if (RUNN && ii > 600 && ii < 700) {
-//			ft_printf("***||| _-_- STAGE - %d TEST - #6 -_-_\n", ii);
-//			dup = ft_strdup("echo $PATH > 1.txt; echo $PATH >> 1.txt; cat < 1.txt; ls >> 1.txt; wc -c < 1.txt; ");
-//			if (ii == 6999) {
-//				printf("Press ENTER for next test\n");
-//				DEBUGG ? scanf("GO?") : 0;
-//			}
-//		} else if (RUNN && ii > 700 && ii < 800) {
-//			ft_printf("***||| _-_- STAGE - %d TEST - #6 -_-_\n", ii);
-//			dup = ft_strdup("cd /tmp; sort << \"Roses are red\nViolets are blue\nAll my base are belong to you\nI love you\n\" | cat -e > sorted_poem ; sed -e 's/Roses/Turnips/' < sorted_poem > better_poem; cd -; echo \"I prefer turnips anyway\" >> /tmp/better_poem; cat /tmp/better_poem");
-//			if (ii == 7999) {
-//				printf("Press ENTER for next test\n");
-//				DEBUGG ? scanf("GO?") : 0;
-//			}
-//		} else if (RUNN && ii > 800 && ii < 900) {
-//			ft_printf("***||| _-_- STAGE - %d TEST - #6 -_-_\n", ii);
-//			dup = ft_strdup("rm nosuchfile 2>&-; rm nosuchfile 2>&1 | cat -e; echo \"No dollar character\" 1>&2 | cat -e");
-//			if (ii == 8999) {
-//				printf("Press ENTER for next test\n");
-//				DEBUGG ? scanf("GO?") : 0;
-//			}
-//		}
-//
-//
-//
-//
-//
-//
-//
-//		else if (ii == 66665) {
-//			ft_printf("_-_- STAGE - %d TEST - #LAST-EXIT -_-_\n", ii);
-//			dup = ft_strdup("exit");
-//		} else {
-//			continue;
-//		}
-//		arr_str = ft_strsplit(dup, ';');
-//		ft_strdel(&dup);
-//		i = 0;
-//		mygv->g_str[0] = 't';
-//		mygv->g_str[1] = 'e';
-//		mygv->g_str[2] = 's';
-//		mygv->g_str[3] = 'X';
-//		ft_put_history(mygv);
-//		while (i < ft_arrlen(arr_str))
-//		{
-//			tmp = arr_str[i];
-//			arr_str[i] = ft_strtrim_norm(arr_str[i]);
-//			ft_strdel(&tmp);
-//			if (ft_strequ(arr_str[i], "exit"))
-//			{
-//				ft_del_arr(&arr_str);
-//				ft_bye(env);
-//			}
-//			ft_pre_begin(arr_str, env, i);
-//			++i;
-//		}
-//		ft_clear_mygv(mygv);
-//		ft_init_screen(2);
-//		ft_del_arr(&arr_str);
-//	}
-//}
-

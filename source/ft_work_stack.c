@@ -70,9 +70,9 @@ int				ft_len_stack(t_stack *head)
 void			ft_del_stack(t_stack **head)
 {
 	t_stack		*tmp;
-	
+
 	if (!head || !(*head))
-		return;
+		return ;
 	while (*head)
 	{
 		tmp = *head;

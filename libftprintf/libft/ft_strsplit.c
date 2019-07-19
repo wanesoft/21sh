@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 18:08:49 by udraugr-          #+#    #+#             */
-/*   Updated: 2018/11/28 18:54:14 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/19 22:29:52 by draynor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char			**ft_strsplit(char const *s, char c)
 
 	i = 0;
 	tmp = 0;
-    arr = 0;
+	arr = 0;
 	if (!s)
 		return (NULL);
 	while (*s && *s == c)
