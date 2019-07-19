@@ -64,10 +64,5 @@ void				ft_change_heredoc(t_mygv *mygv)
 	if (iter)
 		*iter = '"';
 	++iter;
-//	if (iter && *iter == '\n')
-//	{
-//		ft_memmove(iter, iter + 1, ft_strlen(iter + 1) + 1);
-//		++mygv->g_kos;
-//	}
 	ft_change_heredoc_2(mygv);
 }

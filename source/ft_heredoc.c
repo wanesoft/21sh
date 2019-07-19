@@ -93,6 +93,7 @@ int					ft_pre_heredoc(t_mygv *mygv)
 					ft_change_heredoc(mygv);
 					mygv->cur_her++;
 					ft_should_go(mygv, 1);
+                    ft_strdel(&mygv->target);
 					return ((int)(ft_strstr(&mygv->g_str[mygv->cur_her], "<<")));
 				}
 				ft_strdel(&mygv->target);

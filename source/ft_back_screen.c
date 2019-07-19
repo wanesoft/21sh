@@ -61,7 +61,7 @@ void				ft_back_screen(int signo)
 	tcsetattr(STDIN_FILENO, TCSANOW, &mygv->old);
 	ft_putstr_fd(tgetstr("ve", NULL), STDIN_FILENO);
 	ft_putstr_fd("\033[0m", STDIN_FILENO);
-	close(mygv->g_fd_w); //zakryl!
+	close(mygv->g_fd_w);
 	free(mygv);
 	if (signo == SIGTSTP)
 	{
