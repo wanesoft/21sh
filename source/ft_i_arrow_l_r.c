@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 15:03:29 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/04 15:03:32 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/19 18:46:03 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void		ft_go_left(t_mygv *mygv)
 
 static void		ft_go_right(t_mygv *mygv)
 {
-	if (!mygv->g_j)
+	if (!mygv->g_j && mygv->g_str[mygv->g_j + 1])
 		++mygv->g_j;
 	while (mygv->g_str[mygv->g_j] && (mygv->g_str[mygv->g_j] == ' ' || mygv->g_str[mygv->g_j] == '\n'))
 		++mygv->g_j;
