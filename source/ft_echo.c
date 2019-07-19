@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 13:57:40 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/04 14:17:58 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/19 13:23:17 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ void		ft_echo(char *params)
 	ft_ungrab_arr(tmp);
 	i = 0;
 	while (tmp[++i])
+	{
 		write(1, tmp[i], ft_strlen(tmp[i]));
+		if (tmp[i + 1])
+			write(1, " ", 1);
+	}
 	write(1, "\n", 1);
 	ft_del_arr(&tmp);
 	return ;
