@@ -41,6 +41,8 @@ static void			ft_change_heredoc_2(t_mygv *mygv)
 	++iter;
 	if (iter)
 		ft_memmove(iter, iter + (int)ft_strlen(mygv->target) - 1, ft_strlen(iter) + 1);
+	ft_strdel(&tmp);
+	ft_strdel(&tmp2);
 	ft_strdel(&mygv->target);
 }
 
