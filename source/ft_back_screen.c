@@ -57,6 +57,7 @@ void				ft_back_screen(int signo)
 
 	mygv = ft_get_mygv(NULL);
 	ft_del_stack(&mygv->grab);
+	free(mygv->target);
 	tcsetattr(STDIN_FILENO, TCSANOW, &mygv->old);
 	ft_putstr_fd(tgetstr("ve", NULL), STDIN_FILENO);
 	ft_putstr_fd("\033[0m", STDIN_FILENO);
