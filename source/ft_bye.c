@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 15:01:30 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/04 14:04:14 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/19 22:24:29 by draynor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,5 @@ void			ft_bye(t_vector **env)
 	ft_delall_vector(env);
 	ft_bye_mes();
 	ft_back_screen(0);
-	//do free mygv
 	exit(EXIT_SUCCESS);
 }

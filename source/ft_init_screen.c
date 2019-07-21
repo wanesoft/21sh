@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 13:59:46 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/04 15:06:37 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/19 22:03:40 by draynor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void				ft_init_history_2(t_mygv *mygv, char *str)
 {
 	char				**arr;
 
-    arr = NULL;
+	arr = NULL;
 	arr = ft_strsplit(str, ':');
 	if (arr && arr[0])
 		mygv->g_n_his = ft_atoi(arr[0]);
@@ -51,8 +51,9 @@ static void				ft_init_history(t_mygv *mygv)
 
 	tmp2 = 0;
 	tmp3 = (char *)malloc(sizeof(char) * BUF_G_STR);
-    ft_bzero(tmp3, BUF_G_STR);
-	mygv->g_fd_w = open("/goinfre/.21sh", O_WRONLY | O_APPEND | O_CREAT, S_IRWXU);
+	ft_bzero(tmp3, BUF_G_STR);
+	mygv->g_fd_w = open("/goinfre/.21sh", O_WRONLY | O_APPEND |
+											O_CREAT, S_IRWXU);
 	mygv->g_fd_r = open("/goinfre/.21sh", O_RDONLY | O_CREAT, S_IRWXU);
 	if (mygv->g_fd_w < 0 || mygv->g_fd_r < 0)
 	{

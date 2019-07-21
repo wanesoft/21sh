@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 14:43:18 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/17 14:14:28 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/19 22:30:48 by draynor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,14 +138,15 @@ void				ft_error(int error, char *str);
 
 void				ft_execute(char *str, t_vector **env);
 
-
 t_vector			*create_vect_for_pipes(int arr_len);
 
 int					ft_get_redir(char **string, t_stream *stream);
 int					ft_simple_redir(char ***arr_string, int i,
 										t_stream *stream, int check);
-int					ft_advanced_redir(char ***arr_string, int i, t_stream *stream);
-int					ft_difficult_redir(char ***arr_string, int i, t_stream *stream);
+int					ft_advanced_redir(char ***arr_string, int i,
+										t_stream *stream);
+int					ft_difficult_redir(char ***arr_string,
+										int i, t_stream *stream);
 
 t_vector			*ft_get_myproc(t_vector *my_vect, int mode);
 
@@ -200,12 +201,15 @@ t_stack				*ft_new_stack(char *s);
 int					ft_len_stack(t_stack *head);
 void				ft_grab(char **s, int i, int j);
 char				*ft_ungrab(char *s, int i);
-int					ft_pre_heredoc(t_mygv *mygv);
+int					ft_pre_heredoc(t_mygv *m);
 void				ft_del_stack(t_stack **head);
 void				ft_change_heredoc(t_mygv *mygv);
 int					ft_is_delim(char c, char d);
 void				ft_check_n(void);
 char				*ft_strtrim_norm(char const *s);
 int					ft_ctrl_d(t_mygv *mygv);
+void				ft_print_equ(char **equ, int stage);
+void				ft_put_equ(char ***equ, char *str, char **arr, int len);
+int					ft_size_equ(char *str, char **arr, int len);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 14:01:55 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/04 14:02:19 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/20 12:32:13 by draynor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,13 @@ void				ft_back_screen(int signo)
 
 	mygv = ft_get_mygv(NULL);
 	ft_del_stack(&mygv->grab);
-    ft_strdel(&mygv->target);
+	ft_strdel(&mygv->target);
 	tcsetattr(STDIN_FILENO, TCSANOW, &mygv->old);
 	ft_putstr_fd(tgetstr("ve", NULL), STDIN_FILENO);
 	ft_putstr_fd("\033[0m", STDIN_FILENO);
 	close(mygv->g_fd_w);
-	free(mygv);
+	if (signo != SIGTSTP)
+		free(mygv);
 	if (signo == SIGTSTP)
 	{
 		signal(SIGTSTP, SIG_DFL);

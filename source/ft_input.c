@@ -12,16 +12,6 @@
 
 #include "../include/twenty_one_sh.h"
 
-/*
-
- ** dl - delete line
- ** cr - cursor <-- move to left side
- ** up - cursor up 1 line
- ** le - cursor left 1 char
- ** nd - cursor right 1 char
-
-*/
-
 static void		ft_put_ctrl_v(char *buf, t_mygv *mygv)
 {
 	int			i;
@@ -78,7 +68,7 @@ char			*ft_input(void)
 	char		buf[BUF_G_STR];
 	unsigned	*temp;
 	t_mygv		*mygv;
-	
+
 	mygv = ft_get_mygv(NULL);
 	while (1)
 	{

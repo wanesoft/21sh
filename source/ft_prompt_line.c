@@ -50,7 +50,7 @@ static void		ft_test_width(t_mygv *mygv)
 	double		d;
 	char		**arr;
 	int			i;
-	
+
 	i = 0;
 	mygv->g_kos = 0;
 	arr = ft_strsplit(mygv->g_str, '\n');

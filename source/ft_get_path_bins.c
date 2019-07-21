@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/04 14:59:47 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/04 15:00:03 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/20 12:54:08 by draynor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@ static int			ft_count_files(char **dirs)
 	count = 0;
 	while (dirs[i])
 	{
-		d1 = opendir(dirs[i]);
-		while ((f1 = readdir(d1)))
+		if ((d1 = opendir(dirs[i])) != 0)
 		{
-			if ((f1->d_name)[0] != '.' && f1->d_type == '\b')
-				count++;
+			while ((f1 = readdir(d1)))
+			{
+				if ((f1->d_name)[0] != '.' && f1->d_type == '\b')
+					count++;
+			}
+			closedir(d1);
 		}
-		closedir(d1);
 		i++;
 	}
 	return (count);
@@ -48,16 +50,15 @@ char				**ft_get_path_bins(char **arr)
 	ret = (char **)malloc(sizeof(char *) * (ft_count_files(arr) + 2));
 	while (*arr)
 	{
-		d1 = opendir(*arr);
-		while ((f1 = readdir(d1)))
+		if ((d1 = opendir(*arr)) != 0)
 		{
-			if ((f1->d_name)[0] != '.' && f1->d_type == '\b')
+			while ((f1 = readdir(d1)))
 			{
-				ret[i] = ft_strdup(f1->d_name);
-				++i;
+				if ((f1->d_name)[0] != '.' && f1->d_type == '\b')
+					ret[i++] = ft_strdup(f1->d_name);
 			}
+			closedir(d1);
 		}
-		closedir(d1);
 		++arr;
 	}
 	ret[i] = NULL;

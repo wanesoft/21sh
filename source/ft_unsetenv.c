@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 14:43:44 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/05 17:23:40 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/20 15:03:57 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ void	ft_unsetenv(char *param, t_vector **env)
 	tmp = *env;
 	arr = ft_strsplit(param, ' ');
 	ft_ungrab_arr(arr);
-	if (!arr[0])
+	if (!arr || !arr[0])
+	{
+		ft_del_arr(&arr);
 		return ;
+	}
 	while (tmp)
 	{
 		if (ft_strequ(((t_var_env *)tmp->content)->key, arr[0]))

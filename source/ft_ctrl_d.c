@@ -6,7 +6,7 @@
 /*   By: draynor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 17:14:23 by draynor           #+#    #+#             */
-/*   Updated: 2019/07/19 17:14:25 by draynor          ###   ########.fr       */
+/*   Updated: 2019/07/19 22:15:15 by draynor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static void		ft_ctrl_d_3(char *iter)
 {
-	while (iter && *iter && *iter != '<' && *iter != '|' && *iter != '>' && *iter != ';')
+	while (iter && *iter && *iter != '<' && *iter != '|' &&
+			*iter != '>' && *iter != ';')
 		++iter;
 	if (iter && *iter)
 	{
@@ -46,7 +47,6 @@ static int		ft_ctrl_d_2(char *iter)
 	ft_ctrl_d_3(iter);
 	while (*iter)
 		++iter;
-	
 	--iter;
 	if (*iter && *iter == '\n')
 		ft_memmove(iter, iter + 1, ft_strlen(iter) + 1);
@@ -56,7 +56,7 @@ static int		ft_ctrl_d_2(char *iter)
 int				ft_ctrl_d(t_mygv *mygv)
 {
 	char		*iter;
-	
+
 	if (mygv->g_str[0] == 0)
 	{
 		write(STDOUT_FILENO, "\n", 1);

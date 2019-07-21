@@ -35,7 +35,7 @@ char			*ft_strtrim_norm(char const *s)
 	size_t		i;
 	size_t		end;
 	char		*str;
-	
+
 	i = 0;
 	if (!s)
 		return (NULL);

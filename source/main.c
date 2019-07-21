@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 11:23:54 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/07 10:05:40 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/07/20 12:35:06 by draynor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int					main(int argc, char **argv, char **env)
 {
 	t_vector		*env_copy;
 	t_mygv			*mygv;
+
 	++argc;
 	++argv;
 	write(1, "\033[31m___________________________\n", 34);
@@ -43,6 +44,7 @@ int					main(int argc, char **argv, char **env)
 	tcgetattr(STDIN_FILENO, &(mygv->old));
 	ft_clear_mygv(mygv);
 	ft_get_mygv(mygv);
+	mygv->target = NULL;
 	ft_init_screen(1);
 	while (1)
 	{

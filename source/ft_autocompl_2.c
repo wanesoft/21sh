@@ -12,56 +12,6 @@
 
 #include "../include/twenty_one_sh.h"
 
-static int		ft_size_equ(char *str, char **arr, int len)
-{
-	int			i;
-	int			count;
-
-	i = 0;
-	count = 0;
-	while (arr && arr[i])
-	{
-		if (ft_strnequ(str, arr[i], len))
-			++count;
-		++i;
-	}
-	return (count);
-}
-
-static void		ft_put_equ(char ***equ, char *str, char **arr, int len)
-{
-	int			i;
-	int			j;
-
-	i = 0;
-	j = 0;
-	while (arr && arr[i])
-	{
-		if (ft_strnequ(str, arr[i], len))
-		{
-			(*equ)[j] = ft_strdup(arr[i]);
-			++j;
-		}
-		++i;
-	}
-}
-
-static void		ft_print_equ(char **equ, int stage)
-{
-	ft_printf("\n");
-	while (*equ)
-	{
-		ft_printf("%s ", *equ);
-		++equ;
-	}
-	while (stage)
-	{
-		ft_printf("\n");
-		--stage;
-	}
-	ft_printf("\n");
-}
-
 static void		ft_put_last(t_mygv *mygv, char **arr, int len)
 {
 	while (arr[0][len])
@@ -70,6 +20,12 @@ static void		ft_put_last(t_mygv *mygv, char **arr, int len)
 		++len;
 	}
 	ft_put_letter(' ', mygv);
+}
+
+static void		ft_autocompl_2_2(char **equ, int count, t_mygv *mygv)
+{
+	ft_autocompl_3(equ, mygv, count);
+	ft_print_equ(equ, mygv->g_stage);
 }
 
 void			ft_autocompl_2(char **arr, t_mygv *mygv)
@@ -96,10 +52,7 @@ void			ft_autocompl_2(char **arr, t_mygv *mygv)
 	else if (ft_arrlen(equ) == 0)
 		++i;
 	else
-	{
-		ft_autocompl_3(equ, mygv, count);
-		ft_print_equ(equ, mygv->g_stage);
-	}
+		ft_autocompl_2_2(equ, count, mygv);
 	ft_del_arr(&equ);
 	free(str);
 }

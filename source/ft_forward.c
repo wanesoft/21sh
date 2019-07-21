@@ -12,7 +12,7 @@
 
 #include "../include/twenty_one_sh.h"
 
-static void		ft_help(void)
+static void			ft_help(void)
 {
 	ft_printf("setenv   - установить переменную окружения\n");
 	ft_printf("unsetenv - удалить переменную окружения\n");
@@ -31,13 +31,13 @@ static void			ft_hash(t_vector **env)
 	int				i;
 	DIR				*d1;
 	struct dirent	*f1;
-	
-	i = 0;
+
 	tmp = ft_take_value_env("PATH", env);
 	if (tmp[0] != 0)
 	{
 		arr = ft_strsplit(tmp, ':');
-		while (arr && arr[i])
+		i = -1;
+		while (arr && arr[++i])
 		{
 			if ((d1 = opendir(arr[i])) != 0)
 			{
@@ -48,7 +48,6 @@ static void			ft_hash(t_vector **env)
 				}
 				closedir(d1);
 			}
-			++i;
 		}
 	}
 	ft_strdel(&tmp);
@@ -81,19 +80,13 @@ static int			ft_distribution(char *command, char *str, t_vector **env)
 
 int					ft_forward(char *str, char **arr_env)
 {
-//	char			*command;
 	char			*back;
-//	int				i;
 	char			**arr;
 	int				ans;
 	t_vector		*env;
 
-//	i = 0;
-//	while (str[i] && str[i] != ' ')
-//		++i;
 	arr = ft_strsplit(str, ' ');
-//	command = ft_strdup(arr[0]);
-	back = arr[0];//command;
+	back = arr[0];
 	arr[0] = ft_ungrab(arr[0], 0);
 	ft_strtolower(arr[0]);
 	env = ft_arr_to_vector(arr_env);

@@ -6,7 +6,7 @@
 /*   By: draynor <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/06 17:05:12 by draynor           #+#    #+#             */
-/*   Updated: 2019/07/06 17:05:14 by draynor          ###   ########.fr       */
+/*   Updated: 2019/07/19 22:10:48 by draynor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ static int			ft_heredoc(char *iter)
 		return (0);
 	target = ft_get_target(iter);
 	i = 0;
-	while (iter[i] && iter[i] != '<' && iter[i] != '|' && iter[i] != ';' && iter[i] != '>' && iter[i] != '&')
+	while (iter[i] && iter[i] != '<' && iter[i] != '|' && iter[i] != ';'
+					&& iter[i] != '>' && iter[i] != '&')
 		++i;
 	tmp = ft_strndup(iter, i);
 	arr = ft_strsplit(tmp, '\n');
@@ -70,37 +71,38 @@ static void			ft_should_go(t_mygv *mygv, int mode)
 	if (mode == 1)
 	{
 		mygv->g_j = mygv->cur_her + 2;
-		while (mygv->g_str[mygv->g_j] && !ft_is_delim(mygv->g_str[mygv->g_j], mygv->g_str[mygv->g_j + 1]))
+		while (mygv->g_str[mygv->g_j] &&
+				!ft_is_delim(mygv->g_str[mygv->g_j],
+					mygv->g_str[mygv->g_j + 1]))
 			++mygv->g_j;
 	}
 }
 
-int					ft_pre_heredoc(t_mygv *mygv)
+int					ft_pre_heredoc(t_mygv *m)
 {
 	int				tmp;
 
-	mygv->g_kos = 0;
-	while (mygv->g_str[mygv->cur_her])
+	m->g_kos = 0;
+	while (m->g_str[m->cur_her])
 	{
-		if (mygv->g_str[mygv->cur_her] == '<')
+		if (m->g_str[m->cur_her] == '<')
 		{
-			if (mygv->g_str[mygv->cur_her + 1] == '<')
+			if (m->g_str[m->cur_her + 1] == '<')
 			{
-				ft_should_go(mygv, 1);
-				tmp = ft_heredoc(&(mygv->g_str[mygv->cur_her]));
+				ft_should_go(m, 1);
+				tmp = ft_heredoc(&(m->g_str[m->cur_her]));
 				if (!tmp)
 				{
-					ft_change_heredoc(mygv);
-					mygv->cur_her++;
-					ft_should_go(mygv, 1);
-                    ft_strdel(&mygv->target);
-					return ((int)(ft_strstr(&mygv->g_str[mygv->cur_her], "<<")));
+					ft_change_heredoc(m);
+					m->cur_her++;
+					ft_should_go(m, 1);
+					return ((int)(ft_strstr(&m->g_str[m->cur_her], "<<")));
 				}
-				ft_strdel(&mygv->target);
+				ft_strdel(&m->target);
 				return (tmp);
 			}
 		}
-		++mygv->cur_her;
+		++m->cur_her;
 	}
 	return (0);
 }
