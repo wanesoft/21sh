@@ -6,101 +6,22 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 18:08:49 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/19 22:29:52 by draynor          ###   ########.fr       */
+/*   Updated: 2019/08/19 16:58:33 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		**ft_strsplit3(char const *s, char c, char **arr)
-{
-	size_t		j;
-	size_t		i;
-	size_t		tmp;
-
-	i = 0;
-	j = 0;
-	tmp = 0;
-	while (s[i])
-	{
-		if (s[i] != c)
-		{
-			arr[j][tmp++] = s[i];
-			arr[j][tmp] = '\0';
-		}
-		else if (s[i] == c && s[i - 1] != c)
-		{
-			arr[j][tmp] = '\0';
-			j++;
-			tmp = 0;
-		}
-		i++;
-	}
-	return (arr);
-}
-
-static char		**ft_free(size_t j, char **arr)
-{
-	j -= 2;
-	while (j-- > 0)
-		free(arr[j]);
-	free(arr[j]);
-	free(arr);
-	return (NULL);
-}
-
-static char		**ft_strsplit2(char const *s, char c, char **arr)
-{
-	size_t		j;
-	size_t		i;
-	size_t		tmp;
-
-	i = 0;
-	j = 0;
-	tmp = 0;
-	while (s[i])
-	{
-		if (s[i] == c && s[i - 1] != c)
-		{
-			if (!(arr[j++] = (char *)malloc(sizeof(char) * (tmp + 1))))
-				return (ft_free(j, arr));
-			tmp = 0;
-		}
-		else if (s[i] != c)
-			tmp++;
-		i++;
-	}
-	if (i != 0 && s[i - 1] != c)
-		if (!(arr[j++] = (char *)malloc(sizeof(char) * tmp + 1)))
-			return (ft_free(j, arr));
-	arr[j] = 0;
-	arr = ft_strsplit3(s, c, arr);
-	return (arr);
-}
-
 char			**ft_strsplit(char const *s, char c)
 {
-	size_t		tmp;
-	size_t		i;
-	char		**arr;
+	char		**ans;
+	char		*tmp;
 
-	i = 0;
-	tmp = 0;
-	arr = 0;
-	if (!s)
-		return (NULL);
-	while (*s && *s == c)
-		s++;
-	while (s[i])
-	{
-		if (s[i] == c && s[i - 1] != c)
-			tmp++;
-		i++;
-	}
-	if (i != 0 && s[i - 1] != c)
-		tmp++;
-	if (!(arr = (char **)malloc(sizeof(char *) * (tmp + 1))))
-		return (NULL);
-	arr = ft_strsplit2(s, c, arr);
-	return (arr);
+	if (!(tmp = (char *)malloc(sizeof(char) * 2)))
+		return (0);
+	tmp[0] = c;
+	tmp[1] = '\0';
+	ans = ft_strsplit_str(s, tmp);
+	ft_strdel(&tmp);
+	return (ans);
 }

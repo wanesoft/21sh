@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 19:17:06 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/07/05 17:53:53 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/08/19 16:56:21 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,5 +134,6 @@ void					ft_delall_vector(t_vector **chain);
 
 int						ft_arrlen(char **arr);
 char					*ft_strjoin_pro(char *begin, char *end, int mod);
+char					**ft_strsplit_str(char const *str, char *sep);
 
 #endif
